@@ -48,14 +48,18 @@ const Navbar = () => {
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
             {/* Logo */}
             <Link to='/'>
-              <img
+             
+              <img className='relative -mr-0'
                 // className='hidden md:block'
-                src='https://i.ibb.co/4ZXzmq5/logo.png'
+                src='https://i.ibb.co/fNVxZRt/asset-manager.jpg'
                 alt='logo'
                 width='100'
                 height='100'
               />
+              <h2 className='text-2xl text-blue-600 font-bold '>The Asset Manager</h2>
+             
             </Link>
+            
             {/* Dropdown Menu */}
             <div className='relative'>
               <div className='flex flex-row items-center gap-3'>
