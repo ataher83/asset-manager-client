@@ -61,8 +61,6 @@ const Navbar = () => {
         <Container>
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
 
-          {/* <div className=' flex md:block flex-col justify-center items-center '> */}
-          {/* <div className='  '> */}
             {/*Company Logo &  Name */}
             
               <Link className='hidden lg:block' to='/'>
@@ -76,11 +74,7 @@ const Navbar = () => {
                 <h2 className='text-2xl text-blue-600 font-bold '>The Asset Manager</h2>
               </Link>
             
-
-
             {/* menu/ links/ middle part/ main navbar part */}
-
-            {/* <div className="navbar bg-base-100 text-info font-semibold   container mx-auto"> */}
             <div className=" bg-base-100 text-info font-semibold    ">
 
               <div className="navbar-start">
@@ -106,7 +100,7 @@ const Navbar = () => {
               </div>
 
             </div>
-          {/* </div> */}
+
 
     
             {/* Dropdown Menu */}
@@ -141,7 +135,8 @@ const Navbar = () => {
                   className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
                 >
                   <AiOutlineMenu />
-                  <div className='hidden md:block'>
+                  {/* <div className='hidden md:block'> */}
+                  <div className=''>
                     {/* Avatar */}
                     <img
                       className='rounded-full'
