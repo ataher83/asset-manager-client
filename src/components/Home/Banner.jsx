@@ -4,7 +4,7 @@ const Banner = () => {
 //   const history = useHistory();
 
   return (
-    <div className="relative w-full h-96 bg-gray-800 text-white">
+    <div className="relative w-full h-96 bg-blue-400 text-white rounded-md">
       <div className="absolute inset-0 flex justify-center items-center space-x-4">
         <div className="bg-black bg-opacity-50 p-6 rounded-lg">
           <h2 className="text-2xl mb-4">Join as HR Manager</h2>
