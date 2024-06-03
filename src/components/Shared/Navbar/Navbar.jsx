@@ -44,35 +44,71 @@ const Navbar = () => {
 
   const navLinks = <>
   <li><NavLink to="/">Home</NavLink></li>
-  <li><NavLink to="/queries">Queries</NavLink></li>
-  <li><NavLink to="/recommendationsForMe">Recommendations For Me</NavLink></li>
-  <li><NavLink to="/myQueries">My Queries</NavLink></li>
-  <li><NavLink to="/myRecommendations">My Recommendations</NavLink></li>
-  <li><NavLink to="/blogs">Blogs</NavLink></li>
+  <li><NavLink to="/queries">Join as Employee</NavLink></li>
+  <li><NavLink to="/recommendationsForMe">Join as HR Manager</NavLink></li>
+  {/* <li><NavLink to="/myQueries">My Queries</NavLink></li> */}
+  {/* <li><NavLink to="/myRecommendations">My Recommendations</NavLink></li> */}
+  <li><NavLink to="/blogs">Login</NavLink></li>
   </>
 
-  return (
 
+
+
+  return (
 
     <div className='fixed w-full bg-white z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
         <Container>
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
 
+          {/* <div className=' flex md:block flex-col justify-center items-center '> */}
+          {/* <div className='  '> */}
             {/*Company Logo &  Name */}
-            <Link to='/'>
-              <img className='relative -mr-0'
-                // className='hidden md:block'
-                src='https://i.ibb.co/fNVxZRt/asset-manager.jpg'
-                alt='logo'
-                width='100'
-                height='100'
-              />
-              <h2 className='text-2xl text-blue-600 font-bold '>The Asset Manager</h2>
-            </Link>
-
-
             
+              <Link className='hidden lg:block' to='/'>
+                <img 
+                  // className='hidden md:block'
+                  src='https://i.ibb.co/fNVxZRt/asset-manager.jpg'
+                  alt='logo'
+                  width='100'
+                  height='100'
+                />
+                <h2 className='text-2xl text-blue-600 font-bold '>The Asset Manager</h2>
+              </Link>
+            
+
+
+            {/* menu/ links/ middle part/ main navbar part */}
+
+            {/* <div className="navbar bg-base-100 text-info font-semibold   container mx-auto"> */}
+            <div className=" bg-base-100 text-info font-semibold    ">
+
+              <div className="navbar-start">
+                  <div className="dropdown">
+                  <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                  </div>
+                  <ul tabIndex={0} className="menu menu-sm dropdown-content mt-0 z-[10] p-2 shadow bg-base-100 rounded-box w-52 ">
+                      
+                      {navLinks}
+
+                  </ul>
+                  </div>
+              </div>
+
+
+              <div className="navbar-center hidden lg:flex">
+                  <ul className="menu menu-horizontal ">
+                  
+                      {navLinks}
+
+                  </ul>
+              </div>
+
+            </div>
+          {/* </div> */}
+
+    
             {/* Dropdown Menu */}
             <div className='relative'>
               <div className='flex flex-row items-center gap-3'>
@@ -166,14 +202,13 @@ const Navbar = () => {
                 </div>
               )}
             </div>
+
+
+
           </div>
         </Container>
       </div>
     </div>
-
-
-
-
 
 
 
