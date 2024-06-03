@@ -1,7 +1,7 @@
 import Container from '../Container'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 import HostModal from '../../Modal/HostRequestModal'
@@ -41,14 +41,26 @@ const Navbar = () => {
     }
   }
 
+
+  const navLinks = <>
+  <li><NavLink to="/">Home</NavLink></li>
+  <li><NavLink to="/queries">Queries</NavLink></li>
+  <li><NavLink to="/recommendationsForMe">Recommendations For Me</NavLink></li>
+  <li><NavLink to="/myQueries">My Queries</NavLink></li>
+  <li><NavLink to="/myRecommendations">My Recommendations</NavLink></li>
+  <li><NavLink to="/blogs">Blogs</NavLink></li>
+  </>
+
   return (
+
+
     <div className='fixed w-full bg-white z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
         <Container>
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
-            {/* Logo */}
+
+            {/*Company Logo &  Name */}
             <Link to='/'>
-             
               <img className='relative -mr-0'
                 // className='hidden md:block'
                 src='https://i.ibb.co/fNVxZRt/asset-manager.jpg'
@@ -57,24 +69,30 @@ const Navbar = () => {
                 height='100'
               />
               <h2 className='text-2xl text-blue-600 font-bold '>The Asset Manager</h2>
-             
             </Link>
+
+
             
             {/* Dropdown Menu */}
             <div className='relative'>
               <div className='flex flex-row items-center gap-3'>
+
+
                 {/* Become A Host btn */}
-                <div className='hidden md:block'>
-                  {/* {!user && ( */}
+                {/* <div className='hidden md:block'>
+                
                   <button
-                    // disabled={!user}
+                    
                     onClick={() => setIsModalOpen(true)}
                     className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
                   >
                     Host your home
                   </button>
-                  {/* )} */}
-                </div>
+                 
+                </div> */}
+
+
+
                 {/* Modal */}
                 <HostModal
                   isOpen={isModalOpen}
@@ -100,9 +118,12 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
+
+
               {isOpen && (
                 <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
                   <div className='flex flex-col cursor-pointer'>
+
                     <Link
                       to='/'
                       className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
@@ -149,6 +170,13 @@ const Navbar = () => {
         </Container>
       </div>
     </div>
+
+
+
+
+
+
+
   )
 }
 
