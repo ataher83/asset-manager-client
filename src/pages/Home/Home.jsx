@@ -12,9 +12,9 @@ const Home = () => {
         <title>The Asset Manager | Home</title>
       </Helmet>
       {/* Categories section  */}
-      <Categories />
+      {/* <Categories /> */}
       {/* Rooms section */}
-      <Rooms />
+      {/* <Rooms /> */}
       <Banner></Banner>
       <About></About>
       <Packages></Packages>
