@@ -1,0 +1,99 @@
+{
+    "users": [
+      {
+        "email":"taher83@gmail.com",
+        "role":"host",
+        "status":"Verified",
+        "timestamp":{"$numberDouble":"1717332394165.0"}
+      },
+      {
+        "email":"a@b.com",
+        "role":"admin",
+        "status":"Verified",
+        "timestamp":{"$numberDouble":"1717331592352.0"}
+      },
+      {
+        "email":"c@d.com",
+        "role":"guest",
+        "status":"Verified",
+        "timestamp":{"$numberDouble":"1717332229556.0"}
+    }
+    ],
+
+
+
+
+
+
+
+    
+
+    "assets": [
+      {
+        "name": "Laptop",
+        "type": "Returnable",
+        "quantity": 20,
+        "dateAdded": "2024-05-01",
+        "companyName": "ABC Company"
+      },
+      {
+        "name": "Desk",
+        "type": "Returnable",
+        "quantity": 15,
+        "dateAdded": "2024-05-05",
+        "companyName": "ABC Company"
+      },
+      {
+        "name": "Printer",
+        "type": "Returnable",
+        "quantity": 5,
+        "dateAdded": "2024-05-10",
+        "companyName": "ABC Company"
+      },
+      {
+        "name": "Notebook",
+        "type": "Non-returnable",
+        "quantity": 50,
+        "dateAdded": "2024-05-03",
+        "companyName": "ABC Company"
+      },
+      {
+        "name": "Pen",
+        "type": "Non-returnable",
+        "quantity": 100,
+        "dateAdded": "2024-05-07",
+        "companyName": "ABC Company"
+      }
+    ],
+
+    "requests": [
+      {
+        "assetName": "Laptop",
+        "assetType": "Returnable",
+        "email": "janesmith@example.com",
+        "requesterName": "Jane Smith",
+        "requestDate": "2024-06-01",
+        "additionalNote": "Need a new laptop for work",
+        "status": "Pending"
+      },
+      {
+        "assetName": "Desk",
+        "assetType": "Returnable",
+        "email": "alicejohnson@example.com",
+        "requesterName": "Alice Johnson",
+        "requestDate": "2024-06-02",
+        "additionalNote": "Need a new desk for office",
+        "status": "Approved"
+      },
+      {
+        "assetName": "Printer",
+        "assetType": "Returnable",
+        "email": "janesmith@example.com",
+        "requesterName": "Jane Smith",
+        "requestDate": "2024-06-05",
+        "additionalNote": "",
+        "status": "Pending"
+      }
+    ]
+  }
+  

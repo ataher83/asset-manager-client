@@ -1,7 +1,7 @@
 import Container from '../Container'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, Navigate } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 import HostModal from '../../Modal/HostRequestModal'
@@ -11,35 +11,35 @@ import toast from 'react-hot-toast'
 const Navbar = () => {
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
-  const [isOpen, setIsOpen] = useState(false)
+  // const [isOpen, setIsOpen] = useState(false)
 
   // for modal
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const closeModal = () => {
-    setIsModalOpen(false)
-  }
-  const modalHandler = async () => {
-    console.log('I want to be a host')
-    try {
-      const currentUser = {
-        email: user?.email,
-        role: 'guest',
-        status: 'Requested',
-      }
-      const { data } = await axiosSecure.put(`/user`, currentUser)
-      console.log(data)
-      if (data.modifiedCount > 0) {
-        toast.success('Success! Please wait for admin confirmation')
-      } else {
-        toast.success('Please!, Wait for admin approval👊')
-      }
-    } catch (err) {
-      console.log(err)
-      toast.error(err.message)
-    } finally {
-      closeModal()
-    }
-  }
+  // const [isModalOpen, setIsModalOpen] = useState(false)  
+  // const closeModal = () => {
+  //   setIsModalOpen(false)
+  // }
+  // const modalHandler = async () => {
+  //   console.log('I want to be a host')
+  //   try {
+  //     const currentUser = {
+  //       email: user?.email,
+  //       role: 'guest',
+  //       status: 'Requested',
+  //     }
+  //     const { data } = await axiosSecure.put(`/user`, currentUser)
+  //     console.log(data)
+  //     if (data.modifiedCount > 0) {
+  //       toast.success('Success! Please wait for admin confirmation')
+  //     } else {
+  //       toast.success('Please!, Wait for admin approval👊')
+  //     }
+  //   } catch (err) {
+  //     console.log(err)
+  //     toast.error(err.message)
+  //   } finally {
+  //     closeModal()
+  //   }
+  // }
 
 
   const navLinks = <>
@@ -48,7 +48,7 @@ const Navbar = () => {
   <li><NavLink to="/recommendationsForMe">Join as HR Manager</NavLink></li>
   {/* <li><NavLink to="/myQueries">My Queries</NavLink></li> */}
   {/* <li><NavLink to="/myRecommendations">My Recommendations</NavLink></li> */}
-  <li><NavLink to="/blogs">Login</NavLink></li>
+  {/* <li><NavLink to="/blogs">Login</NavLink></li> */}
   </>
 
 
@@ -103,68 +103,62 @@ const Navbar = () => {
 
 
     
-            {/* Dropdown Menu */}
+            {/* Login/Logout Button Part*/}
             <div className='relative'>
               <div className='flex flex-row items-center gap-3'>
 
-
-                {/* Become A Host btn */}
-                {/* <div className='hidden md:block'>
-                
-                  <button
-                    
-                    onClick={() => setIsModalOpen(true)}
-                    className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
-                  >
-                    Host your home
-                  </button>
-                 
-                </div> */}
-
-
-
-                {/* Modal */}
-                <HostModal
-                  isOpen={isModalOpen}
-                  closeModal={closeModal}
-                  modalHandler={modalHandler}
-                />
-                {/* Dropdown btn */}
                 <div
-                  onClick={() => setIsOpen(!isOpen)}
-                  className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
+                  className='p-4 md:py-1 md:px-2 border-[2px] border-blue-400 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
                 >
-                  <AiOutlineMenu />
-                  {/* <div className='hidden md:block'> */}
-                  <div className=''>
-                    {/* Avatar */}
+                  {
+                  user ? (
+                        <div
+                          onClick={logOut}
+                          className='px-4 py-3 hover:bg-slate-200 rounded-lg text-info transition font-semibold cursor-pointer'
+                        >
+                          Logout
+                        </div>
+                    ) : (
+                        <Link
+                          to='/login'
+                          className='px-4 py-3 hover:bg-slate-200 rounded-lg text-info transition font-semibold'
+                        >
+                          Login
+                        </Link>
+                    )
+                  }
+
+                  {/* Avatar/ User Name & Photo */}
+                  <div>
+                    <span className='text-blue-700 font-semibold'>{user? user.displayName : ""}</span>
                     <img
                       className='rounded-full'
                       referrerPolicy='no-referrer'
                       src={user && user.photoURL ? user.photoURL : avatarImg}
                       alt='profile'
-                      height='30'
-                      width='30'
+                      height='40'
+                      width='40'
                     />
                   </div>
                 </div>
               </div>
 
 
-              {isOpen && (
+              {/* {
+              isOpen && (
                 <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
-                  <div className='flex flex-col cursor-pointer'>
+                  <div className='flex flex-col cursor-pointer'> */}
 
-                    <Link
+                    {/* <Link
                       to='/'
                       className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
                     >
                       Home
-                    </Link>
+                    </Link> */}
 
-                    {user ? (
-                      <>
-                        <Link
+                    {/* {user ? (
+                      <> */}
+                        {/* <Link
                           to='/dashboard'
                           className='block px-4 py-3 hover:bg-neutral-100 transition font-semibold'
                         >
@@ -175,28 +169,76 @@ const Navbar = () => {
                           className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
                         >
                           Logout
-                        </div>
-                      </>
+                        </div> */}
+                      {/* </>
                     ) : (
-                      <>
-                        <Link
+                      <> */}
+                        {/* <Link
                           to='/login'
                           className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
                         >
                           Login
-                        </Link>
-                        <Link
+                        </Link> */}
+                        {/* <Link
                           to='/signup'
                           className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
                         >
                           Sign Up
-                        </Link>
-                      </>
+                        </Link> */}
+                      {/* </>
                     )}
                   </div>
                 </div>
               )}
+                    */} 
+
+
+
+
+
+
             </div>
+
+
+
+            {
+              user? (<Navigate to='/dashboard'></Navigate>):("")
+              // user? <Navigate state={location.pathname} to='/login'></Navigate>:""
+            }
+
+
+
+
+
+
+
+            {/* <div className="navbar-end">
+                {
+                    user?
+                        <div >
+                            <span className="text-blue-900">{user.email}</span>
+                            <div className="flex gap-3">
+                                <div className="avatar  tooltip" data-tip={user.displayName} >
+                                    <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                        <img src={user.photoURL} />
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <button 
+                                    // onClick={handleSignOut}
+                                    onClick={logOut}
+                                    className="btn btn-info">Log out</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        :
+                        <Link to="/login">
+                        <button className="btn btn-info">Login</button>
+                        </Link>
+                }
+            </div> */}
 
 
 

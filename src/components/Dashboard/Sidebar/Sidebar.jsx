@@ -31,7 +31,7 @@ const Sidebar = () => {
     setToggle(event.target.checked)
   }
   return (
-    <>
+    <div >
       {/* Small Screen Navbar */}
       <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
         <div>
@@ -125,7 +125,7 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
