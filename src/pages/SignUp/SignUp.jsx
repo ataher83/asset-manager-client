@@ -57,11 +57,10 @@ const SignUp = () => {
   }
 
   return (
-    <div className='flex justify-center items-center min-h-screen'>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+    <div className='flex justify-center items-center min-h-screen bg-blue-100'>
+      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-300 text-gray-900'>
         <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-          <p className='text-sm text-gray-400'>Welcome to StayVista</p>
+          <h1 className='my-3 text-4xl font-bold text-blue-700'>Sign Up</h1>
         </div>
         <form onSubmit={handleSubmit} className='space-y-6'>
           <div className='space-y-4'>
@@ -79,7 +78,7 @@ const SignUp = () => {
               />
             </div>
             <div>
-              <label htmlFor='image' className='block mb-2 text-sm'>
+              <label htmlFor='image' className='block mb-2 text-sm '>
                 Select Image:
               </label>
               <input
@@ -138,7 +137,7 @@ const SignUp = () => {
         </form>
         <div className='flex items-center pt-4 space-x-1'>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-400'>
+          <p className='px-3  '>
             Signup with social accounts
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
@@ -146,17 +145,17 @@ const SignUp = () => {
         <button
           disabled={loading}
           onClick={handleGoogleSignIn}
-          className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
+          className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border-2 m-3 p-2 border-blue-700 rounded-lg border-rounded cursor-pointer '
         >
           <FcGoogle size={32} />
 
-          <p>Continue with Google</p>
+          <p className='font-semibold text-blue-900 '>Continue with Google</p>
         </button>
-        <p className='px-6 text-sm text-center text-gray-400'>
+        <p className='px-6 text-sm text-center font-semibold'>
           Already have an account?{' '}
           <Link
             to='/login'
-            className='hover:underline hover:text-rose-500 text-gray-600'
+            className='hover:underline hover:text-rose-500 text-lg text-blue-700'
           >
             Login
           </Link>

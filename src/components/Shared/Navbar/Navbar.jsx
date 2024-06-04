@@ -11,36 +11,6 @@ import toast from 'react-hot-toast'
 const Navbar = () => {
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
-  // const [isOpen, setIsOpen] = useState(false)
-
-  // for modal
-  // const [isModalOpen, setIsModalOpen] = useState(false)  
-  // const closeModal = () => {
-  //   setIsModalOpen(false)
-  // }
-  // const modalHandler = async () => {
-  //   console.log('I want to be a host')
-  //   try {
-  //     const currentUser = {
-  //       email: user?.email,
-  //       role: 'guest',
-  //       status: 'Requested',
-  //     }
-  //     const { data } = await axiosSecure.put(`/user`, currentUser)
-  //     console.log(data)
-  //     if (data.modifiedCount > 0) {
-  //       toast.success('Success! Please wait for admin confirmation')
-  //     } else {
-  //       toast.success('Please!, Wait for admin approval👊')
-  //     }
-  //   } catch (err) {
-  //     console.log(err)
-  //     toast.error(err.message)
-  //   } finally {
-  //     closeModal()
-  //   }
-  // }
-
 
   const navLinks = <>
   <li><NavLink to="/">Home</NavLink></li>
@@ -52,17 +22,13 @@ const Navbar = () => {
   </>
 
 
-
-
   return (
-
     <div className='fixed w-full bg-white z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
         <Container>
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
 
-            {/*Company Logo &  Name */}
-            
+            {/*Company Logo &  Name */}    
               <Link className='hidden lg:block' to='/'>
                 <img 
                   // className='hidden md:block'
@@ -100,9 +66,7 @@ const Navbar = () => {
               </div>
 
             </div>
-
-
-    
+  
             {/* Login/Logout Button Part*/}
             <div className='relative'>
               <div className='flex flex-row items-center gap-3'>
@@ -202,8 +166,7 @@ const Navbar = () => {
 
 
             {
-              user? (<Navigate to='/dashboard'></Navigate>):("")
-              // user? <Navigate state={location.pathname} to='/login'></Navigate>:""
+              user? <Navigate to='/dashboard'></Navigate>:""
             }
 
 

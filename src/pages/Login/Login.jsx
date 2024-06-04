@@ -60,11 +60,11 @@ const Login = () => {
   }
 
   return (
-    <div className='flex justify-center items-center min-h-screen'>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+    <div className='flex justify-center items-center min-h-screen bg-blue-100'>
+      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-300 text-gray-900'>
         <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Log In</h1>
-          <p className='text-sm text-gray-400'>
+          <h1 className='my-3 text-4xl font-bold text-blue-700'>Log In</h1>
+          <p className='text-sm '>
             Sign in to access your account
           </p>
         </div>
@@ -110,7 +110,7 @@ const Login = () => {
             <button
               disabled={loading}
               type='submit'
-              className='bg-rose-500 w-full rounded-md py-3 text-white'
+              className='bg-blue-700 w-full rounded-md py-3 text-white'
             >
               {loading ? (
                 <TbFidgetSpinner className='animate-spin m-auto' />
@@ -123,7 +123,7 @@ const Login = () => {
         <div className='space-y-1'>
           <button
             onClick={handleResetPassword}
-            className='text-xs hover:underline hover:text-rose-500 text-gray-400'
+            className='text-xs font-semibold hover:underline hover:text-rose-500 '
           >
             Forgot password?
           </button>
@@ -146,11 +146,11 @@ const Login = () => {
           <p>Continue with Google</p>
         </button>
 
-        <p className='px-6 text-sm text-center text-gray-400'>
-          Don&apos;t have an account yet?{' '}
+        <p className='px-6 text-sm text-center font-semibold'>
+          Don&apos;t have an account?{' '}
           <Link
             to='/signup'
-            className='hover:underline hover:text-rose-500 text-gray-600'
+            className='hover:underline hover:text-rose-500 text-lg text-blue-700'
           >
             Sign up
           </Link>
