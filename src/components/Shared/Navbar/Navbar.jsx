@@ -7,19 +7,77 @@ import avatarImg from '../../../assets/images/placeholder.jpg'
 import HostModal from '../../Modal/HostRequestModal'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
+import useRole from '../../../hooks/useRole'
 
 const Navbar = () => {
+
+  // const [role, isLoading] = useRole()
+  const [role] = useRole()
+
+
+
+
+
+
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
 
-  const navLinks = <>
+  let navLinks;
+
+  // const navLinks = <>
+  // <li><NavLink to="/">Home</NavLink></li>
+  // <li><NavLink to="/queries">Join as Employee</NavLink></li>
+  // <li><NavLink to="/recommendationsForMe">Join as HR Manager</NavLink></li>
+  // </>
+
+  
+  const navLinksWithoutLogin = <>
   <li><NavLink to="/">Home</NavLink></li>
-  <li><NavLink to="/queries">Join as Employee</NavLink></li>
-  <li><NavLink to="/recommendationsForMe">Join as HR Manager</NavLink></li>
-  {/* <li><NavLink to="/myQueries">My Queries</NavLink></li> */}
-  {/* <li><NavLink to="/myRecommendations">My Recommendations</NavLink></li> */}
-  {/* <li><NavLink to="/blogs">Login</NavLink></li> */}
+  <li><NavLink to="/signup">Join as Employee</NavLink></li>
+  <li><NavLink to="/signup">Join as HR Manager</NavLink></li>
   </>
+  const navLinksEmployee = <>
+  <li><NavLink to="/">Home</NavLink></li>
+  <li><NavLink to="/">My Assets</NavLink></li>
+  <li><NavLink to="/">My Team</NavLink></li>
+  <li><NavLink to="/">Request for an Asset</NavLink></li>
+  <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
+
+
+  <li><NavLink to="/dashboard/my-bookings">MY Bookings</NavLink></li>
+  <li><NavLink to="/">Modal(Become a Host)</NavLink></li>
+  </>
+
+  const navLinksHRManager = <>
+  <li><NavLink to="/">Home</NavLink></li>
+  <li><NavLink to="/">Asset List</NavLink></li>
+  <li><NavLink to="/">Add an Asset</NavLink></li>
+  <li><NavLink to="/">All Requests</NavLink></li>
+  <li><NavLink to="/">Custom Requests List</NavLink></li>
+  <li><NavLink to="/">My Employee List</NavLink></li>
+  <li><NavLink to="/">Add an Employee</NavLink></li>
+  <li><NavLink to="/">Profile</NavLink></li>
+
+  <li><NavLink to="/dashboard/manage-users">Manage Users</NavLink></li>
+  <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
+  </>
+
+
+if (role === 'admin') {
+  navLinks = navLinksHRManager
+}
+
+else if (role === 'host') {
+  navLinks = navLinksEmployee
+}
+else if (role === 'guest') {
+  navLinks = navLinksEmployee
+}
+else {
+  navLinks = navLinksWithoutLogin
+}
+
+
 
 
   return (
@@ -51,6 +109,15 @@ const Navbar = () => {
                   <ul tabIndex={0} className="menu menu-sm dropdown-content mt-0 z-[10] p-2 shadow bg-base-100 rounded-box w-52 ">
                       
                       {navLinks}
+                      {/* {
+                        role === 'admin' && navLinksHRManager
+                      } */}
+
+                      {/* if (role === 'admin') {
+                        navLinks = navLinksHRManager
+                      } */}
+
+
 
                   </ul>
                   </div>
@@ -169,39 +236,6 @@ const Navbar = () => {
               user? <Navigate to='/dashboard'></Navigate>:""
             }
 
-
-
-
-
-
-
-            {/* <div className="navbar-end">
-                {
-                    user?
-                        <div >
-                            <span className="text-blue-900">{user.email}</span>
-                            <div className="flex gap-3">
-                                <div className="avatar  tooltip" data-tip={user.displayName} >
-                                    <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                        <img src={user.photoURL} />
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <button 
-                                    // onClick={handleSignOut}
-                                    onClick={logOut}
-                                    className="btn btn-info">Log out</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        :
-                        <Link to="/login">
-                        <button className="btn btn-info">Login</button>
-                        </Link>
-                }
-            </div> */}
 
 
 
