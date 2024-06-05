@@ -16,6 +16,7 @@ import AdminRoute from './AdminRoute'
 import HostRoute from './HostRoute'
 import MyBookings from '../pages/Dashboard/Guest/MyBookings'
 import ManageBookings from '../pages/Dashboard/Host/ManageBookings'
+// import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'
 
 export const router = createBrowserRouter([
   {
@@ -111,6 +112,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      // {
+      //   path: 'updateProfile',
+      //   element: (
+      //     <PrivateRoute>
+      //       <UpdateProfile />
+      //     </PrivateRoute>
+      //   ),
+      // },
     ],
   },
 ])

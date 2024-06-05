@@ -73,7 +73,7 @@ const SignUp = () => {
                 name='name'
                 id='name'
                 placeholder='Enter Your Name Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
                 data-temp-mail-org='0'
               />
             </div>
@@ -99,7 +99,7 @@ const SignUp = () => {
                 id='email'
                 required
                 placeholder='Enter Your Email Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
                 data-temp-mail-org='0'
               />
             </div>
@@ -116,7 +116,7 @@ const SignUp = () => {
                 id='password'
                 required
                 placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
               />
             </div>
           </div>
@@ -149,7 +149,7 @@ const SignUp = () => {
         >
           <FcGoogle size={32} />
 
-          <p className='font-semibold text-blue-900 '>Continue with Google</p>
+          <p className='font-semibold text-blue-900'>Continue with Google</p>
         </button>
         <p className='px-6 text-sm text-center font-semibold'>
           Already have an account?{' '}
@@ -159,7 +159,6 @@ const SignUp = () => {
           >
             Login
           </Link>
-          .
         </p>
       </div>
     </div>

@@ -1,26 +1,25 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
 import { Helmet } from 'react-helmet-async';
 import useRole from '../../../hooks/useRole';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 
 const Profile = () => {
-  const { user, loading, updateUserProfile } = useAuth() || {};
+  const { user, loading } = useAuth() || {};
   const [role, isLoading] = useRole();
-
+  
   const [name, setName] = useState(user?.displayName || '');
   const [isEditing, setIsEditing] = useState(false);
-
+  
   if (isLoading || loading) return <LoadingSpinner />;
 
   const handleUpdateProfile = () => {
-    updateUserProfile(name, user?.photoURL)
-      .then(() => {
-        setIsEditing(false);
-      })
-      .catch(error => {
-        console.error('Error updating profile: ', error);
-      });
+    // Assuming you have a function to update user profile in your useAuth hook
+    useAuth().updateProfile({ displayName: name }).then(() => {
+      setIsEditing(false);
+    }).catch(error => {
+      console.error('Error updating profile: ', error);
+    });
   };
 
   return (

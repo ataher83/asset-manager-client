@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { useState } from 'react'
+import Navbar from '../../components/Shared/Navbar/Navbar'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -84,7 +85,7 @@ const Login = () => {
                 id='email'
                 required
                 placeholder='Enter Your Email Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
                 data-temp-mail-org='0'
               />
             </div>
@@ -101,7 +102,7 @@ const Login = () => {
                 id='password'
                 required
                 placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
               />
             </div>
           </div>
@@ -139,11 +140,11 @@ const Login = () => {
         <button
           disabled={loading}
           onClick={handleGoogleSignIn}
-          className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
+          className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border-2 rounded-lg m-3 p-2 border-blue-700 border-rounded cursor-pointer'
         >
           <FcGoogle size={32} />
 
-          <p>Continue with Google</p>
+          <p className='font-semibold text-blue-900'>Continue with Google</p>
         </button>
 
         <p className='px-6 text-sm text-center font-semibold'>
@@ -154,7 +155,6 @@ const Login = () => {
           >
             Sign up
           </Link>
-          .
         </p>
       </div>
     </div>

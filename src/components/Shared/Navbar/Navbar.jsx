@@ -43,7 +43,6 @@ const Navbar = () => {
   <li><NavLink to="/">Request for an Asset</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
 
-
   <li><NavLink to="/dashboard/my-bookings">MY Bookings</NavLink></li>
   <li><NavLink to="/">Modal(Become a Host)</NavLink></li>
   </>
@@ -56,10 +55,10 @@ const Navbar = () => {
   <li><NavLink to="/">Custom Requests List</NavLink></li>
   <li><NavLink to="/">My Employee List</NavLink></li>
   <li><NavLink to="/">Add an Employee</NavLink></li>
-  <li><NavLink to="/">Profile</NavLink></li>
+  <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
 
   <li><NavLink to="/dashboard/manage-users">Manage Users</NavLink></li>
-  <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
+
   </>
 
 
