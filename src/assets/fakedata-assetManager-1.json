@@ -1,0 +1,115 @@
+{
+    "users": [
+      {
+        "fullName": "John Doe Abu",
+        "email":"taher83@gmail.com",
+        "password": "password123",
+        "dateOfBirth": "1990-05-15",
+        "role": "HR Manager",
+        "companyName": "ABC Company",
+        "companyLogo": "https://example.com/logo.png",
+        "package": "10 Members for $8",
+        "memberLimit": 10,
+
+        "status":"Verified",
+        "timestamp":{"$numberDouble":"1717332394165.0"}
+      },
+      {
+        "fullName": "Jane Smith AB",
+        "email":"a@b.com",
+        "password": "password456",
+        "dateOfBirth": "1995-08-20",
+        "role": "Employee",
+        "companyName": "ABC Company",
+
+        "status":"Verified",
+        "timestamp":{"$numberDouble":"1717331592352.0"}
+      },
+      {
+        "fullName": "Alice Johnson CD",
+        "email":"c@d.com",
+        "password": "password789",
+        "dateOfBirth": "1988-03-10",
+        "role": "Employee",
+        "companyName": "ABC Company",
+
+        "status":"Verified",
+        "timestamp":{"$numberDouble":"1717332229556.0"}
+      }
+    ],
+
+
+
+
+    "assets": [
+      {
+        "name": "Laptop",
+        "type": "Returnable",
+        "quantity": 20,
+        "dateAdded": "2024-05-01",
+        "companyName": "ABC Company"
+      },
+      {
+        "name": "Desk",
+        "type": "Returnable",
+        "quantity": 15,
+        "dateAdded": "2024-05-05",
+        "companyName": "ABC Company"
+      },
+      {
+        "name": "Printer",
+        "type": "Returnable",
+        "quantity": 5,
+        "dateAdded": "2024-05-10",
+        "companyName": "ABC Company"
+      },
+      {
+        "name": "Notebook",
+        "type": "Non-returnable",
+        "quantity": 50,
+        "dateAdded": "2024-05-03",
+        "companyName": "ABC Company"
+      },
+      {
+        "name": "Pen",
+        "type": "Non-returnable",
+        "quantity": 100,
+        "dateAdded": "2024-05-07",
+        "companyName": "ABC Company"
+      }
+    ],
+
+
+
+
+    "requests": [
+      {
+        "assetName": "Laptop",
+        "assetType": "Returnable",
+        "email": "janesmith@example.com",
+        "requesterName": "Jane Smith",
+        "requestDate": "2024-06-01",
+        "additionalNote": "Need a new laptop for work",
+        "status": "Pending"
+      },
+      {
+        "assetName": "Desk",
+        "assetType": "Returnable",
+        "email": "alicejohnson@example.com",
+        "requesterName": "Alice Johnson",
+        "requestDate": "2024-06-02",
+        "additionalNote": "Need a new desk for office",
+        "status": "Approved"
+      },
+      {
+        "assetName": "Printer",
+        "assetType": "Returnable",
+        "email": "janesmith@example.com",
+        "requesterName": "Jane Smith",
+        "requestDate": "2024-06-05",
+        "additionalNote": "",
+        "status": "Pending"
+      }
+    ]
+  }
+  

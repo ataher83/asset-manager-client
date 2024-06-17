@@ -79,7 +79,8 @@ const Sidebar = () => {
           {/* Nav Items */}
           <div className='flex flex-col justify-between flex-1 mt-6'>
             {/* Conditional toggle button here.. */}
-            {role === 'host' && (
+            {/* {role === 'host' && ( */}
+            {role === 'Employee' && (
               <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
             )}
 
@@ -92,14 +93,14 @@ const Sidebar = () => {
                 icon={BsGraphUp}
               />
               {role === 'guest' && <GuestMenu />}
-              {role === 'host' ? (
+              {role === 'Employee' ? (
                 toggle ? (
                   <HostMenu />
                 ) : (
                   <GuestMenu />
                 )
               ) : undefined}
-              {role === 'admin' && <AdminMenu />}
+              {role === 'HRManager' && <AdminMenu />}
             </nav>
           </div>
         </div>

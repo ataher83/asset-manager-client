@@ -9,10 +9,15 @@ const Statistics = () => {
   if (isLoading) return <LoadingSpinner />
   return (
     <>
-      {role === 'admin' && <AdminStatistics />}
-      {role === 'host' && <HostStatistics />}
+      {role === 'HRManager' && <AdminStatistics />}
+      {role === 'Employee' && <HostStatistics />}
       {role === 'guest' && <GuestStatistics />}
     </>
+    // <>
+    //   {role === 'admin' && <AdminStatistics />}
+    //   {role === 'host' && <HostStatistics />}
+    //   {role === 'guest' && <GuestStatistics />}
+    // </>
   )
 }
 

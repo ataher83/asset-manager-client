@@ -16,7 +16,9 @@ import AdminRoute from './AdminRoute'
 import HostRoute from './HostRoute'
 import MyBookings from '../pages/Dashboard/Guest/MyBookings'
 import ManageBookings from '../pages/Dashboard/Host/ManageBookings'
-// import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'
+import EmployeeSignUp from '../pages/SignUp/EmployeeSignUp'
+import HRManagerSignUp from '../pages/SignUp/HRManagerSignUp'
+// import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,8 @@ export const router = createBrowserRouter([
   },
   { path: '/login', element: <Login /> },
   { path: '/signup', element: <SignUp /> },
+  { path: '/employeeSignUp', element: <EmployeeSignUp /> },
+  { path: '/hRManagerSignUp', element: <HRManagerSignUp /> },
   {
     path: '/dashboard',
     element: (

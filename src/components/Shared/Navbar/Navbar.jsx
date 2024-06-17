@@ -15,27 +15,21 @@ const Navbar = () => {
   const [role] = useRole()
 
 
-
-
-
-
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
 
   let navLinks;
-
-  // const navLinks = <>
-  // <li><NavLink to="/">Home</NavLink></li>
-  // <li><NavLink to="/queries">Join as Employee</NavLink></li>
-  // <li><NavLink to="/recommendationsForMe">Join as HR Manager</NavLink></li>
-  // </>
-
-  
+ 
   const navLinksWithoutLogin = <>
   <li><NavLink to="/">Home</NavLink></li>
-  <li><NavLink to="/signup">Join as Employee</NavLink></li>
-  <li><NavLink to="/signup">Join as HR Manager</NavLink></li>
+  <li><NavLink to="/employeeSignUp">Join as Employee</NavLink></li>
+  <li><NavLink to="/hRManagerSignUp">Join as HR Manager</NavLink></li>
   </>
+
+  const navLinksGuest = <>
+  <p className='text-orange-400 text-lg'>Please Contact with your HR Manager to active your Account.</p>
+  </>
+
   const navLinksEmployee = <>
   <li><NavLink to="/">Home</NavLink></li>
   <li><NavLink to="/">My Assets</NavLink></li>
@@ -62,15 +56,16 @@ const Navbar = () => {
   </>
 
 
-if (role === 'admin') {
+// if (role === 'admin') {
+if (role === 'HRManager') {
   navLinks = navLinksHRManager
 }
 
-else if (role === 'host') {
+else if (role === 'Employee') {
   navLinks = navLinksEmployee
 }
 else if (role === 'guest') {
-  navLinks = navLinksEmployee
+  navLinks = navLinksGuest
 }
 else {
   navLinks = navLinksWithoutLogin

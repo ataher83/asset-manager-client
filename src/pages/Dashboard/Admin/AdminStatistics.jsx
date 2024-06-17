@@ -5,8 +5,10 @@ import SalesLineChart from '../../../components/Dashboard/SalesLineChart'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
+// import useAxiosCommon from '../../../hooks/useAxiosCommon'
 
 const AdminStatistics = () => {
+  // const axiosCommon = useAxiosCommon()
   const axiosSecure = useAxiosSecure()
   // Fetch Admin Stat Data here
   const { data: statData = {}, isLoading } = useQuery({

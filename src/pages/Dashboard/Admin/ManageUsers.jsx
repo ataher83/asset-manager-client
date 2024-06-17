@@ -5,8 +5,10 @@ import { useQuery } from '@tanstack/react-query'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 
 import UserDataRow from '../../../components/Dashboard/TableRows/UserDataRow'
+// import useAxiosCommon from '../../../hooks/useAxiosCommon'
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure()
+  // const axiosCommon = useAxiosCommon()
   //   Fetch users Data
   const {
     data: users = [],
@@ -15,6 +17,7 @@ const ManageUsers = () => {
   } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
+      // const { data } = await axiosCommon(`/users`)
       const { data } = await axiosSecure(`/users`)
       return data
     },

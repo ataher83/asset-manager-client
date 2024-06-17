@@ -5,14 +5,17 @@ import { useMutation } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 import useAuth from '../../../hooks/useAuth'
+// import useAxiosCommon from '../../../hooks/useAxiosCommon'
 const UserDataRow = ({ user, refetch }) => {
   const { user: loggedInUser } = useAuth()
 
   const [isOpen, setIsOpen] = useState(false)
   const axiosSecure = useAxiosSecure()
+  // const axiosCommon = useAxiosCommon()
   const { mutateAsync } = useMutation({
     mutationFn: async role => {
       const { data } = await axiosSecure.patch(
+      // const { data } = await axiosCommon.patch(
         `/users/update/${user?.email}`,
         role
       )
