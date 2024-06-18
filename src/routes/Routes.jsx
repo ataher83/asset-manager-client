@@ -18,6 +18,7 @@ import MyBookings from '../pages/Dashboard/Guest/MyBookings'
 import ManageBookings from '../pages/Dashboard/Host/ManageBookings'
 import EmployeeSignUp from '../pages/SignUp/EmployeeSignUp'
 import HRManagerSignUp from '../pages/SignUp/HRManagerSignUp'
+import AddAsset from '../pages/Dashboard/Admin/AddAsset'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -67,6 +68,16 @@ export const router = createBrowserRouter([
             <HostRoute>
               <AddRoom />
             </HostRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'add-asset',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AddAsset/>
+            </AdminRoute>
           </PrivateRoute>
         ),
       },

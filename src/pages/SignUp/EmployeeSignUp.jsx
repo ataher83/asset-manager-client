@@ -35,7 +35,7 @@ const EmployeeSignUp = () => {
         console.log(result)
   
         // 3. Save username and photo in firebase
-        await updateUserProfile(name, image_url)
+        await updateUserProfile(name, image_url, dateOfBirth)
         navigate('/')
         toast.success('Signup Successful')
       } catch (err) {

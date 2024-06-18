@@ -1,6 +1,7 @@
 import { categories } from '../Categories/CategoriesData'
 import { DateRange } from 'react-date-range'
 import { TbFidgetSpinner } from 'react-icons/tb'
+
 const AddRoomForm = ({
   dates,
   handleDates,

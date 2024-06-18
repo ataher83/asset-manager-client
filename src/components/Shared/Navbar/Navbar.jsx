@@ -44,7 +44,7 @@ const Navbar = () => {
   const navLinksHRManager = <>
   <li><NavLink to="/">Home</NavLink></li>
   <li><NavLink to="/">Asset List</NavLink></li>
-  <li><NavLink to="/">Add an Asset</NavLink></li>
+  <li><NavLink to="/dashboard/add-asset">Add an Asset</NavLink></li>
   <li><NavLink to="/">All Requests</NavLink></li>
   <li><NavLink to="/">Custom Requests List</NavLink></li>
   <li><NavLink to="/">My Employee List</NavLink></li>
