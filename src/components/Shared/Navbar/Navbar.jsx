@@ -11,7 +11,6 @@ import useRole from '../../../hooks/useRole'
 
 const Navbar = () => {
 
-  // const [role, isLoading] = useRole()
   const [role] = useRole()
 
 
@@ -76,8 +75,6 @@ else {
 }
 
 
-
-
   return (
     <div className='fixed w-full bg-white z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
@@ -111,7 +108,6 @@ else {
                   </ul>
                   </div>
               </div>
-
 
               <div className="navbar-center hidden lg:flex">
                   <ul className="menu menu-horizontal ">
@@ -163,62 +159,7 @@ else {
                 </div>
               </div>
 
-
-              {/* {
-              isOpen && (
-                <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
-                  <div className='flex flex-col cursor-pointer'> */}
-
-                    {/* <Link
-                      to='/'
-                      className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                    >
-                      Home
-                    </Link> */}
-
-                    {/* {user ? (
-                      <> */}
-                        {/* <Link
-                          to='/dashboard'
-                          className='block px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                        >
-                          Dashboard
-                        </Link>
-                        <div
-                          onClick={logOut}
-                          className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
-                        >
-                          Logout
-                        </div> */}
-                      {/* </>
-                    ) : (
-                      <> */}
-                        {/* <Link
-                          to='/login'
-                          className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                        >
-                          Login
-                        </Link> */}
-                        {/* <Link
-                          to='/signup'
-                          className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                        >
-                          Sign Up
-                        </Link> */}
-                      {/* </>
-                    )}
-                  </div>
-                </div>
-              )}
-                    */} 
-
-
-
-
-
-
             </div>
-
 
 
             {
@@ -226,13 +167,10 @@ else {
             }
 
 
-
-
           </div>
         </Container>
       </div>
     </div>
-
 
 
   )
