@@ -5,16 +5,17 @@ import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { imageUpload } from '../../api/utils'
+import { Helmet } from 'react-helmet-async'
 
 const EmployeeSignUp = () => {
-    const navigate = useNavigate()
-    const {
-      createUser,
-      signInWithGoogle,
-      updateUserProfile,
-      loading,
-      setLoading,
-    } = useAuth()
+  const {
+    createUser,
+    signInWithGoogle,
+    updateUserProfile,
+    loading,
+    setLoading,
+  } = useAuth()
+  const navigate = useNavigate()
   
     const handleSubmit = async e => {
       e.preventDefault()
@@ -24,7 +25,6 @@ const EmployeeSignUp = () => {
       const password = form.password.value
       const dateOfBirth = form.dateOfBirth.value
       const image = form.image.files[0]
-  
       try {
         setLoading(true)
         // 1. Upload image and get image url
@@ -59,6 +59,9 @@ const EmployeeSignUp = () => {
   
     return (
       <div className='flex justify-center items-center min-h-screen bg-blue-100'>
+        <Helmet>
+          <title>Asset Manager | Employee Signup</title>
+        </Helmet>
         <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-300 text-gray-900'>
           <div className='mb-8 text-center'>
             <h1 className='my-3 text-4xl font-bold text-blue-700'>Employee SignUp</h1>

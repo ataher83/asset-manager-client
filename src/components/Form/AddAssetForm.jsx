@@ -1,15 +1,7 @@
-import { categories } from '../Categories/CategoriesData'
-import { DateRange } from 'react-date-range'
 import { TbFidgetSpinner } from 'react-icons/tb'
 
 const AddAssetForm = ({
-    dates,
-    handleDates,
     handleSubmit,
-    setImagePreview,
-    imagePreview,
-    imageText,
-    handleImage,
     loading,
   }) => {
     return (

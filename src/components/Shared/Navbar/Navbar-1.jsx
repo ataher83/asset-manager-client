@@ -107,7 +107,16 @@ else {
                   <ul tabIndex={0} className="menu menu-sm dropdown-content mt-0 z-[10] p-2 shadow bg-base-100 rounded-box w-52 ">
                       
                       {navLinks}
-                      
+                      {/* {
+                        role === 'admin' && navLinksHRManager
+                      } */}
+
+                      {/* if (role === 'admin') {
+                        navLinks = navLinksHRManager
+                      } */}
+
+
+
                   </ul>
                   </div>
               </div>

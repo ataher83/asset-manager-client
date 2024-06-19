@@ -19,6 +19,7 @@ import ManageBookings from '../pages/Dashboard/Host/ManageBookings'
 import EmployeeSignUp from '../pages/SignUp/EmployeeSignUp'
 import HRManagerSignUp from '../pages/SignUp/HRManagerSignUp'
 import AddAsset from '../pages/Dashboard/Admin/AddAsset'
+import GuestMenu from '../components/Dashboard/Sidebar/Menu/GuestMenu'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -45,6 +46,11 @@ export const router = createBrowserRouter([
   { path: '/signup', element: <SignUp /> },
   { path: '/employeeSignUp', element: <EmployeeSignUp /> },
   { path: '/hRManagerSignUp', element: <HRManagerSignUp /> },
+  { path: '/guestMenu', element: <GuestMenu/> },
+
+
+
+
   {
     path: '/dashboard',
     element: (

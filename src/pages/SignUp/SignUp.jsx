@@ -5,6 +5,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { imageUpload } from '../../api/utils'
+import { Helmet } from 'react-helmet-async'
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -58,6 +59,9 @@ const SignUp = () => {
 
   return (
     <div className='flex justify-center items-center min-h-screen bg-blue-100'>
+        <Helmet>
+          <title>Asset Manager | Signup</title>
+        </Helmet>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-300 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold text-blue-700'>Sign Up</h1>
