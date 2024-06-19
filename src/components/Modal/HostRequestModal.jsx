@@ -38,14 +38,13 @@ const HostModal = ({ closeModal, isOpen, modalHandler }) => {
               <DialogPanel className='w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
                 <DialogTitle
                   as='h3'
-                  className='text-lg font-medium text-center leading-6 text-gray-900'
+                  className='text-lg font-medium text-center leading-6 text-blue-900'
                 >
-                  Become A Host!
+                  Become an Employee!
                 </DialogTitle>
-                <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    Please read all the terms & conditions before becoming a
-                    host.
+                <div className='mt-2 text-center'>
+                  <p className='text-sm text-blue-700'>
+                    You are sending a request to become an employee now.
                   </p>
                 </div>
                 <hr className='mt-8 ' />
@@ -53,7 +52,7 @@ const HostModal = ({ closeModal, isOpen, modalHandler }) => {
                   <button
                     type='button'
                     onClick={modalHandler}
-                    className='inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'
+                    className='inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
                   >
                     Continue
                   </button>
