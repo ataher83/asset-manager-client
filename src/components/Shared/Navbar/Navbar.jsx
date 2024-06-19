@@ -12,10 +12,51 @@ import useRole from '../../../hooks/useRole'
 const Navbar = () => {
 
   const [role] = useRole()
-
-
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
+
+
+
+
+
+
+
+
+  // for modal
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+  const modalHandler = async () => {
+    console.log('I want to be an Employee')
+    try {
+      const currentUser = {
+        email: user?.email,
+        role: 'guest',
+        status: 'Requested',
+      }
+      const { data } = await axiosSecure.put(`/user`, currentUser)
+      console.log(data)
+      if (data.modifiedCount > 0) {
+        toast.success('Success! Your Request has sent to HR-Manager for confirmation')
+      } else {
+        toast.success('You have already Applied. Please Wait for HR-Manager approval')
+      }
+    } catch (err) {
+      console.log(err)
+      toast.error(err.message)
+    } finally {
+      closeModal()
+    }
+  }
+
+
+
+
+
+
+
+
 
   let navLinks;
  
@@ -29,6 +70,7 @@ const Navbar = () => {
   <div className='flex flex-col justify-center items-center'>
   <p className='text-orange-400 text-lg'>Please Contact with your HR Manager to active your Account.</p> 
   <p><li><NavLink to="/guestMenu">Contact to HR-Manager Now</NavLink></li></p>
+  {/* <p><li><NavLink to="/hostModal">Contact to HR-Manager Now</NavLink></li></p> */}
   
   </div>
   </>
@@ -170,6 +212,40 @@ else {
           </div>
         </Container>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <div>
+        <div
+          onClick={() => setIsModalOpen(true)}
+          className='flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform text-blue-700  hover:bg-gray-300   hover:text-gray-700 cursor-pointer'
+        >
+          <span className='mx-4 font-semibold'>Become an Employee</span>
+        </div>
+
+        {/* Modal */}
+        <HostModal
+            isOpen={isModalOpen}
+            closeModal={closeModal}
+            modalHandler={modalHandler}
+        />
+      </div>
+
+
+
+
+
+
+
     </div>
 
 
