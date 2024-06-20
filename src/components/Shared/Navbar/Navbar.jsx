@@ -18,10 +18,6 @@ const Navbar = () => {
 
 
 
-
-
-
-
   // for modal
   const [isModalOpen, setIsModalOpen] = useState(false)
   const closeModal = () => {
@@ -55,9 +51,6 @@ const Navbar = () => {
 
 
 
-
-
-
   let navLinks;
  
   const navLinksWithoutLogin = <>
@@ -71,6 +64,7 @@ const Navbar = () => {
   <p className='text-orange-400 text-lg'>Please Contact with your HR Manager to active your Account.</p> 
   <p><li><NavLink to="/guestMenu">Contact to HR-Manager Now</NavLink></li></p>
   {/* <p><li><NavLink to="/hostModal">Contact to HR-Manager Now</NavLink></li></p> */}
+  {/* <p><li><NavLink to="/hostModal">Become an Employee</NavLink></li></p> */}
   
   </div>
   </>
@@ -215,22 +209,13 @@ else {
 
 
 
-
-
-
-
-
-
-
-
-
       <div>
-        <div
+        {/* <div
           onClick={() => setIsModalOpen(true)}
           className='flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform text-blue-700  hover:bg-gray-300   hover:text-gray-700 cursor-pointer'
         >
           <span className='mx-4 font-semibold'>Become an Employee</span>
-        </div>
+        </div> */}
 
         {/* Modal */}
         <HostModal
@@ -240,14 +225,7 @@ else {
         />
       </div>
 
-
-
-
-
-
-
     </div>
-
 
   )
 }
