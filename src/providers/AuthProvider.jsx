@@ -49,10 +49,20 @@ const AuthProvider = ({ children }) => {
     return signOut(auth)
   }
 
-  const updateUserProfile = (name, photo) => {
+
+  // const updateUserProfile = (name, photoURL, dateOfBirth) => {
+  //   return updateProfile(auth.currentUser, {
+  //     displayName: name,
+  //     photoURL,
+  //     dateOfBirth,
+  //   });
+  // };
+
+  const updateUserProfile = (name, photo, dateOfBirth) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
+      dateOfBirth,
     })
   }
   // Get token from server
@@ -65,6 +75,7 @@ const AuthProvider = ({ children }) => {
     return data
   }
 
+  // ভাল কর চেক কর 
   // save user
   const saveUser = async user => {
     const currentUser = {
@@ -94,6 +105,17 @@ const AuthProvider = ({ children }) => {
     }
   }, [])
 
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //     setLoading(false);
+  //   });
+
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, [auth]);
+  
   const authInfo = {
     user,
     loading,

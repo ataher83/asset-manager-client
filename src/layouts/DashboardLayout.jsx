@@ -7,7 +7,7 @@ const DashboardLayout = () => {
     <div className='relative min-h-screen md:flex'>
       <Navbar></Navbar>
       {/* Sidebar */}
-      <Sidebar></Sidebar>
+      {/* <Sidebar></Sidebar> */}
   
       {/* Outlet --> Dynamic content */}
       <div className='flex-1 md:ml-64'>

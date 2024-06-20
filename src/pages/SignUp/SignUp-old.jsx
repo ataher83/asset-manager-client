@@ -1,81 +1,79 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { FcGoogle } from 'react-icons/fc';
-import useAuth from '../../hooks/useAuth';
-import axios from 'axios';
-import toast from 'react-hot-toast';
-import { TbFidgetSpinner } from 'react-icons/tb';
-import { imageUpload } from '../../api/utils';
-import { Helmet } from 'react-helmet-async';
+import { Link, useNavigate } from 'react-router-dom'
+import { FcGoogle } from 'react-icons/fc'
+import useAuth from '../../hooks/useAuth'
+import axios from 'axios'
+import toast from 'react-hot-toast'
+import { TbFidgetSpinner } from 'react-icons/tb'
+import { imageUpload } from '../../api/utils'
+import { Helmet } from 'react-helmet-async'
 
-const EmployeeSignUp = () => {
-  const { 
-    createUser, 
-    signInWithGoogle, 
-    updateUserProfile, 
-    loading, 
-    setLoading 
-  } = useAuth();
-  const navigate = useNavigate();
+const SignUp = () => {
+  const navigate = useNavigate()
+  const {
+    createUser,
+    signInWithGoogle,
+    updateUserProfile,
+    loading,
+    setLoading,
+  } = useAuth()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const dateOfBirth = form.dateOfBirth.value;
-    const image = form.image.files[0];
+  const handleSubmit = async e => {
+    e.preventDefault()
+    const form = e.target
+    const name = form.name.value
+    const email = form.email.value
+    const password = form.password.value
+    const image = form.image.files[0]
 
     try {
-      setLoading(true);
-      const image_url = await imageUpload(image);
-      const result = await createUser(email, password); // লাগবে না
-      await updateUserProfile(name, image_url, dateOfBirth);
+      setLoading(true)
+      // 1. Upload image and get image url
+      const image_url = await imageUpload(image)
+      console.log(image_url)
+      //2. User Registration
+      const result = await createUser(email, password)
+      // console.log(result)
 
-      // চেক কর 
-      await axios.post('/signup/user', {
-        name,
-        email,
-        dateOfBirth,
-        image: image_url,
-        role: 'Employee',
-      });
-
-      navigate('/');
-      toast.success('Signup Successful');
+      // 3. Save username and photo in firebase
+      await updateUserProfile(name, image_url)
+      navigate('/')
+      toast.success('Signup Successful')
     } catch (err) {
-      console.log(err);
-      toast.error(err.message);
-    } finally {
-      setLoading(false);
+      console.log(err)
+      toast.error(err.message)
     }
-  };
+  }
 
+  // handle google signin
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle();
-      navigate('/');
-      toast.success('Signup Successful');
+      await signInWithGoogle()
+
+      navigate('/')
+      toast.success('Signup Successful')
     } catch (err) {
-      console.log(err);
-      toast.error(err.message);
+      console.log(err)
+      toast.error(err.message)
     }
-  };
+  }
+
+
+
 
   return (
     <div className='flex justify-center items-center min-h-screen bg-blue-100'>
-      <Helmet>
-        <title>Asset Manager | Employee Signup</title>
-      </Helmet>
+        <Helmet>
+          <title>Asset Manager | Signup</title>
+        </Helmet>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-300 text-gray-900'>
         <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold text-blue-700'>Employee SignUp</h1>
+          <h1 className='my-3 text-4xl font-bold text-blue-700'>Sign Up</h1>
         </div>
         <form onSubmit={handleSubmit} className='space-y-6'>
           <div className='space-y-4'>
             <div>
-              <label htmlFor='name' className='block mb-2 text-sm'>
-                Full Name
+              <label htmlFor='email' className='block mb-2 text-sm'>
+                Name
               </label>
               <input
                 type='text'
@@ -83,10 +81,11 @@ const EmployeeSignUp = () => {
                 id='name'
                 placeholder='Enter Your Name Here'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
+                data-temp-mail-org='0'  // বুঝলাম না 
               />
             </div>
             <div>
-              <label htmlFor='image' className='block mb-2 text-sm'>
+              <label htmlFor='image' className='block mb-2 text-sm '>
                 Select Image:
               </label>
               <input
@@ -99,7 +98,7 @@ const EmployeeSignUp = () => {
             </div>
             <div>
               <label htmlFor='email' className='block mb-2 text-sm'>
-                Email
+                Email address
               </label>
               <input
                 type='email'
@@ -108,18 +107,7 @@ const EmployeeSignUp = () => {
                 required
                 placeholder='Enter Your Email Here'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
-              />
-            </div>
-            <div>
-              <label htmlFor='dateOfBirth' className='block mb-2 text-sm'>
-                Date of Birth
-              </label>
-              <input
-                type='date'
-                name='dateOfBirth'
-                id='dateOfBirth'
-                required
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
+                data-temp-mail-org='0'
               />
             </div>
             <div>
@@ -139,6 +127,7 @@ const EmployeeSignUp = () => {
               />
             </div>
           </div>
+
           <div>
             <button
               disabled={loading}
@@ -155,7 +144,7 @@ const EmployeeSignUp = () => {
         </form>
         <div className='flex items-center pt-4 space-x-1'>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3'>
+          <p className='px-3  '>
             Signup with social accounts
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
@@ -179,7 +168,7 @@ const EmployeeSignUp = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EmployeeSignUp;
+export default SignUp
