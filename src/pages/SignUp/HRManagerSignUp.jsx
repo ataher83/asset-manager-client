@@ -6,8 +6,12 @@ import toast from 'react-hot-toast';
 import { TbFidgetSpinner } from 'react-icons/tb';
 import { imageUpload } from '../../api/utils';
 import { Helmet } from 'react-helmet-async';
+import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 const HRManagerSignUp = () => {
+
+    const axiosCommon = useAxiosCommon()
+
   const { 
     createUser, 
     signInWithGoogle, 
@@ -34,24 +38,28 @@ const HRManagerSignUp = () => {
       setLoading(true);
       const image_url = await imageUpload(image);
       const companyLogoUrl = await imageUpload(companyLogo);
-      const result = await createUser(email, password);  // লাগবে না
+      const result = await createUser(email, password);  // 
       await updateUserProfile(name, image_url, dateOfBirth);
 
       // চেক কর 
-      await axios.post('/signup/user', {
+    //   await axios.post('/signup/user', {
+        await axiosCommon.post('/user', {
         name,
         email,
+        password,
+        image: image_url,
         dateOfBirth,
+        role: 'HRManager',
+        status: 'Verified',
+        timestamp: Date.now(),
         companyName,
         companyLogo: companyLogoUrl,
         packageName,
         memberLimit,
-        image: image_url,
-        role: 'HRManager',
       });
 
       navigate('/');
-      toast.success('Signup Successful');
+      toast.success('Signup Successful as HR-Manager!');
     } catch (err) {
       console.log(err);
       toast.error(err.message);

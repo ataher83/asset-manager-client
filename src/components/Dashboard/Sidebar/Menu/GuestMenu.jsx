@@ -4,9 +4,11 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 import useAuth from '../../../../hooks/useAuth.js'
 import Navbar from '../../../Shared/Navbar/Navbar.jsx'
+import useAxiosCommon from '../../../../hooks/useAxiosCommon.jsx'
 
 const GuestMenu = () => {
   const axiosSecure = useAxiosSecure()
+  const axiosCommon= useAxiosCommon()
   const { user } = useAuth()
 
 
@@ -23,6 +25,7 @@ const GuestMenu = () => {
         role: 'guest',
         status: 'Requested',
       }
+      // const { data } = await axiosSecure.post(`/user`, currentUser)
       const { data } = await axiosSecure.put(`/user`, currentUser)
       console.log(data)
       if (data.modifiedCount > 0) {
