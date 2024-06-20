@@ -1,9 +1,16 @@
 import { TbFidgetSpinner } from 'react-icons/tb'
+import useAuth from '../../hooks/useAuth';
 
 const AssetRequestForm = ({
     handleSubmit,
     loading,
   }) => {
+
+
+    const { user } = useAuth()
+
+
+
     return (
         // <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
         <div className=''> 
@@ -72,6 +79,8 @@ const AssetRequestForm = ({
                     id='assetRequestStatus'
                     type='text'
                     placeholder='Asset Request Status'
+                    defaultValue='Pending'
+                    disabled
                     required
                   />
                 </div>
@@ -87,6 +96,8 @@ const AssetRequestForm = ({
                     id='assetRequesterName'
                     type='text'
                     placeholder='Asset Requester Name'
+                    defaultValue={user.displayName}
+                    disabled
                     required
                   />
                 </div>
@@ -102,6 +113,8 @@ const AssetRequestForm = ({
                     id='assetRequesterEmail'
                     type='text'
                     placeholder='Asset Requester Email'
+                    defaultValue={user?.email}
+                    disabled
                     required
                   />
                 </div>
@@ -117,6 +130,8 @@ const AssetRequestForm = ({
                     id='assetRequestDate'
                     type='text'
                     placeholder='Asset Request Date'
+                    defaultValue={new Date().toLocaleDateString('en-GB').replace(/\//g, '/')}
+                    disabled
                     required
                   />
                 </div>
