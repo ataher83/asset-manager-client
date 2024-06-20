@@ -21,6 +21,7 @@ import HRManagerSignUp from '../pages/SignUp/HRManagerSignUp'
 import AddAsset from '../pages/Dashboard/Admin/AddAsset'
 import GuestMenu from '../components/Dashboard/Sidebar/Menu/GuestMenu'
 import HostModal from '../components/Modal/HostRequestModal'
+import AssetRequest from '../pages/Dashboard/Host/AssetRequest'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -84,9 +85,23 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <AddAsset/>
+              <AddAsset />
             </AdminRoute>
           </PrivateRoute>
+        ),
+      },
+      {
+        path: 'asset-request',
+        element: (
+          <PrivateRoute>
+              <AssetRequest />
+          </PrivateRoute>
+          
+          // <PrivateRoute>
+          //   <HostRoute>
+          //     <AssetRequest />
+          //   </HostRoute>
+          // </PrivateRoute>
         ),
       },
       {

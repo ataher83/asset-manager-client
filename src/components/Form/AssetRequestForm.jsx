@@ -1,6 +1,6 @@
 import { TbFidgetSpinner } from 'react-icons/tb'
 
-const AddAssetForm = ({
+const AssetRequestForm = ({
     handleSubmit,
     loading,
   }) => {
@@ -44,47 +44,79 @@ const AddAssetForm = ({
                   </select>
                 </div>
 
-                {/* Asset Quantity */}
+                {/* Additional Note */}
                 <div className=' text-sm'>
-                  <label htmlFor='assetQuantity' className='block text-gray-600'>
-                    Asset Quantity
+                  <label htmlFor='additionalNote' className='block text-gray-600'>
+                    Additional Note
                   </label>
                   <input
                     className='w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md '
-                    name='assetQuantity'
-                    id='assetQuantity'
+                    name='additionalNote'
+                    id='additionalNote'
                     type='text'
-                    placeholder='Asset Quantity'
+                    placeholder='Additional Note'
                     required
                   />
                 </div>
 
-                {/* Asset Added Date */}
+
+
+                {/* Asset Request Status */}
                 <div className=' text-sm'>
-                  <label htmlFor='assetAddedDate' className='block text-gray-600'>
-                    Asset Added Date
+                  <label htmlFor='assetName' className='block text-gray-600'>
+                    Asset Request Status
                   </label>
                   <input
                     className='w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md '
-                    name='assetAddedDate'
-                    id='assetAddedDate'
-                    type='date'
-                    placeholder='Asset Added Date'
+                    name='assetRequestStatus'
+                    id='assetRequestStatus'
+                    type='text'
+                    placeholder='Asset Request Status'
                     required
                   />
                 </div>
 
-                {/* Company Name */}
+                {/* Asset Requester Name*/}
                 <div className=' text-sm'>
-                  <label htmlFor='companyName' className='block text-gray-600'>
-                    Company Name
+                  <label htmlFor='assetRequesterName' className='block text-gray-600'>
+                    Asset Requester Name
                   </label>
                   <input
                     className='w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md '
-                    name='companyName'
-                    id='companyName'
+                    name='assetRequesterName'
+                    id='assetRequesterName'
                     type='text'
-                    placeholder='Company Name'
+                    placeholder='Asset Requester Name'
+                    required
+                  />
+                </div>
+
+                {/* Asset Requester Email */}
+                <div className=' text-sm'>
+                  <label htmlFor='assetRequesterEmail' className='block text-gray-600'>
+                    Asset Requester Email
+                  </label>
+                  <input
+                    className='w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md '
+                    name='assetRequesterEmail'
+                    id='assetRequesterEmail'
+                    type='text'
+                    placeholder='Asset Requester Email'
+                    required
+                  />
+                </div>
+
+                {/* Asset Request Date */}
+                <div className=' text-sm'>
+                  <label htmlFor='assetName' className='block text-gray-600'>
+                    Asset Request Date
+                  </label>
+                  <input
+                    className='w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md '
+                    name='assetRequestDate'
+                    id='assetRequestDate'
+                    type='text'
+                    placeholder='Asset Request Date'
                     required
                   />
                 </div>
@@ -99,7 +131,7 @@ const AddAssetForm = ({
               {loading ? (
                 <TbFidgetSpinner className='animate-spin m-auto' />
               ) : (
-                'Add'
+                'Request'
               )}
             </button>
           </form>
@@ -107,4 +139,5 @@ const AddAssetForm = ({
     );
 };
 
-export default AddAssetForm;
+
+export default AssetRequestForm;

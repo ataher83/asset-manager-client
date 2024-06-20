@@ -73,7 +73,7 @@ const Navbar = () => {
   <li><NavLink to="/">Home</NavLink></li>
   <li><NavLink to="/">My Assets</NavLink></li>
   <li><NavLink to="/">My Team</NavLink></li>
-  <li><NavLink to="/">Request for an Asset</NavLink></li>
+  <li><NavLink to="/dashboard/asset-request">Request for an Asset</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
 
   <li><NavLink to="/dashboard/my-bookings">MY Bookings</NavLink></li>
