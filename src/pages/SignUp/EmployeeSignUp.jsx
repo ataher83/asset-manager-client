@@ -28,13 +28,16 @@ const EmployeeSignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const dateOfBirth = form.dateOfBirth.value;
+    const companyName = form.companyName.value;
+    const companyLogo = form.companyLogo.files[0];
     const image = form.image.files[0];
 
     try {
       setLoading(true);
       const image_url = await imageUpload(image);
+      const companyLogoUrl = await imageUpload(companyLogo);
       const result = await createUser(email, password); // 
-      await updateUserProfile(name, image_url, dateOfBirth);
+      await updateUserProfile(name, image_url, dateOfBirth, companyLogo);
 
       // চেক কর 
     //   await axios.post('/signup/user', {
@@ -47,6 +50,8 @@ const EmployeeSignUp = () => {
         role: 'Employee',
         status: 'Verified',
         timestamp: Date.now(),
+        companyName,
+        companyLogo: companyLogoUrl,
       });
 
       navigate('/');
@@ -75,7 +80,7 @@ const EmployeeSignUp = () => {
       <Helmet>
         <title>Asset Manager | Employee Signup</title>
       </Helmet>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-300 text-gray-900'>
+      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-violet-300 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold text-blue-700'>Employee SignUp</h1>
         </div>
@@ -130,6 +135,36 @@ const EmployeeSignUp = () => {
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
               />
             </div>
+
+
+            {/* Company Name */}
+            <div>
+              <label htmlFor='companyName' className='block mb-2 text-sm'>
+                Company Name
+              </label>
+              <input
+                type='text'
+                name='companyName'
+                id='companyName'
+                placeholder='Enter Your Company Name'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
+              />
+            </div>
+            {/* Company Logo */}
+            <div>
+              <label htmlFor='companyLogo' className='block mb-2 text-sm'>
+                Company Logo
+              </label>
+              <input
+                type='file'
+                name='companyLogo'
+                id='companyLogo'
+                accept='image/*'
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
+              />
+            </div>
+
+
             <div>
               <div className='flex justify-between'>
                 <label htmlFor='password' className='text-sm mb-2'>

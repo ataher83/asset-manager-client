@@ -39,8 +39,7 @@ const HRManagerSignUp = () => {
       const image_url = await imageUpload(image);
       const companyLogoUrl = await imageUpload(companyLogo);
       const result = await createUser(email, password);  // 
-      await updateUserProfile(name, image_url, dateOfBirth, companyName);
-
+      await updateUserProfile(name, image_url, dateOfBirth, companyName); // companyName ফায়ারবেজ ইউজারে পাওয়া জাছে না ? 
       // চেক কর 
     //   await axios.post('/signup/user', {
         await axiosCommon.post('/user', {
@@ -84,7 +83,7 @@ const HRManagerSignUp = () => {
       <Helmet>
         <title>Asset Manager | HR Manager Signup</title>
       </Helmet>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-blue-300 text-gray-900'>
+      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-purple-300 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold text-blue-700'>HR Manager SignUp</h1>
         </div>
@@ -139,6 +138,8 @@ const HRManagerSignUp = () => {
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
               />
             </div>
+
+            {/* Company Name */}
             <div>
               <label htmlFor='companyName' className='block mb-2 text-sm'>
                 Company Name
@@ -151,6 +152,7 @@ const HRManagerSignUp = () => {
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
               />
             </div>
+            {/* Company Logo */}
             <div>
               <label htmlFor='companyLogo' className='block mb-2 text-sm'>
                 Company Logo
@@ -163,6 +165,7 @@ const HRManagerSignUp = () => {
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
               />
             </div>
+
             <div>
               <label htmlFor='packageName' className='block mb-2 text-sm'>
                 Package Name

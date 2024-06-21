@@ -7,12 +7,44 @@ import HostModal from '../../Modal/HostRequestModal'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 import useRole from '../../../hooks/useRole'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 
 const Navbar = () => {
   const [role] = useRole()
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
+
+
+
+
+
+      //   Fetch a user info by email 
+      const {
+        data: userData = [],
+        // isLoading,
+        // refetch,
+      } = useQuery({
+        queryKey: ['user', user?.email],
+        queryFn: async () => {
+          const { data } = await axiosSecure.get(`/user/${user?.email}`)
+    
+          return data
+        },
+      })
+    
+      console.log(userData)
+
+
+
+
+
+
+
+
+
+
+
 
 
   // for modal
@@ -46,6 +78,7 @@ const Navbar = () => {
 
 
   let navLinks;
+  let logoSrc;
  
   const navLinksWithoutLogin = <>
   <li><NavLink to="/">Home</NavLink></li>
@@ -55,11 +88,8 @@ const Navbar = () => {
 
   const navLinksGuest = <>
   <div className='flex flex-col justify-center items-center'>
-  <p className='text-orange-400 text-lg'>Please Contact with your HR Manager to active your Account.</p> 
-  <p><li><NavLink to="/guestMenu">Contact to HR-Manager Now</NavLink></li></p>
-  {/* <p><li><NavLink to="/hostModal">Contact to HR-Manager Now</NavLink></li></p> */}
-  {/* <p><li><NavLink to="/hostModal">Become an Employee</NavLink></li></p> */}
-  
+    <p className='text-orange-400 text-lg'>Please Contact with your HR Manager to active your Account.</p> 
+    <p><li><NavLink to="/guestMenu">Contact to HR-Manager Now</NavLink></li></p>
   </div>
   </>
 
@@ -91,7 +121,8 @@ const Navbar = () => {
 
 // if (role === 'admin') {
 if (role === 'HRManager') {
-  navLinks = navLinksHRManager
+  navLinks = navLinksHRManager;
+  // logoSrc = {userData.companyName}
 }
 
 else if (role === 'Employee') {
@@ -104,6 +135,7 @@ else {
   navLinks = navLinksWithoutLogin
 }
 
+console.log(user)
 
   return (
     <div className='fixed w-full bg-white z-10 shadow-sm'>
@@ -114,8 +146,9 @@ else {
             {/*Company Logo &  Name */}    
               <Link className='hidden lg:block' to='/'>
                 <img 
-                  // className='hidden md:block'
-                  src='https://i.ibb.co/fNVxZRt/asset-manager.jpg'
+                  // src='https://i.ibb.co/fNVxZRt/asset-manager.jpg'
+                  // src={logoSrc}
+                  src={userData?.companyLogo || 'https://i.ibb.co/fNVxZRt/asset-manager.jpg'}
                   alt='logo'
                   width='100'
                   height='100'
