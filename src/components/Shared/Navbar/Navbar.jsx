@@ -1,5 +1,4 @@
 import Container from '../Container'
-// import { AiOutlineMenu } from 'react-icons/ai'
 import { useState } from 'react'
 import { Link, NavLink, Navigate } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
@@ -9,13 +8,11 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 import useRole from '../../../hooks/useRole'
 
-const Navbar = () => {
 
+const Navbar = () => {
   const [role] = useRole()
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
-
-
 
 
   // for modal
@@ -23,8 +20,9 @@ const Navbar = () => {
   const closeModal = () => {
     setIsModalOpen(false)
   }
+
   const modalHandler = async () => {
-    console.log('I want to be an Employee')
+    // console.log('I want to be an Employee')
     try {
       const currentUser = {
         email: user?.email,
@@ -45,10 +43,6 @@ const Navbar = () => {
       closeModal()
     }
   }
-
-
-
-
 
 
   let navLinks;
