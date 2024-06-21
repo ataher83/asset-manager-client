@@ -119,10 +119,9 @@ const Navbar = () => {
   </>
 
 
-// if (role === 'admin') {
+
 if (role === 'HRManager') {
   navLinks = navLinksHRManager;
-  // logoSrc = {userData.companyName}
 }
 
 else if (role === 'Employee') {
@@ -147,7 +146,6 @@ console.log(user)
               <Link className='hidden lg:block' to='/'>
                 <img 
                   // src='https://i.ibb.co/fNVxZRt/asset-manager.jpg'
-                  // src={logoSrc}
                   src={userData?.companyLogo || 'https://i.ibb.co/fNVxZRt/asset-manager.jpg'}
                   alt='logo'
                   width='100'

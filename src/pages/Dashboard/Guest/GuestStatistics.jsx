@@ -26,7 +26,7 @@ const GuestStatistics = () => {
         {/* small cards */}
         <div className='mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
           {/* Spent Card */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
+          {/* <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-orange-600 to-orange-400 text-white shadow-orange-500/40`}
             >
@@ -40,10 +40,10 @@ const GuestStatistics = () => {
                 ${statData?.totalPrice}
               </h4>
             </div>
-          </div>
+          </div> */}
 
           {/* Total Bookings */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
+          {/* <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-blue-600 to-blue-400 text-white shadow-blue-500/40`}
             >
@@ -57,10 +57,10 @@ const GuestStatistics = () => {
                 {statData?.totalBookings}
               </h4>
             </div>
-          </div>
+          </div> */}
 
           {/* Users Card */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
+          {/* <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}
             >
@@ -75,20 +75,40 @@ const GuestStatistics = () => {
                   formatDistanceToNow(new Date(statData?.guestSince))}
               </h4>
             </div>
-          </div>
+          </div> */}
         </div>
+
+
+        {/* <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'> */}
+          {/* Total Sales Graph */}
+          {/* <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'> */}
+            {/* Render Chart Here */}
+            {/* <SalesLineChart data={statData?.chartData} /> */}
+          {/* </div> */}
+          {/* Calender */}
+          {/* <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'> */}
+            {/* <Calendar color='#F43F5E' /> */}
+          {/* </div> */}
+        {/* </div> */}
+
 
         <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'>
           {/* Total Sales Graph */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'>
+          <div className='relative flex flex-col bg-clip-border rounded-xl bg-blue-700 text-gray-700 shadow-md overflow-hidden xl:col-span-2'>
             {/* Render Chart Here */}
-            <SalesLineChart data={statData?.chartData} />
+            {/* <SalesLineChart data={statData?.chartData} /> */}
+            <div className='text-center p-10 text-xl   text-slate-200  '>
+            <p className='my-10 text-3xl'>Welcome to Asset Manager</p>
+            <p>You have successfully signed up and logged in to the "Asset Manager". To access this system, you must verify your account through your HR manager.</p>
+            </div>
           </div>
+
           {/* Calender */}
           <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
             <Calendar color='#F43F5E' />
           </div>
         </div>
+
       </div>
     </div>
   )

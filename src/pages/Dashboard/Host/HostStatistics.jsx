@@ -94,12 +94,37 @@ const HostStatistics = () => {
           </div>
         </div>
 
+
+
+        {/* <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'> */}
+          {/* Total Sales Graph */}
+          {/* <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'> */}
+            {/* Render Chart Here */}
+            {/* <SalesLineChart data={statData?.chartData} /> */}
+          {/* </div> */}
+          {/* Calender */}
+          {/* <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'> */}
+            {/* <Calendar color='#F43F5E' /> */}
+          {/* </div> */}
+        {/* </div> */}
+
+
+
         <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'>
+
           {/* Total Sales Graph */}
           <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'>
             {/* Render Chart Here */}
-            <SalesLineChart data={statData?.chartData} />
+            {/* <SalesLineChart data={statData?.chartData} /> */}
+              <p>After login with a Normal Employee account, the home page will
+                  have the following sections:
+                  ● My pending requests
+                  ● My monthly requests (Show all requests made by the user in this month,
+                  show them in sorted order: recent one will be first)</p>
           </div>
+
+
+
           {/* Calender */}
           <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
             <Calendar color='#F43F5E' />
