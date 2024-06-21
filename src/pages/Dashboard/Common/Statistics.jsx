@@ -1,7 +1,9 @@
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import useRole from '../../../hooks/useRole'
 import AdminStatistics from '../Admin/AdminStatistics'
+import HRManagerStatistics from '../Admin/HRManagerStatistics'
 import GuestStatistics from '../Guest/GuestStatistics'
+import EmployeeStatistics from '../Host/EmployeeStatistics'
 import HostStatistics from '../Host/HostStatistics'
 
 const Statistics = () => {
@@ -9,8 +11,8 @@ const Statistics = () => {
   if (isLoading) return <LoadingSpinner />
   return (
     <>
-      {role === 'HRManager' && <AdminStatistics />}
-      {role === 'Employee' && <HostStatistics />}
+      {role === 'HRManager' && <HRManagerStatistics />}
+      {role === 'Employee' && <EmployeeStatistics />}
       {role === 'guest' && <GuestStatistics />}
     </>
     // <>

@@ -1,27 +1,25 @@
 import { Calendar } from 'react-date-range'
-import { FaDollarSign } from 'react-icons/fa'
+import { FaUserAlt, FaDollarSign } from 'react-icons/fa'
 import { BsFillCartPlusFill, BsFillHouseDoorFill } from 'react-icons/bs'
-import { GiPlayerTime } from 'react-icons/gi'
 import SalesLineChart from '../../../components/Dashboard/SalesLineChart'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
-import { formatDistanceToNow } from 'date-fns'
+// import useAxiosCommon from '../../../hooks/useAxiosCommon'
 
-const HostStatistics = () => {
+const HRManagerStatistics = () => {
+  // const axiosCommon = useAxiosCommon()
   const axiosSecure = useAxiosSecure()
-  // Fetch host Stat Data here
+  // Fetch Admin Stat Data here
   const { data: statData = {}, isLoading } = useQuery({
     queryKey: ['statData'],
     queryFn: async () => {
-      const { data } = await axiosSecure.get('/host-stat')
+      const { data } = await axiosSecure.get('/admin-stat')
       return data
     },
   })
+
   console.log(statData)
-
-
- 
   if (isLoading) return <LoadingSpinner />
   return (
     <div>
@@ -44,7 +42,22 @@ const HostStatistics = () => {
               </h4>
             </div>
           </div>
-
+          {/* Users Card */}
+          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
+            <div
+              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}
+            >
+              <FaUserAlt className='w-6 h-6 text-white' />
+            </div>
+            <div className='p-4 text-right'>
+              <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
+                Total User
+              </p>
+              <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
+                {statData?.totalUsers}
+              </h4>
+            </div>
+          </div>
           {/* Total Bookings */}
           <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
             <div
@@ -77,28 +90,11 @@ const HostStatistics = () => {
               </h4>
             </div>
           </div>
-
-          {/* Users Card */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md'>
-            <div
-              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}
-            >
-              <GiPlayerTime className='w-6 h-6 text-white' />
-            </div>
-            <div className='p-4 text-right'>
-              <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
-                Host Since...
-              </p>
-              <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                {statData?.hostSince &&
-                  formatDistanceToNow(new Date(statData?.hostSince))}
-              </h4>
-            </div>
-          </div>
         </div>
 
 
 
+        {/* chart & calender */}
         {/* <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'> */}
           {/* Total Sales Graph */}
           {/* <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'> */}
@@ -115,53 +111,32 @@ const HostStatistics = () => {
 
 
 
-
+        
         <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'>
 
-          {/* My requests sections*/}
-
-          {/* My pending requests section*/}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'>
-              <p>
-                  ● My pending requests hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-                  ● My pending requests
-                  ● My pending requests
-                  ● My pending requests
-                  ● My pending requests
-                  ● My pending requests
-                  ● My pending requests
-                  ● My pending requests
-                  </p>
+          {/* sections */}
+          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'>         
+              <p>● Pending requests (max: 5 items)</p>
+                <p>● Top most requested items (max: 4 items)</p>
+                <p>● Limited Stock items (Quantity less than 10)</p>
+                <p>● Make a pie chart for the total percentage of returnable items and
+                non-returnable items requested by the employee.</p>
+                <p>● Add 2 relevant extra section</p>
+                <p>⚠ Note:
+                Access to the HR Manager account requires payment; otherwise, you will be
+                directed to the payment page.</p>
           </div>
-          {/* My My monthly requests section*/}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'>
-              <p>
-                  ● My monthly requests (Show all requests made by the user in this month,
-                  show them in sorted order: recent one will be first)
-                  ● My pending requests
-                  ● My pending requests
-                  ● My pending requests
-                  ● My pending requests
-                  ● My pending requests
-                  </p>
-              <p>
-                  ● My monthly requests (Show all requests made by the user in this month,
-                  show them in sorted order: recent one will be first)</p>
-              <p>
-                  ● My monthly requests (Show all requests made by the user in this month,
-                  show them in sorted order: recent one will be first)</p>
-          </div>
-
-
 
           {/* Calender */}
-          <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
+          <div className='relative flex flex-col bg-clip-border rounded-xl bg-blue-300 text-gray-700 shadow-md overflow-hidden'>
+            {/* <Calendar color='#3f5ef4' /> */}
             <Calendar color='#F43F5E' />
           </div>
         </div>
+
       </div>
     </div>
   )
 }
 
-export default HostStatistics
+export default HRManagerStatistics;
