@@ -39,7 +39,7 @@ const HRManagerSignUp = () => {
       const image_url = await imageUpload(image);
       const companyLogoUrl = await imageUpload(companyLogo);
       const result = await createUser(email, password);  // 
-      await updateUserProfile(name, image_url, dateOfBirth);
+      await updateUserProfile(name, image_url, dateOfBirth, companyName);
 
       // চেক কর 
     //   await axios.post('/signup/user', {

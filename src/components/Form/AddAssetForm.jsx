@@ -1,9 +1,16 @@
 import { TbFidgetSpinner } from 'react-icons/tb'
+import useAuth from '../../hooks/useAuth';
 
 const AddAssetForm = ({
     handleSubmit,
     loading,
+    companyName,
   }) => {
+
+    const { user } = useAuth()
+    console.log(user)
+
+
     return (
         // <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
         <div className=''> 
@@ -68,8 +75,10 @@ const AddAssetForm = ({
                     className='w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md '
                     name='assetAddedDate'
                     id='assetAddedDate'
-                    type='date'
+                    type='text'
                     placeholder='Asset Added Date'
+                    defaultValue={new Date().toLocaleDateString('en-GB').replace(/\//g, '/')}
+                    disabled
                     required
                   />
                 </div>
@@ -85,7 +94,10 @@ const AddAssetForm = ({
                     id='companyName'
                     type='text'
                     placeholder='Company Name'
+                    defaultValue={companyName}
+                    disabled
                     required
+                    
                   />
                 </div>
 
