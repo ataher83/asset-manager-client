@@ -95,7 +95,7 @@ const Navbar = () => {
   <li><NavLink to="/dashboard/asset-list">Asset List</NavLink></li>
   <li><NavLink to="/dashboard/add-asset">Add an Asset</NavLink></li>
   <li><NavLink to="/dashboard/all-requests">All Requests</NavLink></li>
-  <li><NavLink to="/">Custom Requests List</NavLink></li>
+  <li><NavLink to="/dashboard/custom-requests-list">Custom Requests List</NavLink></li>
   <li><NavLink to="/">My Employee List</NavLink></li>
   <li><NavLink to="/">Add an Employee</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
