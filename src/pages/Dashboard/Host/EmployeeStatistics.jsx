@@ -33,8 +33,17 @@ const EmployeeStatistics = () => {
 
 
     // Filter only returnable asset requests
-    // const filteredRequestStatusData = requestData.filter(request => request.assetRequestStatus === 'Pending');
     const filteredRequestStatusData = requestData.filter(request => request.assetRequestStatus === 'Pending');
+
+    // const filteredRequestStatusData = requestData.filter(request => request.assetRequestStatus === 'Pending');
+
+      // Filter requests with status 'Pending' and sort by date
+  // const filteredRequestStatusData = requestData
+  // .filter(request => request.assetRequestStatus === 'Pending')
+  // .sort((a, b) => new Date(b.assetRequestDate) - new Date(a.assetRequestDate));
+
+
+ 
 
 
 
@@ -144,6 +153,7 @@ const EmployeeStatistics = () => {
                 </tr>
                 </thead>
 
+
                 {filteredRequestStatusData.map((request, index) => (
                     <li key={request._id.$oid}>
 
@@ -171,9 +181,6 @@ const EmployeeStatistics = () => {
 
 
 
-
-
-
                 {/* My monthly requests section*/}
                 <p className='text-center font-semibold text-xl'> My Monthly Requests</p>
 
@@ -189,7 +196,10 @@ const EmployeeStatistics = () => {
                 </tr>
                 </thead>
 
-                {requestData.map((request, index) => (
+                {/* {requestData.map((request, index) => ( */}
+                {/* চেক করতে হবে  */}
+                {requestData.sort((a, b) => new Date(b.currentDateAndTime) - new Date(a.currentDateAndTime)).map((request, index) => (
+
                     <li key={request._id.$oid}>
 
                       <div className="overflow-x-auto">

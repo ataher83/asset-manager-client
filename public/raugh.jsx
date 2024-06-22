@@ -24,9 +24,9 @@ const EmployeeStatistics = () => {
   if (isLoading) return <LoadingSpinner />;
   if (error) return <div>Error: {error.message}</div>;
 
-  // Filter only returnable asset requests and sort by date
+  // Filter requests with status 'Pending' and sort by date
   const filteredRequestStatusData = requestData
-    .filter(request => request.assetType === 'returnable')
+    .filter(request => request.assetRequestStatus === 'Pending')
     .sort((a, b) => new Date(b.assetRequestDate) - new Date(a.assetRequestDate));
 
   // Get the current month and year
