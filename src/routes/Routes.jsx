@@ -25,6 +25,7 @@ import AssetRequest from '../pages/Dashboard/Host/AssetRequest'
 import MyAssets from '../pages/Dashboard/Host/MyAssets'
 import MyTeam from '../pages/Dashboard/Host/MyTeam'
 import AssetList from '../pages/Dashboard/Admin/AssetList'
+import AllRequests from '../pages/Dashboard/Admin/AllRequests'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -150,6 +151,16 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <AssetList />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'all-requests',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllRequests />
             </AdminRoute>
           </PrivateRoute>
         ),
