@@ -22,6 +22,7 @@ import AddAsset from '../pages/Dashboard/Admin/AddAsset'
 import GuestMenu from '../components/Dashboard/Sidebar/Menu/GuestMenu'
 import HostModal from '../components/Modal/HostRequestModal'
 import AssetRequest from '../pages/Dashboard/Host/AssetRequest'
+import MyAssets from '../pages/Dashboard/Host/MyAssets'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -80,6 +81,8 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
+      
       {
         path: 'add-asset',
         element: (
@@ -96,14 +99,18 @@ export const router = createBrowserRouter([
           <PrivateRoute>
               <AssetRequest />
           </PrivateRoute>
-          
-          // <PrivateRoute>
-          //   <HostRoute>
-          //     <AssetRequest />
-          //   </HostRoute>
-          // </PrivateRoute>
         ),
       },
+      {
+        path: 'my-assets',
+        element: (
+          <PrivateRoute>
+            <MyAssets />
+          </PrivateRoute>
+        ),
+      },
+
+
       {
         path: 'my-listings',
         element: (

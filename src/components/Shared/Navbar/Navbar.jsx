@@ -9,14 +9,10 @@ import toast from 'react-hot-toast'
 import useRole from '../../../hooks/useRole'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
-
 const Navbar = () => {
   const [role] = useRole()
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
-
-
-
 
 
       //   Fetch a user info by email 
@@ -34,15 +30,6 @@ const Navbar = () => {
       })
     
       console.log(userData)
-
-
-
-
-
-
-
-
-
 
 
 
@@ -78,7 +65,6 @@ const Navbar = () => {
 
 
   let navLinks;
-  let logoSrc;
  
   const navLinksWithoutLogin = <>
   <li><NavLink to="/">Home</NavLink></li>
@@ -95,7 +81,7 @@ const Navbar = () => {
 
   const navLinksEmployee = <>
   <li><NavLink to="/">Home</NavLink></li>
-  <li><NavLink to="/">My Assets</NavLink></li>
+  <li><NavLink to="/dashboard/my-assets">My Assets</NavLink></li>
   <li><NavLink to="/">My Team</NavLink></li>
   <li><NavLink to="/dashboard/asset-request">Request for an Asset</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>

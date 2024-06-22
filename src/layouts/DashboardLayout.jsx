@@ -1,20 +1,19 @@
 import { Outlet } from 'react-router-dom'
-import Sidebar from '../components/Dashboard/Sidebar/Sidebar'
 import Navbar from '../components/Shared/Navbar/Navbar'
 
 const DashboardLayout = () => {
   return (
     <div className='relative min-h-screen md:flex'>
-      <Navbar></Navbar>
-      {/* Sidebar */}
-      {/* <Sidebar></Sidebar> */}
-  
+      <Navbar />
+      {/* <Outlet /> */}
+
       {/* Outlet --> Dynamic content */}
       <div className='flex-1 md:ml-64'>
         <div className='p-5 mt-32'>
           <Outlet />
         </div>
       </div>
+
     </div>
   )
 }
