@@ -82,7 +82,7 @@ const Navbar = () => {
   const navLinksEmployee = <>
   <li><NavLink to="/">Home</NavLink></li>
   <li><NavLink to="/dashboard/my-assets">My Assets</NavLink></li>
-  <li><NavLink to="/">My Team</NavLink></li>
+  <li><NavLink to="/dashboard/my-team">My Team</NavLink></li>
   <li><NavLink to="/dashboard/asset-request">Request for an Asset</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
 

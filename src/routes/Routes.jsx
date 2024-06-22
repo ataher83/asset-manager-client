@@ -23,6 +23,7 @@ import GuestMenu from '../components/Dashboard/Sidebar/Menu/GuestMenu'
 import HostModal from '../components/Modal/HostRequestModal'
 import AssetRequest from '../pages/Dashboard/Host/AssetRequest'
 import MyAssets from '../pages/Dashboard/Host/MyAssets'
+import MyTeam from '../pages/Dashboard/Host/MyTeam'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -51,6 +52,8 @@ export const router = createBrowserRouter([
   { path: '/hRManagerSignUp', element: <HRManagerSignUp /> },
   { path: '/guestMenu', element: <GuestMenu /> },
   { path: '/hostModal', element: <HostModal /> },
+
+  // { path: '/myTeam', element: <MyTeam /> },
 
 
 
@@ -82,7 +85,7 @@ export const router = createBrowserRouter([
         ),
       },
 
-      
+
       {
         path: 'add-asset',
         element: (
@@ -106,6 +109,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyAssets />
+          </PrivateRoute>
+        ),
+      },
+      { 
+        path: 'my-team', 
+        element: (
+          <PrivateRoute>
+            <MyTeam />
           </PrivateRoute>
         ),
       },
