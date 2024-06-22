@@ -43,10 +43,12 @@ const EmployeeStatistics = () => {
   // .sort((a, b) => new Date(b.assetRequestDate) - new Date(a.assetRequestDate));
 
 
+
+// from alt net cp // ডেট সর্টিং + লাস্ট ৬ দেখানো  
+  // queries.sort((a, b) => new Date(b.currentDateAndTime) - new Date(a.currentDateAndTime)).slice(0, 6).map((query, index) => (
+
+
  
-
-
-
 
     return (
       <div>
@@ -142,6 +144,7 @@ const EmployeeStatistics = () => {
 
                 {/* My pending requests section*/}
                 <p className='text-center font-semibold text-xl'> My Pending Requests </p>
+                <p className='text-center font-semibold text-lg'>({filteredRequestStatusData.length} Request Found)</p>
 
                 <thead>
                 <tr className='flex justify-between p-5 '>
@@ -153,9 +156,8 @@ const EmployeeStatistics = () => {
                 </tr>
                 </thead>
 
-
                 {filteredRequestStatusData.map((request, index) => (
-                    <li key={request._id.$oid}>
+                    <div key={request._id.$oid}>
 
                       <div className="overflow-x-auto">
                         <table className="table">
@@ -173,18 +175,14 @@ const EmployeeStatistics = () => {
 
                       
                       
-                    </li>
+                    </div>
                 ))}
-
-
-
-
 
 
                 {/* My monthly requests section*/}
                 <p className='text-center font-semibold text-xl'> My Monthly Requests</p>
+                <p className='text-center font-semibold text-lg'>({requestData.length} Request Found)</p>
 
-                
                 <thead>
                 <tr className='flex justify-between p-5'>
                     <th>SL</th>
@@ -200,7 +198,7 @@ const EmployeeStatistics = () => {
                 {/* চেক করতে হবে  */}
                 {requestData.sort((a, b) => new Date(b.currentDateAndTime) - new Date(a.currentDateAndTime)).map((request, index) => (
 
-                    <li key={request._id.$oid}>
+                    <div key={request._id.$oid}>
 
                       <div className="overflow-x-auto">
                         <table className="table">
@@ -219,10 +217,8 @@ const EmployeeStatistics = () => {
 
                       
                       
-                    </li>
+                    </div>
                 ))}
-
-
 
             </div>
   
