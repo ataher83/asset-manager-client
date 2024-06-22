@@ -144,7 +144,7 @@ const EmployeeStatistics = () => {
                 <p className='text-center font-semibold text-xl'> My Pending Requests </p>
 
                 <thead>
-                <tr className='flex justify-between '>
+                <tr className='flex justify-between p-5 '>
                     <th>SL</th>
                     <th>Asset Name</th>
                     <th>Asset Type</th>
@@ -186,7 +186,7 @@ const EmployeeStatistics = () => {
 
                 
                 <thead>
-                <tr className='flex justify-between '>
+                <tr className='flex justify-between p-5'>
                     <th>SL</th>
                     <th>Asset Name</th>
                     <th>Asset Type</th>
@@ -224,12 +224,6 @@ const EmployeeStatistics = () => {
 
 
 
-
-
-
-
-
-                <p>● My monthly requests (Show all requests made by the user in this month, show them in sorted order: recent one will be first)</p>
             </div>
   
   
