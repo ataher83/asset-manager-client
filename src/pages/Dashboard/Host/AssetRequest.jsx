@@ -34,6 +34,7 @@ const AssetRequest = () => {
     const assetRequesterName = form.assetRequesterName.value
     const assetRequesterEmail = form.assetRequesterEmail.value
     const assetRequestDate = form.assetRequestDate.value
+    const assetRequestApprovalDate = null   // manually inserted field with value without form
     try {
       const requestData = {
           assetName,
@@ -43,6 +44,7 @@ const AssetRequest = () => {
           assetRequesterName,
           assetRequesterEmail,
           assetRequestDate,
+          assetRequestApprovalDate,
       }
       console.table(requestData)
 
