@@ -97,7 +97,7 @@ const Navbar = () => {
   <li><NavLink to="/dashboard/all-requests">All Requests</NavLink></li>
   <li><NavLink to="/dashboard/custom-requests-list">Custom Requests List</NavLink></li>
   <li><NavLink to="/dashboard/My-employee-list">My Employee List</NavLink></li>
-  <li><NavLink to="/">Add an Employee</NavLink></li>
+  <li><NavLink to="/dashboard/add-an-employee">Add an Employee</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
 
   <li><NavLink to="/dashboard/manage-users">Manage Users</NavLink></li>

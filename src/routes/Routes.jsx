@@ -28,6 +28,7 @@ import AssetList from '../pages/Dashboard/Admin/AssetList'
 import AllRequests from '../pages/Dashboard/Admin/AllRequests'
 import CustomRequestsList from '../pages/Dashboard/Admin/CustomRequestsList'
 import MyEmployeeList from '../pages/Dashboard/Admin/MyEmployeeList'
+import AddAnEmployee from '../pages/Dashboard/Admin/AddAnEmployee'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -183,6 +184,16 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <MyEmployeeList />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'add-an-employee',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AddAnEmployee />
             </AdminRoute>
           </PrivateRoute>
         ),
