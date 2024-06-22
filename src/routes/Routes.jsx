@@ -24,6 +24,7 @@ import HostModal from '../components/Modal/HostRequestModal'
 import AssetRequest from '../pages/Dashboard/Host/AssetRequest'
 import MyAssets from '../pages/Dashboard/Host/MyAssets'
 import MyTeam from '../pages/Dashboard/Host/MyTeam'
+import AssetList from '../pages/Dashboard/Admin/AssetList'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -132,6 +133,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
         path: 'manage-users',
         element: (
@@ -142,6 +144,19 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: 'asset-list',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AssetList />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+
+
+
       {
         path: 'my-bookings',
         element: (

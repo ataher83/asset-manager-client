@@ -86,13 +86,13 @@ const Navbar = () => {
   <li><NavLink to="/dashboard/asset-request">Request for an Asset</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
 
-  <li><NavLink to="/dashboard/my-bookings">MY Bookings</NavLink></li>
-  <li><NavLink to="/">Modal(Become a Host)</NavLink></li>
+  {/* <li><NavLink to="/dashboard/my-bookings">MY Bookings</NavLink></li> */}
+  {/* <li><NavLink to="/">Modal(Become a Host)</NavLink></li> */}
   </>
 
   const navLinksHRManager = <>
   <li><NavLink to="/">Home</NavLink></li>
-  <li><NavLink to="/">Asset List</NavLink></li>
+  <li><NavLink to="/dashboard/asset-list">Asset List</NavLink></li>
   <li><NavLink to="/dashboard/add-asset">Add an Asset</NavLink></li>
   <li><NavLink to="/">All Requests</NavLink></li>
   <li><NavLink to="/">Custom Requests List</NavLink></li>
