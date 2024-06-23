@@ -77,7 +77,8 @@ const MyAssets = () => {
                                 <td>{request.assetRequestDate}</td>
                                 <td>{request.assetRequestApprovalDate}</td>
                                 <td>{request.assetRequestStatus}</td>
-
+                                
+                                {/* conditional Action Button */}
                                 <td>
                                     {request.assetRequestStatus === 'Pending' ? (
                                         <button className="btn btn-error btn-xs">Cancel</button>
@@ -88,24 +89,7 @@ const MyAssets = () => {
                                         </div>
                                     ) : null}
                                 </td>
-
-                                {/* conditional Action Button */}
-                                {/* <th>
-                                    <div>
-                                        {
-
-                                        }
-                                        <div>
-                                            <button className="btn btn-error  btn-xs">Cancel</button>
-                                        </div>
-                                        <div>
-                                            <button className="btn btn-info btn-xs">Print</button>
-                                            <button className="btn btn-warning btn-xs">Return</button>
-                                        </div>
-                                    </div>
-                                </th> */}
-
-                                
+ 
                               </tr>
                             ))}
                         </tbody>

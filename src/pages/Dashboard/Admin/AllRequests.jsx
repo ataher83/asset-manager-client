@@ -23,7 +23,7 @@ const AllRequests = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div>
+        <div className='-ml-64'>
             <Helmet>
                 <title>Asset Manager | All Requests</title>
             </Helmet>
@@ -65,11 +65,26 @@ const AllRequests = () => {
                                         <td>{asset.assetRequestDate}</td>
                                         <td>{asset.additionalNote}</td>
                                         <td>{asset.assetRequestStatus}</td>
-                                        <td>
+
+                                        {/* conditional Action Button */}
+                                        {/* <td>
                                             <div className='flex gap-2'>
                                                 <button className="btn btn-info btn-xs">Approve</button>
                                                 <button className="btn btn-error btn-xs">Reject</button>
                                             </div>
+                                        </td> */}
+
+                                        {/* conditional Action Button */}
+                                        <td>
+                                            {asset.assetRequestStatus === 'Pending' ? (
+                                                <div className='flex gap-2'>
+                                                <button className="btn btn-info btn-xs">Approve</button>
+                                                <button className="btn btn-error btn-xs">Reject</button>
+                                            </div>
+                                            ) : asset.assetRequestStatus === 'Approved' ? (
+                                                    <button className="btn btn-warning btn-xs">Return</button>
+
+                                            ) : null}
                                         </td>
                                     </tr>
                                 ))}
