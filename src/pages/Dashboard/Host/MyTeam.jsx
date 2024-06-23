@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import useAuth from '../../../hooks/useAuth';
-import Navbar from '../../../components/Shared/Navbar/Navbar';
 
 const MyTeam = () => {
     const { user } = useAuth();
