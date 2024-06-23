@@ -28,8 +28,9 @@ import AssetList from '../pages/Dashboard/Admin/AssetList'
 import AllRequests from '../pages/Dashboard/Admin/AllRequests'
 import CustomRequestsList from '../pages/Dashboard/Admin/CustomRequestsList'
 import MyEmployeeList from '../pages/Dashboard/Admin/MyEmployeeList'
-import AddAnEmployee from '../pages/Dashboard/Admin/AddAnEmployee'
+// import AddAnEmployee from '../pages/Dashboard/Admin/AddAnEmployee'
 import Payment from '../pages/Dashboard/Admin/Payment'
+import AddEmployee from '../pages/Dashboard/Admin/AddEmployee'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -190,11 +191,11 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'add-an-employee',
+        path: 'add-employee',
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <AddAnEmployee />
+              <AddEmployee />
             </AdminRoute>
           </PrivateRoute>
         ),

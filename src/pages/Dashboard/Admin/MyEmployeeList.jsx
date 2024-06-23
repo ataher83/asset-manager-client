@@ -33,6 +33,7 @@ const MyEmployeeList = () => {
 
     if (isLoading) return <LoadingSpinner />;
 
+    
     return (
         <div className='mt-12 bg-gray-200'>
             <Helmet>
@@ -40,8 +41,8 @@ const MyEmployeeList = () => {
             </Helmet>
             <p className='text-center text-xl font-semibold py-5'>Employee List of my {currentCompany}</p>
             <p className='text-center text-base font-semibold mb-5'>
-                        ({usersInfo.length > 0 ? (
-                            <span>{usersInfo.length === 1 ? `Total Employee: ${usersInfo.length}` : `Total Employees: ${usersInfo.length}`}</span>
+                        ({usersInSameCompany.length > 0 ? (
+                            <span>{usersInSameCompany.length === 1 ? `Total Employee: ${usersInSameCompany.length}` : `Total Employees: ${usersInSameCompany.length}`}</span>
                         ) : (
                             <span>No Employee is here now.</span>
                         )})
