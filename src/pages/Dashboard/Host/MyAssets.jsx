@@ -44,7 +44,14 @@ const MyAssets = () => {
 
                 {/* My pending requests section*/}
                 <p className='text-center font-semibold text-xl'> My Asset List </p>
-                <p className='text-center font-semibold text-lg'>({requestData.length} Request Found)</p>
+                {/* <p className='text-center font-semibold text-lg'>({requestData.length} Assets Found)</p> */}
+                <p className='text-center font-semibold text-lg'>
+                  ({
+                    requestData.length > 0 ?
+                    <span>{requestData.length === 1 ? `${requestData.length} Asset Found` : `${requestData.length} Assets Found`}</span> :
+                    <span>No Asset Found</span>
+                  })
+                </p>
 
                 {/* table */}
                 <div className="overflow-x-auto">
