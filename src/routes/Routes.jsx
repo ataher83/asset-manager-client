@@ -29,6 +29,7 @@ import AllRequests from '../pages/Dashboard/Admin/AllRequests'
 import CustomRequestsList from '../pages/Dashboard/Admin/CustomRequestsList'
 import MyEmployeeList from '../pages/Dashboard/Admin/MyEmployeeList'
 import AddAnEmployee from '../pages/Dashboard/Admin/AddAnEmployee'
+import Payment from '../pages/Dashboard/Admin/Payment'
 // import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
@@ -194,6 +195,16 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <AdminRoute>
               <AddAnEmployee />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'payment',
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <Payment />
             </AdminRoute>
           </PrivateRoute>
         ),
