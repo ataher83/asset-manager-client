@@ -1,20 +1,12 @@
 import { Helmet } from 'react-helmet-async'
 import { Calendar } from 'react-date-range'
-import { FaUserAlt, FaDollarSign } from 'react-icons/fa'
-import { BsFillCartPlusFill, BsFillHouseDoorFill } from 'react-icons/bs'
-import SalesLineChart from '../../../components/Dashboard/SalesLineChart'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
-// import useAxiosCommon from '../../../hooks/useAxiosCommon'
-import useAuth from '../../../hooks/useAuth'
 
 const HRManagerStatistics = () => {
-  const { user } = useAuth()
-  // const axiosCommon = useAxiosCommon()
+
   const axiosSecure = useAxiosSecure()
-
-
 
     // Fetch Asset requests Data here
     const { 
@@ -32,18 +24,8 @@ const HRManagerStatistics = () => {
 
     if (isLoading) return <LoadingSpinner />
 
-
-
     // Filter only returnable asset requests
     const filteredRequestsStatusData = requestsData.filter(request => request.assetRequestStatus === 'Pending');
-
-    // const filteredRequestStatusData = requestData.filter(request => request.assetRequestStatus === 'Pending');
-
-      // Filter requests with status 'Pending' and sort by date
-  // const filteredRequestStatusData = requestData
-  // .filter(request => request.assetRequestStatus === 'Pending')
-  // .sort((a, b) => new Date(b.assetRequestDate) - new Date(a.assetRequestDate));
-
 
     return (
       <div>
@@ -97,37 +79,7 @@ const HRManagerStatistics = () => {
 
                 ))}
 
-                {/* for table alignment, have to chk later */}
-                {/* <div className="overflow-x-auto">
-                  <table className="table">
-                    <thead>
-                      <tr className="flex justify-between p-5">
-                        <th>SL</th>
-                        <th>Asset Name</th>
-                        <th>Asset Type</th>
-                        <th>Additional Note</th>
-                        <th>Asset Request Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredRequestsStatusData.map((request, index) => (
-                        <tr key={request._id.$oid}>
-                          <td>{index + 1}</td>
-                          <td>{request.assetName}</td>
-                          <td>{request.assetType}</td>
-                          <td>{request.additionalNote}</td>
-                          <td>{request.assetRequestDate}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div> */}
-
-
-
-
                 {/* Top most requested items*/}
-                
                 <p className='text-center font-semibold text-xl'> Top most requested items </p>
                 <p className='text-center font-semibold text-xl'> Top most requested items (max: 4 items) </p>
                 <p className='text-center font-semibold text-lg'>({filteredRequestsStatusData.length} Request Found)</p>

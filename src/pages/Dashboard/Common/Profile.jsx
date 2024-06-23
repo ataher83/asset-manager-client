@@ -46,9 +46,6 @@ const Profile = () => {
           <p className='p-2 uppercase px-4 text-xs font-semibold text-white bg-blue-700 rounded-full'>
             {role}
           </p>
-          <p className='mt-2 text-xl font-medium text-gray-800 '>
-            User Id: {user?.uid}
-          </p>
           <div className='w-full p-2 mt-4 rounded-lg'>
             <div className='flex flex-wrap items-center justify-between text-sm text-gray-600'>
               <p className='flex flex-col'>
