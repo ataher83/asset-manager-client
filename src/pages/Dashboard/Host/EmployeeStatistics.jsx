@@ -144,7 +144,14 @@ const EmployeeStatistics = () => {
 
                 {/* My pending requests section*/}
                 <p className='text-center font-semibold text-xl'> My Pending Requests </p>
-                <p className='text-center font-semibold text-lg'>({filteredRequestStatusData.length} Request Found)</p>
+                {/* <p className='text-center font-semibold text-lg'>({filteredRequestStatusData.length} Request Found)</p> */}
+                <p className='text-center font-semibold text-lg'>
+                ({
+                    filteredRequestStatusData.length > 0 ?
+                    <span>{filteredRequestStatusData.length === 1 ? `${filteredRequestStatusData.length} Request Found` : `${filteredRequestStatusData.length} Requests Found`}</span> :
+                    <span>No Request Found</span>
+                  })
+                </p>
 
                 <thead>
                 <tr className='flex justify-between p-5 '>
@@ -181,7 +188,14 @@ const EmployeeStatistics = () => {
 
                 {/* My monthly requests section*/}
                 <p className='text-center font-semibold text-xl'> My Monthly Requests</p>
-                <p className='text-center font-semibold text-lg'>({requestData.length} Request Found)</p>
+                {/* <p className='text-center font-semibold text-lg'>({requestData.length} Request Found)</p> */}
+                <p className='text-center font-semibold text-lg'>
+                ({
+                    requestData.length > 0 ?
+                    <span>{requestData.length === 1 ? `${requestData.length} Request Found` : `${requestData.length} Requests Found`}</span> :
+                    <span>No Request Found</span>
+                  })
+                </p>
 
                 <thead>
                 <tr className='flex justify-between p-5'>
