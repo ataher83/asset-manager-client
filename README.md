@@ -3,18 +3,14 @@
 Assignment Variant: assignment12_category_0007
 
 Admin Credentials:
-Username: mojogo9562@exeneli.com
-Password: Aa@1234
+*Username: mojogo9562@exeneli.com
+*Password: Aa@1234
 
 Live site:
 - [The Asset Manager](https://asset-manager-54e54.web.app/)
 
-Features and Characteristics + Resources:
-
-
 
 Technologies Used:
-
 Frontend:
 - [React](https://react.dev/)
 - [TailwindCSS](https://tailwindcss.com/)
