@@ -18,21 +18,9 @@ const AllRequests = () => {
             return data;
         },
     });
-    console.log(requests);
+    console.log(requests)
 
     if (isLoading) return <LoadingSpinner />;
-
-    // Group and count the requests by asset name
-    const assetCounts = requests.reduce((acc, request) => {
-        acc[request.assetName] = (acc[request.assetName] || 0) + 1;
-        return acc;
-    }, {});
-
-    // Convert the counts object to an array and sort by count in descending order
-    const sortedAssets = Object.entries(assetCounts)
-        .map(([assetName, count]) => ({ assetName, count }))
-        .sort((a, b) => b.count - a.count)
-        .slice(0, 5); // Show top 5 most requested items
 
     return (
         <div className='md:-ml-64'>
@@ -80,11 +68,12 @@ const AllRequests = () => {
                                         <td>
                                             {asset.assetRequestStatus === 'Pending' ? (
                                                 <div className='flex gap-2'>
-                                                    <button className="btn btn-info btn-xs">Approve</button>
-                                                    <button className="btn btn-error btn-xs">Reject</button>
-                                                </div>
+                                                <button className="btn btn-info btn-xs">Approve</button>
+                                                <button className="btn btn-error btn-xs">Reject</button>
+                                            </div>
                                             ) : asset.assetRequestStatus === 'Approved' ? (
-                                                <button className="btn btn-warning btn-xs">Return</button>
+                                                    <button className="btn btn-warning btn-xs">Return</button>
+
                                             ) : null}
                                         </td>
                                     </tr>
@@ -92,38 +81,6 @@ const AllRequests = () => {
                             </tbody>
                         </table>
                     </div>
-
-                    {/* Top Most Requested Items Section */}
-                    <div className='mt-12 mx-auto'>
-                        <div className='relative flex flex-col gap-5 bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
-                            <p className='text-center font-semibold text-xl'>Top Most Requested Items</p>
-
-
-                            <div className="overflow-x-auto">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Rank</th>
-                                            <th>Asset Name</th>
-                                            <th>Request Count</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {sortedAssets.map((asset, index) => (
-                                            <tr key={index}>
-                                                <td>{index + 1}</td>
-                                                <td>{asset.assetName}</td>
-                                                <td>{asset.count}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
         </div>
