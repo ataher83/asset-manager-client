@@ -1,6 +1,6 @@
 # The Asset Manager
 
-Assignment Variant: assignment12_category_0007
+Assignment Variant:     assignment12_category_0007
 
 Admin Credentials:
 * Username: mojogo9562@exeneli.com
@@ -11,6 +11,7 @@ Live site:
 
 
 Technologies Used:
+
 Frontend:
 - [React](https://react.dev/)
 - [TailwindCSS](https://tailwindcss.com/)
