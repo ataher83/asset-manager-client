@@ -35,8 +35,6 @@ Deployment:
 
 
 
-Features of The Asset Manager:
-
 **Features of The Asset Manager:**
 
 1. **Comprehensive Asset Management:**
