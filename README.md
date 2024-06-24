@@ -28,8 +28,11 @@ Technologies Used:
 - [Vercel](https://vercel.com/)
 
 
-Technologies Used
-Frontend: - [React](https://react.dev/), - [TailwindCSS](https://tailwindcss.com/)
+Technologies Used:
+
+    Frontend:
+    - [React](https://react.dev/)
+    - [TailwindCSS](https://tailwindcss.com/)
 Backend: Node.js, Express.js
 Database: MongoDB
 Authentication: Firebase
