@@ -74,7 +74,7 @@ const AddAsset = () => {
   
     return (
       <>
-      <div className='mt-24 md:mt-0'>
+      <div className='mt-24 md:mt-12'>
         <Helmet>
           <title>Add Asset | Dashboard</title>
         </Helmet>

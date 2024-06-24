@@ -77,11 +77,35 @@ const AddAssetForm = ({
                     id='assetAddedDate'
                     type='text'
                     placeholder='Asset Added Date'
-                    defaultValue={new Date().toLocaleDateString('en-GB').replace(/\//g, '/')}
+                    // defaultValue={new Date().toLocaleDateString('en-GB').replace(/\//g, '/')}
+                    defaultValue={new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })} 
                     disabled
                     required
                   />
                 </div>
+
+                {/* <div className="form-control md:w-1/2 ml-4">
+                            <label className="label">
+                                <span className="label-text">Current Date and Time</span>
+                            </label>
+                            <label className="input-group">
+                                <input type="text" 
+                                name="currentDateAndTime" 
+                                placeholder="Current Date and Time" 
+                                defaultValue={new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })} 
+                                disabled 
+                                className="input input-bordered w-full" />
+                            </label>
+                        </div> */}
+
+
+
+
+
+
+
+
+
 
                 {/* Company Name */}
                 <div className=' text-sm'>

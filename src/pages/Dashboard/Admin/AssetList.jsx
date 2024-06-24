@@ -52,7 +52,8 @@ const AssetList = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {assets.map((asset, index) => (
+                                {/* {assets.map((asset, index) => ( */}
+                                {assets.sort((a, b) => new Date(b.currentDateAndTime) - new Date(a.currentDateAndTime)).map((asset, index) => (
                                     <tr key={asset._id.$oid}>
                                         <td>{index + 1}</td>
                                         <td>{asset.assetName}</td>
