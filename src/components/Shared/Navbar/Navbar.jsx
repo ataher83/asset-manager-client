@@ -114,7 +114,8 @@ else {
 console.log(user)
 
   return (
-    <div className='fixed w-full bg-white z-10 shadow-sm'>
+    <div className='fixed w-full bg-white z-10 shadow-sm -mt-16 md:mt-0'>
+
       <div className='py-4 border-b-[1px]'>
         <Container>
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
@@ -198,28 +199,14 @@ console.log(user)
               </div>
 
             </div>
-
-
             {
               user? <Navigate to='/dashboard'></Navigate>:""
             }
-
-
           </div>
         </Container>
       </div>
 
-
-
       <div>
-        {/* <div
-          onClick={() => setIsModalOpen(true)}
-          className='flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform text-blue-700  hover:bg-gray-300   hover:text-gray-700 cursor-pointer'
-        >
-          <span className='mx-4 font-semibold'>Become an Employee</span>
-        </div> */}
-
-        {/* Modal */}
         <HostModal
             isOpen={isModalOpen}
             closeModal={closeModal}

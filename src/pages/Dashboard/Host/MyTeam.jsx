@@ -34,7 +34,7 @@ const MyTeam = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div className='mt-12 bg-gray-200'>
+        <div className='mt-12 bg-gray-200 md:-ml-48'>
             <Helmet>
                 <title>Asset Manager | My Team</title>
             </Helmet>

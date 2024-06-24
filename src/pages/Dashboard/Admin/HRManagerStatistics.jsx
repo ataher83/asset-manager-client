@@ -34,7 +34,7 @@ const HRManagerStatistics = () => {
             <title>Asset Manager | HR-Manager Statistics</title>
         </Helmet>
 
-        <div className='mt-12'>  
+        <div className='mt-12 md:-ml-64'>  
           <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'>
   
             {/* HRManager homepage sections*/}             

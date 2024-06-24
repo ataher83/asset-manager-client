@@ -5,17 +5,17 @@ import { useMutation } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 import useAuth from '../../../hooks/useAuth'
-// import useAxiosCommon from '../../../hooks/useAxiosCommon'
-const UserDataRow = ({ user, refetch }) => {
+
+const UserDataRow = ({ user, refetch, index }) => {
+
   const { user: loggedInUser } = useAuth()
 
   const [isOpen, setIsOpen] = useState(false)
   const axiosSecure = useAxiosSecure()
-  // const axiosCommon = useAxiosCommon()
+
   const { mutateAsync } = useMutation({
     mutationFn: async role => {
       const { data } = await axiosSecure.patch(
-      // const { data } = await axiosCommon.patch(
         `/users/update/${user?.email}`,
         role
       )
@@ -50,12 +50,34 @@ const UserDataRow = ({ user, refetch }) => {
   }
   return (
     <tr>
+
+      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+        <p className='text-gray-900 whitespace-no-wrap'>{(index + 1)}</p>
+      </td>
+
+
+      <td>
+      <div className="px-5 py-5  border-b border-gray-200 bg-white text-sm">
+          <div className="avatar">
+          <div className="mask mask-squircle w-12 h-12">
+              <img src={user.image} alt="Avatar Tailwind CSS Component" />
+          </div>
+          </div>
+      </div>
+      </td>
+
+      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+        <p className='text-gray-900 whitespace-no-wrap'>{user.name}</p>
+      </td>
+
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 whitespace-no-wrap'>{user?.email}</p>
       </td>
+
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 whitespace-no-wrap'>{user?.role}</p>
       </td>
+
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         {user?.status ? (
           <p
@@ -77,9 +99,9 @@ const UserDataRow = ({ user, refetch }) => {
         >
           <span
             aria-hidden='true'
-            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+            className='absolute inset-0 bg-blue-700 opacity-100 rounded-lg '
           ></span>
-          <span className='relative'>Update Role</span>
+          <span className='relative text-white'>Update Role</span>
         </button>
         {/* Update User Modal */}
         <UpdateUserModal

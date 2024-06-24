@@ -31,7 +31,7 @@ const MyAssets = () => {
             <title>Asset Manager | My Assets</title>
         </Helmet>
 
-        <div className='mt-12 mx-auto'>
+        <div className='mt-12 mx-auto md:-ml-48'>
           
  
           {/* <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'> */}

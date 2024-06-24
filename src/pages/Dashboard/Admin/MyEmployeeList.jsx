@@ -41,12 +41,14 @@ const MyEmployeeList = () => {
             </Helmet>
             <p className='text-center text-xl font-semibold py-5'>Employee List of my {currentCompany}</p>
             <p className='text-center text-base font-semibold mb-5'>
-                        ({usersInSameCompany.length > 0 ? (
-                            <span>{usersInSameCompany.length === 1 ? `Total Employee: ${usersInSameCompany.length}` : `Total Employees: ${usersInSameCompany.length}`}</span>
-                        ) : (
-                            <span>No Employee is here now.</span>
-                        )})
-                    </p>
+                ({usersInSameCompany.length > 0 ? 
+                    (
+                    <span>{usersInSameCompany.length === 1 ? `Total Employee: ${usersInSameCompany.length}` : `Total Employees: ${usersInSameCompany.length}`}</span>
+                    ) : (
+                    <span>No Employee is here now.</span>
+                    )
+                })
+            </p>
 
 
             <div className="overflow-x-auto">
@@ -63,6 +65,7 @@ const MyEmployeeList = () => {
                     <tbody>
                     {usersInSameCompany.map((user, index) => (
                       <tr key={index}>
+
                         <td>
                         <div className="flex items-center gap-3">
                             <div className="avatar">
@@ -77,11 +80,13 @@ const MyEmployeeList = () => {
                             </div>
                         </div>
                         </td>
+
                         <td>
                         {user.name}
                         <br/>
                         <span className="badge badge-ghost badge-sm"></span>
                         </td>
+                        
                         <td>{user.role}</td>
                         <th>
                         <button className="btn btn-error btn-xs">Remove From Team</button>

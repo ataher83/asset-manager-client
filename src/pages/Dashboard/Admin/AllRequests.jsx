@@ -23,7 +23,7 @@ const AllRequests = () => {
     if (isLoading) return <LoadingSpinner />;
 
     return (
-        <div className='-ml-64'>
+        <div className='md:-ml-64'>
             <Helmet>
                 <title>Asset Manager | All Requests</title>
             </Helmet>

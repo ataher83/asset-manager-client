@@ -59,7 +59,7 @@ const AssetRequest = () => {
 
   return (
     <>
-    <div className='mt-6'>
+    <div className='mt-24 md:mt-6'>
       <Helmet>
         <title>Asset Request | Dashboard</title>
       </Helmet>

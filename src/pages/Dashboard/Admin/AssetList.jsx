@@ -28,7 +28,7 @@ const AssetList = () => {
                 <title>Asset Manager | Asset List</title>
             </Helmet>
 
-            <div className='mt-12 mx-auto'>
+            <div className='mt-12 mx-auto md:-ml-64'>
                 <div className='relative flex flex-col gap-5 bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
                     <p className='text-center font-semibold text-xl'>All Asset's List</p>
                     <p className='text-center text-base'>
