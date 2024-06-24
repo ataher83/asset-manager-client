@@ -1,6 +1,6 @@
 # The Asset Manager
 
-Assignment Variant:     assignment12_category_0007
+Assignment Variant:  assignment12_category_0007
 
 Admin Credentials:
 * Username: mojogo9562@exeneli.com
@@ -35,8 +35,9 @@ Deployment:
 
 
 
+Features of The Asset Manager:
 
-## Features of The Asset Manager
+**Features of The Asset Manager:**
 
 1. **Comprehensive Asset Management:**
    - Easily manage both returnable and non-returnable assets.
