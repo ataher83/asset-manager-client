@@ -30,6 +30,7 @@ Payment Processing:
 - [Stripe](https://stripe.com/)
 
 Deployment: 
+- [Firebase](https://firebase.google.com/)
 - [Vercel](https://vercel.com/)
 
 
