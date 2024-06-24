@@ -14,7 +14,6 @@ const Navbar = () => {
   const axiosSecure = useAxiosSecure()
   const { user, logOut } = useAuth()
 
-
       //   Fetch a user info by email 
       const {
         data: userData = [],
@@ -30,8 +29,6 @@ const Navbar = () => {
       })
     
       console.log(userData)
-
-
 
 
   // for modal
@@ -85,9 +82,6 @@ const Navbar = () => {
   <li><NavLink to="/dashboard/my-team">My Team</NavLink></li>
   <li><NavLink to="/dashboard/asset-request">Request for an Asset</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
-
-  {/* <li><NavLink to="/dashboard/my-bookings">MY Bookings</NavLink></li> */}
-  {/* <li><NavLink to="/">Modal(Become a Host)</NavLink></li> */}
   </>
 
   const navLinksHRManager = <>
@@ -100,17 +94,13 @@ const Navbar = () => {
   <li><NavLink to="/dashboard/add-employee">Add Employee</NavLink></li>
   <li><NavLink to="/dashboard/payment">Payment</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
-
   <li><NavLink to="/dashboard/manage-users">Manage Users</NavLink></li>
-
   </>
-
 
 
 if (role === 'HRManager') {
   navLinks = navLinksHRManager;
 }
-
 else if (role === 'Employee') {
   navLinks = navLinksEmployee
 }

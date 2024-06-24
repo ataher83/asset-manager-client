@@ -4,18 +4,12 @@ import Home from '../pages/Home/Home'
 import ErrorPage from '../pages/ErrorPage'
 import Login from '../pages/Login/Login'
 import SignUp from '../pages/SignUp/SignUp'
-import RoomDetails from '../pages/RoomDetails/RoomDetails'
 import PrivateRoute from './PrivateRoute'
 import DashboardLayout from '../layouts/DashboardLayout'
 import Statistics from '../pages/Dashboard/Common/Statistics'
-import AddRoom from '../pages/Dashboard/Host/AddRoom'
-import MyListings from '../pages/Dashboard/Host/MyListings'
 import Profile from '../pages/Dashboard/Common/Profile'
 import ManageUsers from '../pages/Dashboard/Admin/ManageUsers'
 import AdminRoute from './AdminRoute'
-import HostRoute from './HostRoute'
-import MyBookings from '../pages/Dashboard/Guest/MyBookings'
-import ManageBookings from '../pages/Dashboard/Host/ManageBookings'
 import EmployeeSignUp from '../pages/SignUp/EmployeeSignUp'
 import HRManagerSignUp from '../pages/SignUp/HRManagerSignUp'
 import AddAsset from '../pages/Dashboard/Admin/AddAsset'
@@ -28,10 +22,8 @@ import AssetList from '../pages/Dashboard/Admin/AssetList'
 import AllRequests from '../pages/Dashboard/Admin/AllRequests'
 import CustomRequestsList from '../pages/Dashboard/Admin/CustomRequestsList'
 import MyEmployeeList from '../pages/Dashboard/Admin/MyEmployeeList'
-// import AddAnEmployee from '../pages/Dashboard/Admin/AddAnEmployee'
 import Payment from '../pages/Dashboard/Admin/Payment'
 import AddEmployee from '../pages/Dashboard/Admin/AddEmployee'
-// import UpdateProfile from '../pages/Dashboard/Common/UpdateProfile'   //চেক 
 
 export const router = createBrowserRouter([
   {
@@ -43,14 +35,6 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Home />,
       },
-      {
-        path: '/room/:id',
-        element: (
-          <PrivateRoute>
-            <RoomDetails />
-          </PrivateRoute>
-        ),
-      },
     ],
   },
   { path: '/login', element: <Login /> },
@@ -59,12 +43,6 @@ export const router = createBrowserRouter([
   { path: '/hRManagerSignUp', element: <HRManagerSignUp /> },
   { path: '/guestMenu', element: <GuestMenu /> },
   { path: '/hostModal', element: <HostModal /> },
-
-  // { path: '/myTeam', element: <MyTeam /> },
-
-
-
-
   {
     path: '/dashboard',
     element: (
@@ -81,18 +59,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: 'add-room',
-        element: (
-          <PrivateRoute>
-            <HostRoute>
-              <AddRoom />
-            </HostRoute>
-          </PrivateRoute>
-        ),
-      },
-
-
       {
         path: 'add-asset',
         element: (
@@ -127,19 +93,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-
-      {
-        path: 'my-listings',
-        element: (
-          <PrivateRoute>
-            <HostRoute>
-              <MyListings />
-            </HostRoute>
-          </PrivateRoute>
-        ),
-      },
-
       {
         path: 'manage-users',
         element: (
@@ -210,27 +163,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
-
-
-      {
-        path: 'my-bookings',
-        element: (
-          <PrivateRoute>
-            <MyBookings />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: 'manage-bookings',
-        element: (
-          <PrivateRoute>
-            <HostRoute>
-              <ManageBookings />
-            </HostRoute>
-          </PrivateRoute>
-        ),
-      },
       {
         path: 'profile',
         element: (
@@ -239,14 +171,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   path: 'updateProfile',
-      //   element: (
-      //     <PrivateRoute>
-      //       <UpdateProfile />
-      //     </PrivateRoute>
-      //   ),
-      // },
     ],
   },
 ])

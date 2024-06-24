@@ -3,12 +3,12 @@ import HostModal from '../../../Modal/HostRequestModal.jsx'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 import useAuth from '../../../../hooks/useAuth.js'
-import Navbar from '../../../Shared/Navbar/Navbar.jsx'
-import useAxiosCommon from '../../../../hooks/useAxiosCommon.jsx'
+// import Navbar from '../../../Shared/Navbar/Navbar.jsx'
+// import useAxiosCommon from '../../../../hooks/useAxiosCommon.jsx'
 
 const GuestMenu = () => {
   const axiosSecure = useAxiosSecure()
-  const axiosCommon= useAxiosCommon()
+  // const axiosCommon= useAxiosCommon()
   const { user } = useAuth()
 
 

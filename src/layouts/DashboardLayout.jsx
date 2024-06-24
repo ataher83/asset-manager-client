@@ -5,7 +5,6 @@ const DashboardLayout = () => {
   return (
     <div className='relative min-h-screen md:flex'>
       <Navbar />
-      {/* <Outlet /> */}
 
       {/* Outlet --> Dynamic content */}
       <div className='flex-1 md:ml-64'>
