@@ -22,11 +22,11 @@ const MyAssets = () => {
         isLoading,
         refetch,
     } = useQuery({
-      queryKey: ['request', user?.email, searchTerm, statusFilter, typeFilter],
+      queryKey: ['myRequest', user?.email, searchTerm, statusFilter, typeFilter],
       queryFn: async () => {
-        const { data } = await axiosSecure.get(`/request/${user?.email}`, {
+        const { data } = await axiosSecure.get(`/myRequest/${user?.email}`, {
           params: {
-            searchTerm,
+            search: searchTerm,
             status: statusFilter,
             type: typeFilter,
           }
@@ -130,8 +130,8 @@ const MyAssets = () => {
                 className="select select-bordered"
               >
                 <option value="">All Types</option>
-                <option value="Returnable">Returnable</option>
-                <option value="Non-Returnable">Non-Returnable</option>
+                <option value="returnable">Returnable</option>
+                <option value="nonReturnable">Non-Returnable</option>
               </select>
             </div>
 
