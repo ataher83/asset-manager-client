@@ -3,48 +3,141 @@ import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import useAuth from '../../../hooks/useAuth'
+import { useState } from 'react'
+import { PDFDownloadLink } from '@react-pdf/renderer'
+import MyAssetPDF from './MyAssetPDF.jsx';
+
 
 const MyAssets = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
+    const [searchTerm, setSearchTerm] = useState('')
+    const [statusFilter, setStatusFilter] = useState('')
+    const [typeFilter, setTypeFilter] = useState('')
+
     // Fetch employee asset request Data here
     const { 
         data: requestData = [], 
         isLoading,
+        refetch,
     } = useQuery({
-      queryKey: ['request', user?.email],
+      queryKey: ['request', user?.email, searchTerm, statusFilter, typeFilter],
       queryFn: async () => {
-        const { data } = await axiosSecure.get(`/request/${user?.email}`)
+        const { data } = await axiosSecure.get(`/request/${user?.email}`, {
+          params: {
+            searchTerm,
+            status: statusFilter,
+            type: typeFilter,
+          }
+        })
         return data
       },
     });
     console.log(requestData)
 
-    if (isLoading) return <LoadingSpinner />
 
+
+
+    //   Fetch a user info by email 
+    const {
+        data: userData = [],
+        // isLoading,
+        // refetch,
+      } = useQuery({
+        queryKey: ['user', user?.email],
+        queryFn: async () => {
+          const { data } = await axiosSecure.get(`/user/${user?.email}`)
+    
+          return data
+        },
+      })
+    
+      console.log(userData)
+
+    
+
+
+
+
+
+
+
+
+
+
+    const handleSearch = (e) => {
+      setSearchTerm(e.target.value)
+      refetch()
+    }
+
+    const handleStatusFilter = (e) => {
+      setStatusFilter(e.target.value)
+      refetch()
+    }
+
+    const handleTypeFilter = (e) => {
+      setTypeFilter(e.target.value)
+      refetch()
+    }
+
+    const handleCancel = async (id) => {
+      // Implement cancel request logic here
+      await axiosSecure.post(`/request/cancel/${id}`)
+      refetch()
+    }
+
+    const handleReturn = async (id) => {
+      // Implement return request logic here
+      await axiosSecure.post(`/request/return/${id}`)
+      refetch()
+    }
+
+    if (isLoading) return <LoadingSpinner />
 
     return (
       <div>
-
         <Helmet>
             <title>Asset Manager | My Assets</title>
         </Helmet>
 
         <div className='mt-12 mx-auto md:-ml-48'>
           
- 
-          {/* <div className='mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3'> */}
           <div className=' '>
 
-            {/* My requests sections*/}
-            {/* <div className='relative flex flex-col gap-10 bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'> */}
+            {/* Search and Filter Section */}
+            <div className="flex gap-4 mb-4">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={handleSearch}
+                placeholder="Search by asset name"
+                className="input input-bordered w-full max-w-xs"
+              />
+              <select
+                value={statusFilter}
+                onChange={handleStatusFilter}
+                className="select select-bordered"
+              >
+                <option value="">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Returned">Returned</option>
+              </select>
+              <select
+                value={typeFilter}
+                onChange={handleTypeFilter}
+                className="select select-bordered"
+              >
+                <option value="">All Types</option>
+                <option value="Returnable">Returnable</option>
+                <option value="Non-Returnable">Non-Returnable</option>
+              </select>
+            </div>
+
+            {/* My requests section*/}
             <div className='relative flex flex-col gap-10 bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
-
-
-                {/* My pending requests section*/}
                 <p className='text-center font-semibold text-xl'> My Asset List </p>
-                {/* <p className='text-center font-semibold text-lg'>({requestData.length} Assets Found)</p> */}
                 <p className='text-center font-semibold text-lg'>
                   ({
                     requestData.length > 0 ?
@@ -81,12 +174,35 @@ const MyAssets = () => {
                                 {/* conditional Action Button */}
                                 <td>
                                     {request.assetRequestStatus === 'Pending' ? (
-                                        <button className="btn btn-error btn-xs">Cancel</button>
+                                        <button 
+                                          className="btn btn-error btn-xs"
+                                          onClick={() => handleCancel(request._id.$oid)}
+                                        >
+                                          Cancel
+                                        </button>
                                     ) : request.assetRequestStatus === 'Approved' ? (
                                         <div className='flex gap-2'>
-                                            <button className="btn btn-info btn-xs">Print</button>
-                                            <button className="btn btn-warning btn-xs">Return</button>
+                                            <PDFDownloadLink
+                                              document={<MyAssetPDF request={request} user={user} companyName={userData?.companyName} companyLogo={userData?.companyLogo} />}
+                                              fileName="asset-details.pdf"
+                                            >
+                                              {({ loading }) => 
+                                                loading ? 'Loading...' : (
+                                                  <button className="btn btn-info btn-xs">Print</button>
+                                                )
+                                              }
+                                            </PDFDownloadLink>
+                                            {request.assetType === 'Returnable' && (
+                                              <button 
+                                                className="btn btn-warning btn-xs"
+                                                onClick={() => handleReturn(request._id.$oid)}
+                                              >
+                                                Return
+                                              </button>
+                                            )}
                                         </div>
+                                    ) : request.assetRequestStatus === 'Returned' ? (
+                                        <span>Returned</span>
                                     ) : null}
                                 </td>
  
@@ -96,16 +212,6 @@ const MyAssets = () => {
 
                     </table>
                 </div>
-
-
-
-
-
-
-
-
-
-
 
             </div>
 
