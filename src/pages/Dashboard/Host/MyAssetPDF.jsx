@@ -31,14 +31,14 @@ const MyAssetPDF = ({ request, user, companyName, companyLogo }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
-        <Image src={companyLogo} alt="companyLogo" style={styles.logo} />
-        <Text style={styles.header}>{companyName}</Text>
-        <Text>Asset Details</Text>
+        <Image src={companyLogo} alt="companyLogo" style={styles.logo} /> 
+        <Text style={styles.header}>{companyName}</Text> 
+        <Text>Asset Details of {user.displayName}</Text> <br />
         <Text>Asset Name: {request.assetName}</Text>
         <Text>Asset Type: {request.assetType}</Text>
         <Text>Request Date: {request.assetRequestDate}</Text>
         <Text>Approval Date: {request.assetRequestApprovalDate}</Text>
-        <Text>Requested By: {user.name}</Text>
+        <Text>Requested By: {user.displayName}</Text>
         <Text>Email: {user.email}</Text>
       </View>
       <View style={styles.footer}>

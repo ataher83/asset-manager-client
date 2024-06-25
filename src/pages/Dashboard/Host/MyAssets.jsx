@@ -170,9 +170,13 @@ const MyAssets = () => {
                                 <td>{request.assetRequestDate}</td>
                                 <td>{request.assetRequestApprovalDate}</td>
                                 <td>{request.assetRequestStatus}</td>
+
+
+
+
                                 
                                 {/* conditional Action Button */}
-                                <td>
+                                {/* <td>
                                     {request.assetRequestStatus === 'Pending' ? (
                                         <button 
                                           className="btn btn-error btn-xs"
@@ -201,7 +205,42 @@ const MyAssets = () => {
                                               </button>
                                             )}
                                         </div>
-                                    ) : request.assetRequestStatus === 'Returned' ? (
+                                    ) : request.assetType === 'returnable' ? (
+                                        <span>Returned</span>
+                                    ) : null}
+                                </td> */}
+
+
+
+                                {/* conditional Action Button */}
+                                <td>
+                                    {request.assetRequestStatus === 'Pending' ? 
+                                    (<button className="btn btn-error btn-xs"> Cancel</button>) 
+                                    : 
+                                    request.assetRequestStatus === 'Approved' ? 
+                                    (
+                                    <div className='flex gap-2'>
+                                            <PDFDownloadLink
+                                              document={<MyAssetPDF request={request} user={user} companyName={userData?.companyName} companyLogo={userData?.companyLogo} />}
+                                              fileName="asset-details.pdf"
+                                            >
+                                              {({ loading }) => 
+                                                loading ? 'Loading...' : (
+                                                  <button className="btn btn-info btn-xs">Print</button>
+                                                )
+                                              }
+                                            </PDFDownloadLink>
+
+                                            {request.assetType === 'returnable' && (
+                                              <button 
+                                                className="btn btn-warning btn-xs"
+                                                onClick={() => handleReturn(request._id.$oid)}
+                                              >
+                                                Return
+                                              </button>
+                                            )}
+                                        </div>
+                                    ) : request.assetType === 'returnable' ? (
                                         <span>Returned</span>
                                     ) : null}
                                 </td>
