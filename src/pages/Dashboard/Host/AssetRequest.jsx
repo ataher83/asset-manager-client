@@ -17,13 +17,13 @@ const AssetRequest = () => {
   const [loading, setLoading] = useState(false)
 
   const { data: assets = [], isLoading, refetch } = useQuery({
-    queryKey: ['assets', searchTerm, availabilityFilter, typeFilter],
+    queryKey: ['assetsForAssetRequest', searchTerm, availabilityFilter, typeFilter],
     queryFn: async () => {
-      const { data } = await axiosSecure.get('/assets', {
+      const { data } = await axiosSecure.get('/assetsForAssetRequest', {
         params: {
           searchTerm,
-          availability: availabilityFilter,
-          type: typeFilter,
+          availabilityFilter,
+          typeFilter,
         },
       })
       return data
@@ -123,8 +123,8 @@ const AssetRequest = () => {
           className="select select-bordered"
         >
           <option value="">All Types</option>
-          <option value="Returnable">Returnable</option>
-          <option value="Non-Returnable">Non-Returnable</option>
+          <option value="returnable">Returnable</option>
+          <option value="nonReturnable">Non-Returnable</option>
         </select>
       </div>
 
