@@ -46,6 +46,7 @@ const MyTeam = () => {
 
                     <thead>
                     <tr>
+                        <th>SL</th>
                         <th>Member Image</th>
                         <th>Member Name</th>
                         <th>Member Type(Role)</th>
@@ -56,6 +57,7 @@ const MyTeam = () => {
                     <tbody>
                     {usersInSameCompany.map((user, index) => (
                       <tr key={index}>
+                        <td>{index + 1}</td>
                         <td>
                         <div className="flex items-center gap-3">
                             <div className="avatar">
