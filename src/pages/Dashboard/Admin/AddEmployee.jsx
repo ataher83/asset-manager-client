@@ -56,7 +56,8 @@ const AddEmployee = () => {
         if (usersInSameCompany.length < currentMemberLimit) {
             mutation.mutate(userId);
         } else {
-            alert('You have reached the member limit for your current package.');
+            // alert('You have reached the member limit for your current package.');
+            toast.error('You have reached the member limit for your current package.');
         }
     };
 
@@ -68,10 +69,25 @@ const AddEmployee = () => {
         );
     };
 
+    // const handleAddSelectedMembers = () => {
+    //     selectedMembers.forEach(memberId => handleAddToTeam(memberId));
+    //     setSelectedMembers([]);
+    // };
+
+
     const handleAddSelectedMembers = () => {
+        if (selectedMembers.length === 0) {
+            toast.error('Please select at least one member to add to the team.');
+            return;
+        }
         selectedMembers.forEach(memberId => handleAddToTeam(memberId));
         setSelectedMembers([]);
     };
+
+
+
+
+
 
     if (isLoading) return <LoadingSpinner />;
 
@@ -87,7 +103,7 @@ const AddEmployee = () => {
                     <h2 className="text-center font-semibold text-xl mb-4">My Current Package Status</h2>
                     <p className="text-center mb-2">Total Employees: {usersInSameCompany.length}</p>
                     <p className="text-center mb-4">Package Limit: {currentMemberLimit}</p>
-
+ 
                     <div className="flex justify-center">
                         <Link to="/dashboard/payment">
                             <button className="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
