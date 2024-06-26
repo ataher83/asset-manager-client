@@ -16,6 +16,7 @@ const AssetRequest = () => {
   const [selectedAsset, setSelectedAsset] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  
   const { data: assets = [], isLoading, refetch } = useQuery({
     queryKey: ['assetsForAssetRequest', searchTerm, availabilityFilter, typeFilter],
     queryFn: async () => {

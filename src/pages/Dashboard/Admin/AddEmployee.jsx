@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import useAuth from '../../../hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const AddEmployee = () => {
 
@@ -52,9 +53,14 @@ const AddEmployee = () => {
                     <p className="text-center mb-2">Total Employee: {usersInSameCompany.length}</p>
                     <p className="text-center mb-4">Package Limit: {currentMemberLimit}</p>
                     <div className="flex justify-center">
-                        <button className="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick="handleIncreaseLimit()">
-                            Increase Limit
-                        </button>
+                        {/* <Link to="/dashboard/payment"> */}
+                            <button className="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick="handleIncreaseLimit()">
+                                <Link to="/dashboard/payment">
+                                Increase Limit
+                                </Link>
+                            </button>
+                        {/* </Link> */}
+                        
                     </div>
                 </div>
 
