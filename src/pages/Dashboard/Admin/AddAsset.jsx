@@ -30,7 +30,7 @@ const AddAsset = () => {
   console.log(userData)
   
 
-
+    // Mutation to add asset
     const { mutateAsync } = useMutation({
       mutationFn: async assetData => {
         const { data } = await axiosSecure.post(`/asset`, assetData)
