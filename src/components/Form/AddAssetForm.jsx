@@ -43,7 +43,8 @@ const AddAssetForm = ({
                     name='assetType'
                     id='assetType'
                     placeholder='Asset Type'
-                    required>
+                    required
+                    >
                     {/* <option defaultValue=''></option> */}
                     <option value="">Select Asset Type</option>
                     <option value="returnable">Returnable</option>
