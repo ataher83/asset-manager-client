@@ -84,8 +84,6 @@ The Asset Manager is a web application designed to help businesses manage their 
 
 
 
-## Run The Asset Manager in your Local Host
-
 ## Environment Variables
 ### .env
 ```env
@@ -125,6 +123,8 @@ const firebaseConfig = {
   appId: "1:1009746072949:web:cd89959158e59b32f1af3c"
 };
 ```
+
+## Run The Asset Manager in your Local Host
 
 ## Installation and Setup
 
