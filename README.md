@@ -1,12 +1,14 @@
 # The Asset Manager
 The Asset Manager is a web application designed to help businesses manage their assets and products. This application enables HR Managers to track how employees are using company assets.
 
-## Admin Credentials:
-* Username: mojogo9562@exeneli.com
-* Password: Aa@1234
 
 ## Live site:
 - [The Asset Manager](https://asset-manager-54e54.web.app/)
+
+
+## Admin Credentials:
+* Username: mojogo9562@exeneli.com
+* Password: Aa@1234
 
 
 ## Technologies Used:
