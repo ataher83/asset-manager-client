@@ -4,16 +4,16 @@ The Asset Manager is a web application designed to help businesses manage their 
 
 
 
-## Live site:
+## Live site
 - [The Asset Manager](https://asset-manager-54e54.web.app/)
 
 
-## Admin Credentials:
+## Admin Credentials
 * Username: mojogo9562@exeneli.com
 * Password: Aa@1234
 
 
-## Technologies Used:
+## Technologies Used
 
 ### Frontend:
 - [React](https://react.dev/)
@@ -37,7 +37,7 @@ The Asset Manager is a web application designed to help businesses manage their 
 - [Vercel](https://vercel.com/)
 
 
-## Features:
+## Features
 
 1. **Comprehensive Asset Management:**
    - Easily manage both returnable and non-returnable assets.
