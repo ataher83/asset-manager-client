@@ -82,8 +82,11 @@ The Asset Manager is a web application designed to help businesses manage their 
     - Social login options for quick access.
 
 
-## Environment Variables
 
+
+## Run The Asset Manager in your Local Host
+
+## Environment Variables
 ### .env
 ```env
 DB_USER=commonUser
@@ -139,33 +142,43 @@ const firebaseConfig = {
     cd asset-manager-server
     ```
 
-2. Install backend dependencies:
+2. Navigate to the `asset-manager-server` directory:
+    ```sh
+    cd asset-manager-server
+    ```
+
+3. Install backend dependencies:
     ```sh
     npm install
     ```
 
-3. Create a `.env` file in the `asset-manager-server` directory and add your environment variables.
+4. Create a `.env` file in the `asset-manager-server` directory and add your environment variables.
 
-4. Start the server:
+5. Start the server:
     ```sh
     nodemon index.js
     ```
 
 ### Frontend Setup
 
-1. Navigate to the `asset-manager-client` directory:
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/ataher83/asset-manager-client
+    cd asset-manager-client
+    ```
+2. Navigate to the `asset-manager-client` directory:
     ```sh
     cd asset-manager-client
     ```
 
-2. Install frontend dependencies:
+3. Install frontend dependencies:
     ```sh
     npm install
     ```
 
-3. Create a `.env` file in the `asset-manager-server` directory and add your environment variables.
+4. Create a `.env.local` file in the `asset-manager-client` directory and add your environment variables.
 
-4. Start the React development server:
+5. Start the React development server:
     ```sh
     npm dev run
     ```
@@ -180,6 +193,5 @@ const firebaseConfig = {
 
 ## Contact
 
-For any questions or support, please contact [Taher](mailto:taher83@gmail.com).
+For any questions or support, please contact [Abu Taher](mailto:taher83@gmail.com).
 
----
