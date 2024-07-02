@@ -124,6 +124,7 @@ const firebaseConfig = {
 };
 ```
 
+
 ## Run The Asset Manager in your Local Host
 
 ## Installation and Setup
@@ -139,7 +140,6 @@ const firebaseConfig = {
 1. Clone the repository:
     ```sh
     git clone https://github.com/ataher83/asset-manager-server
-    cd asset-manager-server
     ```
 
 2. Navigate to the `asset-manager-server` directory:
@@ -164,7 +164,6 @@ const firebaseConfig = {
 1. Clone the repository:
     ```sh
     git clone https://github.com/ataher83/asset-manager-client
-    cd asset-manager-client
     ```
 2. Navigate to the `asset-manager-client` directory:
     ```sh
@@ -185,7 +184,7 @@ const firebaseConfig = {
 
 ## Usage
 
-1. Open your browser and go to `http://localhost:3000` to view the application.
+1. Open your browser and go to `http://localhost:5000` to view the application.
 2. Sign up as either an Employee or HR Manager.
 3. HR Managers can manage assets, view requests, and handle employees.
 4. Employees can view their assets, request new ones, and see their team.
