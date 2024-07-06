@@ -56,7 +56,6 @@ const AddEmployee = () => {
         if (usersInSameCompany.length < currentMemberLimit) {
             mutation.mutate(userId);
         } else {
-            // alert('You have reached the member limit for your current package.');
             toast.error('You have reached the member limit for your current package.');
         }
     };

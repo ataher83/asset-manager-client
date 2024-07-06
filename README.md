@@ -1,17 +1,13 @@
-# The Asset Manager
+# Art & Craft Store
 
-The Asset Manager is a web application designed to help businesses manage their assets and products. This application enables HR Managers to track how employees are using company assets. 
+The Art & Craft Store is a web application designed to showcase and sell various art and craft items within the "Painting and Drawing" category. This project focuses on a specific category of art and craft, providing users with a dedicated platform to explore and manage their artistic creations.
 
-
-
-## Live site
-- [The Asset Manager](https://asset-manager-54e54.web.app/)
-
+## Live Site
+- [Art & Craft Store](your-live-site-url-here)
 
 ## Admin Credentials
-* Username: mojogo9562@exeneli.com
-* Password: Aa@1234
-
+* Username: your-admin-username
+* Password: your-admin-password
 
 ## Technologies Used
 
@@ -29,122 +25,98 @@ The Asset Manager is a web application designed to help businesses manage their 
 ### Authentication:
 - [Firebase](https://firebase.google.com/)
 
-### Payment Processing:
-- [Stripe](https://stripe.com/)
-
-### Deployment: 
-- [Firebase](https://firebase.google.com/)
+### Deployment:
 - [Vercel](https://vercel.com/)
-
 
 ## Features
 
-1. **Comprehensive Asset Management:**
-   - Easily manage both returnable and non-returnable assets.
-   - Track asset usage by employees in real-time.
+1. **Comprehensive Craft Item Management:**
+   - Easily manage various painting and drawing items.
+   - Track item details and user interactions.
 
 2. **User-Friendly Navigation:**
-   - Dynamic navbar adjusts based on the user type (Employee or HR Manager).
-   - Quick access to key features like asset requests, team management, and more.
+   - Dynamic navbar adjusts based on the user authentication status.
+   - Quick access to key features like item addition, item listing, and user-specific actions.
 
-3. **Employee and HR Manager Registration:**
-   - Separate registration forms for employees and HR managers.
-   - HR managers can select a subscription package during registration.
+3. **User Registration and Authentication:**
+   - Secure registration and login with email/password and Google authentication.
+   - User-friendly forms with validation and error handling.
 
-4. **Subscription Packages:**
-   - Choose from three packages:
-     - 5 members for $5
-     - 10 members for $8
-     - 20 members for $15
+4. **Responsive Design:**
+   - Fully responsive design for mobile, tablet, and desktop views.
+   - Modern and attractive UI with TailwindCSS.
 
-5. **Asset Requests Management:**
-   - Employees can request assets and track their request status.
-   - HR managers can approve, reject, and manage asset requests.
+5. **Protected Routes:**
+   - Secure routes for adding, updating, and viewing personal craft items.
+   - Ensures user data privacy and security.
 
-6. **Payment Integration:**
-   - Secure payment processing via Stripe.
-   - Increase member limits by purchasing additional packages.
+6. **Dynamic Data Fetching:**
+   - All craft items are dynamically fetched from a MongoDB database.
+   - Efficient data handling and presentation.
 
-7. **Search and Filter Functionality:**
-   - Efficiently search and filter assets and requests.
-   - Server-side implementation for optimized performance.
+7. **Interactive UI:**
+   - User-friendly interface with toast notifications for actions like add, update, and delete.
+   - Intuitive design for easy navigation and interaction.
 
-8. **Team Management:**
-   - HR managers can add employees to their team.
-   - View and manage team members with ease.
+8. **Dark/Light Theme Toggle:**
+   - Toggle between dark and light themes for a personalized experience.
 
-9. **Responsive Design:**
-   - Mobile-friendly design ensures accessibility on all devices.
-   - Attractive UI with Tailwind CSS for a modern look.
+9. **Loading Spinner:**
+   - Displays a loading spinner while data is being fetched for a seamless user experience.
 
-10. **Authentication and Security:**
-    - Secure user authentication with Firebase.
-    - Social login options for quick access.
-
-
-
+10. **Custom 404 Page:**
+    - Custom 404 page for non-existent routes ensuring better error handling.
 
 ## Environment Variables
+
 ### .env
 ```env
-DB_USER=commonUser
-DB_PASS=OuTFyLNBCpbTLjwR
-
-ACCESS_TOKEN_SECRET=66304721f3f2904c9d2aa423456d2c55d2d23f266b040701dd85ef10ce562ad172f21b493a79b3f597ec5c5ac3df2425dcd65b225871882196e1fe88691b3c73
-
-STRIPE_SECRET_KEY=sk_test_51PMALtRowRGxhINctNEQS099qoPmGhs42SdrXryI1T8Dw2NHA7Xh0lYmuvhJwF0zmP3DA0aTuhhNoi0QGqZ3m5P000czNohOc8
-
-TRANSPORTER_EMAIL='taher83@gmail.com'
-TRANSPORTER_PASS=pnoqehgriwuylqaw
+DB_USER=your_db_user
+DB_PASS=your_db_password
+ACCESS_TOKEN_SECRET=your_access_token_secret
 ```
 
 ### .env.local
 ```env
-  VITE_apiKey=AIzaSyCeYG3jssEPYMaE8csSVP8aE0dCd8MTI0g 
-  VITE_authDomain=asset-manager-54e54.firebaseapp.com
-  VITE_projectId=asset-manager-54e54
-  VITE_storageBucket=asset-manager-54e54.appspot.com
-  VITE_messagingSenderId=997639771813
-  VITE_appId=1:997639771813:web:2c136f94fe8d096c7d9f4c
-
-  VITE_IMGBB_API_KEY=7032122c38dbf52025f070b26ec2de91
-  VITE_API_URL=https://asset-manager-server.vercel.app  
-  VITE_STRIPE_PUBLISHABLE_KEY=pk_test_51PMALtRowRGxhINc8QSQrNT1UTXBXjubJNMGTP0rMfcn4SjAlaT4Kaffyid5wZQaeMeAPFr8idsekRCMDRzcQJLQ00giTMMPL9
+VITE_apiKey=your_firebase_api_key
+VITE_authDomain=your_firebase_auth_domain
+VITE_projectId=your_firebase_project_id
+VITE_storageBucket=your_firebase_storage_bucket
+VITE_messagingSenderId=your_firebase_messaging_sender_id
+VITE_appId=your_firebase_app_id
+VITE_IMGBB_API_KEY=your_imgbb_api_key
+VITE_API_URL=your_api_url
 ```
 
 ### Firebase Configuration
 ```js
 const firebaseConfig = {
-  apiKey: "AIzaSyDP-OghiIvF69DAUOe5ZvmmFxpPTHr21ao",
-  authDomain: "theassetmanager-fcbe9.firebaseapp.com",
-  projectId: "theassetmanager-fcbe9",
-  storageBucket: "theassetmanager-fcbe9",
-  messagingSenderId: "1009746072949",
-  appId: "1:1009746072949:web:cd89959158e59b32f1af3c"
+  apiKey: "your_firebase_api_key",
+  authDomain: "your_firebase_auth_domain",
+  projectId: "your_firebase_project_id",
+  storageBucket: "your_firebase_storage_bucket",
+  messagingSenderId: "your_firebase_messaging_sender_id",
+  appId: "your_firebase_app_id"
 };
 ```
 
-
-## Run The Asset Manager in your Local Host
-
-## Installation and Setup
+## Run Art & Craft Store on Your Local Host
 
 ### Prerequisites
 - Node.js and npm
 - MongoDB
 - Firebase account for authentication
-- Stripe account for payment processing
 
 ### Backend Setup
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/ataher83/asset-manager-server
+    git clone https://github.com/your-username/art-craft-store-server
     ```
 
-2. Navigate to the `asset-manager-server` directory:
+2. Navigate to the `art-craft-store-server` directory:
     ```sh
-    cd asset-manager-server
+    cd art-craft-store-server
     ```
 
 3. Install backend dependencies:
@@ -152,7 +124,7 @@ const firebaseConfig = {
     npm install
     ```
 
-4. Create a `.env` file in the `asset-manager-server` directory and add your environment variables.
+4. Create a `.env` file in the `art-craft-store-server` directory and add your environment variables.
 
 5. Start the server:
     ```sh
@@ -163,11 +135,12 @@ const firebaseConfig = {
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/ataher83/asset-manager-client
+    git clone https://github.com/your-username/art-craft-store-client
     ```
-2. Navigate to the `asset-manager-client` directory:
+
+2. Navigate to the `art-craft-store-client` directory:
     ```sh
-    cd asset-manager-client
+    cd art-craft-store-client
     ```
 
 3. Install frontend dependencies:
@@ -175,22 +148,22 @@ const firebaseConfig = {
     npm install
     ```
 
-4. Create a `.env.local` file in the `asset-manager-client` directory and add your environment variables.
+4. Create a `.env.local` file in the `art-craft-store-client` directory and add your environment variables.
 
 5. Start the React development server:
     ```sh
-    npm dev run
+    npm run dev
     ```
 
 ## Usage
 
 1. Open your browser and go to `http://localhost:5000` to view the application.
-2. Sign up as either an Employee or HR Manager.
-3. HR Managers can manage assets, view requests, and handle employees.
-4. Employees can view their assets, request new ones, and see their team.
-
+2. Sign up as a user and explore the various features.
+3. Add, view, and manage craft items within the selected category.
 
 ## Contact
 
-For any questions or support, please contact [Abu Taher](mailto:taher83@gmail.com).
+For any questions or support, please contact [Your Name](mailto:your-email@example.com).
+```
 
+Feel free to adjust the placeholders like `your-live-site-url-here`, `your-admin-username`, `your-admin-password`, and the environment variables with your actual project details.
