@@ -66,9 +66,61 @@ const UserDataRow = ({ user, refetch, index }) => {
   });
 
 
-  const handleDeleteUser = (userId) => {
-    mutation.mutate(userId);
+
+
+
+
+
+
+
+//   const handleDeleteUser = (userId) => {
+//     mutation.mutate(userId);
+// };
+
+
+
+
+// const handleDeleteUser = (userId) => {
+//   if (window.confirm('Are you sure you want to delete this user?')) {
+//     mutation.mutate(userId);
+//   }
+// };
+
+
+
+
+
+
+const handleDeleteUser = (userId) => {
+  toast((t) => (
+    <span className='bg-slate-200 p-5 rounded-lg '>
+      Are you sure you want to delete this user?
+
+      <div className='flex justify-center gap-5 mt-2'>
+      <button
+        onClick={() => {
+          mutation.mutate(userId);
+          toast.dismiss(t.id);
+        }}
+        className='btn btn-error btn-xs ml-2'
+      >
+        Yes
+      </button>
+      <button
+        onClick={() => toast.dismiss(t.id)}
+        className='btn btn-primary btn-xs ml-2'
+      >
+        No
+      </button>
+      </div>
+
+    </span>
+  ), {
+    duration: 4000,
+  });
 };
+
+
 
 
 
