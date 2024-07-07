@@ -17,10 +17,10 @@ const AssetList = () => {
         queryFn: async () => {
             const { data } = await axiosSecure.get('/assets', {
                 params: {
-                    searchTerm,
+                    search: searchTerm,
                     stockStatus: stockFilter,
                     assetType: typeFilter,
-                    sortOrder
+                    sort: sortOrder
                 }
             });
             return data;
@@ -29,10 +29,14 @@ const AssetList = () => {
 
     if (isLoading) return <LoadingSpinner />;
 
+
+
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
-        refetch();
+        
+        // refetch();
     };
+
 
     const handleStockFilterChange = (e) => {
         setStockFilter(e.target.value);
@@ -68,13 +72,13 @@ const AssetList = () => {
                         />
                         <select className='select select-bordered' value={stockFilter} onChange={handleStockFilterChange}>
                             <option value=''>All Stock Status</option>
-                            <option value='available'>Available</option>
-                            <option value='out-of-stock'>Out of Stock</option>
+                            <option value='Available'>Available</option>
+                            <option value='Out of stock'>Out of Stock</option>
                         </select>
                         <select className='select select-bordered' value={typeFilter} onChange={handleTypeFilterChange}>
                             <option value=''>All Types</option>
                             <option value='returnable'>Returnable</option>
-                            <option value='non-returnable'>Non-Returnable</option>
+                            <option value='nonReturnable'>Non-Returnable</option>
                         </select>
                         <select className='select select-bordered' value={sortOrder} onChange={handleSortOrderChange}>
                             <option value='asc'>Quantity Ascending</option>
@@ -104,7 +108,7 @@ const AssetList = () => {
                             </thead>
                             <tbody>
                                 {assets.map((asset, index) => (
-                                    <tr key={asset._id.$oid}>
+                                    <tr key={asset._id}>
                                         <td>{index + 1}</td>
                                         <td>{asset.assetName}</td>
                                         <td>{asset.assetType}</td>

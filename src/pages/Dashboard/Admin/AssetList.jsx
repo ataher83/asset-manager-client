@@ -31,7 +31,6 @@ const AssetList = () => {
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
-        refetch();
     };
 
     const handleStockFilterChange = (e) => {
@@ -47,6 +46,24 @@ const AssetList = () => {
     const handleSortOrderChange = (e) => {
         setSortOrder(e.target.value);
         refetch();
+    };
+
+    const handleUpdate = async (assetId) => {
+        // Handle the update logic here, e.g., open a modal for editing asset details
+        console.log(`Update asset with id: ${assetId}`);
+        // After updating, refetch the assets to reflect the changes
+        refetch();
+    };
+
+    const handleDelete = async (assetId) => {
+        if (window.confirm('Are you sure you want to delete this asset?')) {
+            try {
+                await axiosSecure.delete(`/asset/${assetId}`);
+                refetch(); // Refetch the assets to reflect the changes
+            } catch (error) {
+                console.error('Error deleting asset:', error);
+            }
+        }
     };
 
     return (
@@ -113,8 +130,18 @@ const AssetList = () => {
                                         <td>{asset.assetAddedDate}</td>
                                         <td>
                                             <div className='flex gap-2'>
-                                                <button className='btn btn-info btn-xs'>Update</button>
-                                                <button className='btn btn-error btn-xs'>Delete</button>
+                                                <button
+                                                    className='btn btn-info btn-xs'
+                                                    onClick={() => handleUpdate(asset._id)}
+                                                >
+                                                    Update
+                                                </button>
+                                                <button
+                                                    className='btn btn-error btn-xs'
+                                                    onClick={() => handleDelete(asset._id)}
+                                                >
+                                                    Delete
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>

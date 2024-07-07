@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import UpdateUserModal from '../../Modal/UpdateUserModal'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 import useAuth from '../../../hooks/useAuth'
@@ -12,6 +12,10 @@ const UserDataRow = ({ user, refetch, index }) => {
 
   const [isOpen, setIsOpen] = useState(false)
   const axiosSecure = useAxiosSecure()
+  const queryClient = useQueryClient();
+
+
+
 
   const { mutateAsync } = useMutation({
     mutationFn: async role => {
@@ -40,7 +44,6 @@ const UserDataRow = ({ user, refetch, index }) => {
       role: selected,
       status: 'Verified',
     }
-
     try {
       await mutateAsync(userRole)
     } catch (err) {
@@ -48,6 +51,31 @@ const UserDataRow = ({ user, refetch, index }) => {
       toast.error(err.message)
     }
   }
+
+
+    // Mutation to delete user
+    const mutation = useMutation({
+      mutationFn: async (userId) => {
+          await axiosSecure.delete(`/users/${userId}`);
+      },
+      onSuccess: () => {
+          queryClient.invalidateQueries(['users']);
+          console.log('User Deleted Successfully!')
+          toast.success('User Deleted Successfully!')
+      },
+  });
+
+
+  const handleDeleteUser = (userId) => {
+    mutation.mutate(userId);
+};
+
+
+
+
+
+
+
   return (
     <tr>
 
@@ -93,6 +121,7 @@ const UserDataRow = ({ user, refetch, index }) => {
       </td>
 
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+       <div className='flex gap-2'>
         <button
           onClick={() => setIsOpen(true)}
           className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
@@ -103,6 +132,7 @@ const UserDataRow = ({ user, refetch, index }) => {
           ></span>
           <span className='relative text-white'>Update Role</span>
         </button>
+
         {/* Update User Modal */}
         <UpdateUserModal
           isOpen={isOpen}
@@ -110,7 +140,31 @@ const UserDataRow = ({ user, refetch, index }) => {
           modalHandler={modalHandler}
           user={user}
         />
+
+
+
+        <button
+          onClick={() => handleDeleteUser(user._id)}
+          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+        >
+          <span
+            aria-hidden='true'
+            className='absolute inset-0 bg-red-500 opacity-100 rounded-lg '
+          ></span>
+          <span className='relative text-white'>Delete User</span>
+        </button>
+
+
+        {/* <button
+          className='btn btn-error btn-xs'
+          onClick={() => handleDelete(asset._id)}
+        >
+          Delete
+        </button> */}
+
+       </div> 
       </td>
+      
     </tr>
   )
 }

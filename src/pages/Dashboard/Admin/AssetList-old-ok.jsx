@@ -1,60 +1,31 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
-import UpdateAssetModal from '../../../components/Modal/UpdateAssetModal';
 
 const AssetList = () => {
     const axiosSecure = useAxiosSecure();
-    const queryClient = useQueryClient();
 
     const [searchTerm, setSearchTerm] = useState('');
     const [stockFilter, setStockFilter] = useState('');
     const [typeFilter, setTypeFilter] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
-    const [selectedAsset, setSelectedAsset] = useState(null);
 
     const { data: assets = [], isLoading, refetch } = useQuery({
         queryKey: ['assets', searchTerm, stockFilter, typeFilter, sortOrder],
         queryFn: async () => {
             const { data } = await axiosSecure.get('/assets', {
                 params: {
-                    search: searchTerm,
+                    searchTerm,
                     stockStatus: stockFilter,
                     assetType: typeFilter,
-                    sort: sortOrder
+                    sortOrder
                 }
             });
             return data;
         },
     });
-
-    // Mutation for updating an asset
-    const updateMutation = useMutation(
-        async ({ id, data }) => {
-            const response = await axiosSecure.put(`/assets/${id}`, data);
-            return response.data;
-        },
-        {
-            onSuccess: () => {
-                queryClient.invalidateQueries('assets');
-                setSelectedAsset(null);
-            },
-        }
-    );
-
-    // Mutation for deleting an asset
-    const deleteMutation = useMutation(
-        async (id) => {
-            await axiosSecure.delete(`/assets/${id}`);
-        },
-        {
-            onSuccess: () => {
-                queryClient.invalidateQueries('assets');
-            },
-        }
-    );
 
     if (isLoading) return <LoadingSpinner />;
 
@@ -78,16 +49,6 @@ const AssetList = () => {
         refetch();
     };
 
-    const handleUpdate = (id, data) => {
-        updateMutation.mutate({ id, data });
-    };
-
-    const handleDelete = (id) => {
-        if (window.confirm('Are you sure you want to delete this asset?')) {
-            deleteMutation.mutate(id);
-        }
-    };
-
     return (
         <div>
             <Helmet>
@@ -107,13 +68,13 @@ const AssetList = () => {
                         />
                         <select className='select select-bordered' value={stockFilter} onChange={handleStockFilterChange}>
                             <option value=''>All Stock Status</option>
-                            <option value='Available'>Available</option>
-                            <option value='Out of stock'>Out of Stock</option>
+                            <option value='available'>Available</option>
+                            <option value='out-of-stock'>Out of Stock</option>
                         </select>
                         <select className='select select-bordered' value={typeFilter} onChange={handleTypeFilterChange}>
                             <option value=''>All Types</option>
                             <option value='returnable'>Returnable</option>
-                            <option value='nonReturnable'>Non-Returnable</option>
+                            <option value='non-returnable'>Non-Returnable</option>
                         </select>
                         <select className='select select-bordered' value={sortOrder} onChange={handleSortOrderChange}>
                             <option value='asc'>Quantity Ascending</option>
@@ -143,7 +104,7 @@ const AssetList = () => {
                             </thead>
                             <tbody>
                                 {assets.map((asset, index) => (
-                                    <tr key={asset._id}>
+                                    <tr key={asset._id.$oid}>
                                         <td>{index + 1}</td>
                                         <td>{asset.assetName}</td>
                                         <td>{asset.assetType}</td>
@@ -152,18 +113,8 @@ const AssetList = () => {
                                         <td>{asset.assetAddedDate}</td>
                                         <td>
                                             <div className='flex gap-2'>
-                                                <button
-                                                    className='btn btn-info btn-xs'
-                                                    onClick={() => setSelectedAsset(asset)}
-                                                >
-                                                    Update
-                                                </button>
-                                                <button
-                                                    className='btn btn-error btn-xs'
-                                                    onClick={() => handleDelete(asset._id)}
-                                                >
-                                                    Delete
-                                                </button>
+                                                <button className='btn btn-info btn-xs'>Update</button>
+                                                <button className='btn btn-error btn-xs'>Delete</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -173,13 +124,6 @@ const AssetList = () => {
                     </div>
                 </div>
             </div>
-            {selectedAsset && (
-                <UpdateAssetModal
-                    asset={selectedAsset}
-                    onClose={() => setSelectedAsset(null)}
-                    onUpdate={handleUpdate}
-                />
-            )}
         </div>
     );
 };

@@ -1,11 +1,14 @@
 import { Helmet } from 'react-helmet-async'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, } from '@tanstack/react-query'
+// import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import UserDataRow from '../../../components/Dashboard/TableRows/UserDataRow'
+// import toast from 'react-hot-toast'
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure()
+  // const queryClient = useQueryClient();
 
   //   Fetch users Data
   const {
@@ -20,12 +23,30 @@ const ManageUsers = () => {
     },
   })
 
-  console.log(users)
+
+  //   // Mutation to delete user
+  //   const mutation = useMutation({
+  //       mutationFn: async (userId) => {
+  //           await axiosSecure.delete(`/users/${userId}`);
+  //       },
+  //       onSuccess: () => {
+  //           queryClient.invalidateQueries(['users']);
+  //           console.log('User Deleted Successfully!')
+  //           toast.success('User Deleted Successfully!')
+  //       },
+  //   });
+
+
+  //   const handleDeleteUser = (userId) => {
+  //     mutation.mutate(userId);
+  // };
+
   
   if (isLoading) return <LoadingSpinner />
 
   return (
-      <div className='container mx-auto px-4 sm:px-8 mt-12 md:mt-0 md:-ml-32'>
+      // <div className='container mx-auto px-4 sm:px-8 mt-12 md:mt-0 md:-ml-32'>
+      <div className='mt-12 mx-auto md:-ml-64'>
         <Helmet>
           <title>Asset Manager | Manage Users</title>
         </Helmet>
@@ -94,7 +115,7 @@ const ManageUsers = () => {
                       scope='col'
                       className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase '
                     >
-                      Action
+                      Actions
                     </th>
 
                   </tr>
@@ -108,6 +129,7 @@ const ManageUsers = () => {
                       user={user}
                       refetch={refetch}
                       index = {index}
+                      // handleDeleteUser = {handleDeleteUser}
                     />
                   ))}
                 </tbody>

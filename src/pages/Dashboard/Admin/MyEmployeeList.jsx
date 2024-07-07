@@ -25,7 +25,7 @@ const MyEmployeeList = () => {
 
 
 
-    // Mutation to remove user
+    // Mutation to delete user
     // const mutation = useMutation({
     //     mutationFn: async (userId) => {
     //         await axiosSecure.delete(`/users/${userId}`);
