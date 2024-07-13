@@ -25,8 +25,8 @@ const AssetList = () => {
                     search: searchTerm,
                     stockStatus: stockFilter,
                     assetType: typeFilter,
-                    sort: sortOrder,
-                },
+                    sort: sortOrder
+                }
             });
             return data;
         },
@@ -34,7 +34,8 @@ const AssetList = () => {
 
     const updateMutation = useMutation({
         mutationFn: async (updatedAsset) => {
-            await axiosSecure.put(`/assets/${updatedAsset._id}`, updatedAsset);
+            // await axiosSecure.patch(`/assets/${updatedAsset._id}`, updatedAsset);
+            await axiosSecure.patch(`/assets/${updatedAsset}`, updatedAsset);
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['assets']);
@@ -42,9 +43,18 @@ const AssetList = () => {
         },
     });
 
-    const handleUpdateAsset = async (updatedAsset) => {
-        await updateMutation.mutateAsync(updatedAsset);
-    };
+
+
+
+
+
+    // const handleUpdateAsset = async (updatedAsset) => {
+    //     await updateMutation.mutateAsync(updatedAsset);
+    // };
+
+
+
+
 
     const deleteMutation = useMutation({
         mutationFn: async (assetId) => {
@@ -58,23 +68,58 @@ const AssetList = () => {
 
     if (isLoading) return <LoadingSpinner />;
 
-    const handleSearchChange = (e) => setSearchTerm(e.target.value);
-    const handleStockFilterChange = (e) => { setStockFilter(e.target.value); refetch(); };
-    const handleTypeFilterChange = (e) => { setTypeFilter(e.target.value); refetch(); };
-    const handleSortOrderChange = (e) => { setSortOrder(e.target.value); refetch(); };
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
-    const handleUpdate = (asset) => {
-        setSelectedAsset(asset);
+    const handleStockFilterChange = (e) => {
+        setStockFilter(e.target.value);
+        refetch();
+    };
+
+    const handleTypeFilterChange = (e) => {
+        setTypeFilter(e.target.value);
+        refetch();
+    };
+
+    const handleSortOrderChange = (e) => {
+        setSortOrder(e.target.value);
+        refetch();
+    };
+
+
+
+
+
+    // const handleUpdateAsset = (updatedAsset) => {
+    //     setSelectedAsset(updatedAsset);
+    //     setIsUpdateModalOpen(true);
+    // };
+
+    // const handleUpdate = (asset) => {
+    //     setSelectedAsset(asset);
+    //     setIsUpdateModalOpen(true);
+    // };
+
+    const handleUpdateAsset = async (updatedAsset) => {
+        await updateMutation.mutateAsync(updatedAsset);
+        setSelectedAsset(updatedAsset);
         setIsUpdateModalOpen(true);
     };
 
+
+
+
     const handleDelete = (assetId) => {
         toast((t) => (
-            <span className='bg-slate-200 p-5 rounded-lg'>
+            <span className='bg-slate-200 p-5 rounded-lg '>
                 Are you sure you want to delete this Asset?
                 <div className='flex justify-center gap-5 mt-2'>
                     <button
-                        onClick={() => { deleteMutation.mutate(assetId); toast.dismiss(t.id); }}
+                        onClick={() => {
+                            deleteMutation.mutate(assetId);
+                            toast.dismiss(t.id);
+                        }}
                         className='btn btn-error btn-xs ml-2'
                     >
                         Yes
@@ -87,7 +132,9 @@ const AssetList = () => {
                     </button>
                 </div>
             </span>
-        ), { duration: 4000 });
+        ), {
+            duration: 4000,
+        });
     };
 
     return (
@@ -156,7 +203,7 @@ const AssetList = () => {
                                             <div className='flex gap-2'>
                                                 <button
                                                     className='btn btn-info btn-xs'
-                                                    onClick={() => handleUpdate(asset)}
+                                                    onClick={() => handleUpdateAsset(asset)}
                                                 >
                                                     Update
                                                 </button>

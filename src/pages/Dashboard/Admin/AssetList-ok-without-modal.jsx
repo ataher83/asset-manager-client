@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient  } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
-import UpdateAssetModal from '../../../components/Modal/UpdateAssetModal';
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
 
 const AssetList = () => {
     const axiosSecure = useAxiosSecure();
@@ -14,8 +13,6 @@ const AssetList = () => {
     const [stockFilter, setStockFilter] = useState('');
     const [typeFilter, setTypeFilter] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
-    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-    const [selectedAsset, setSelectedAsset] = useState(null);
 
     const { data: assets = [], isLoading, refetch } = useQuery({
         queryKey: ['assets', searchTerm, stockFilter, typeFilter, sortOrder],
@@ -25,70 +22,111 @@ const AssetList = () => {
                     search: searchTerm,
                     stockStatus: stockFilter,
                     assetType: typeFilter,
-                    sort: sortOrder,
-                },
+                    sort: sortOrder
+                }
             });
             return data;
         },
     });
 
-    const updateMutation = useMutation({
-        mutationFn: async (updatedAsset) => {
-            await axiosSecure.put(`/assets/${updatedAsset._id}`, updatedAsset);
+
+    // Mutation to delete an Asset
+    const mutation = useMutation({
+        mutationFn: async (userId) => {
+            await axiosSecure.delete(`/assets/${userId}`);
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['assets']);
-            refetch();
+            console.log('Asset Deleted Successfully!')
+            toast.success('Asset Deleted Successfully!')
         },
     });
+  
 
-    const handleUpdateAsset = async (updatedAsset) => {
-        await updateMutation.mutateAsync(updatedAsset);
-    };
 
-    const deleteMutation = useMutation({
-        mutationFn: async (assetId) => {
-            await axiosSecure.delete(`/assets/${assetId}`);
-        },
-        onSuccess: () => {
-            queryClient.invalidateQueries(['assets']);
-            toast.success('Asset Deleted Successfully!');
-        },
-    });
+
+
 
     if (isLoading) return <LoadingSpinner />;
 
-    const handleSearchChange = (e) => setSearchTerm(e.target.value);
-    const handleStockFilterChange = (e) => { setStockFilter(e.target.value); refetch(); };
-    const handleTypeFilterChange = (e) => { setTypeFilter(e.target.value); refetch(); };
-    const handleSortOrderChange = (e) => { setSortOrder(e.target.value); refetch(); };
-
-    const handleUpdate = (asset) => {
-        setSelectedAsset(asset);
-        setIsUpdateModalOpen(true);
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
     };
 
-    const handleDelete = (assetId) => {
+    const handleStockFilterChange = (e) => {
+        setStockFilter(e.target.value);
+        refetch();
+    };
+
+    const handleTypeFilterChange = (e) => {
+        setTypeFilter(e.target.value);
+        refetch();
+    };
+
+    const handleSortOrderChange = (e) => {
+        setSortOrder(e.target.value);
+        refetch();
+    };
+
+    const handleUpdate = async (assetId) => {
+        // Handle the update logic here, e.g., open a modal for editing asset details
+        console.log(`Update asset with id: ${assetId}`);
+        // After updating, refetch the assets to reflect the changes
+        refetch();
+    };
+
+
+
+
+
+
+    // const handleDelete = async (assetId) => {
+    //     if (window.confirm('Are you sure you want to delete this asset?')) {
+    //         try {
+    //             await axiosSecure.delete(`/asset/${assetId}`);
+    //             refetch(); // Refetch the assets to reflect the changes
+    //         } catch (error) {
+    //             console.error('Error deleting asset:', error);
+    //         }
+    //     }
+    // };
+
+
+    const handleDelete = (userId) => {
         toast((t) => (
-            <span className='bg-slate-200 p-5 rounded-lg'>
-                Are you sure you want to delete this Asset?
-                <div className='flex justify-center gap-5 mt-2'>
-                    <button
-                        onClick={() => { deleteMutation.mutate(assetId); toast.dismiss(t.id); }}
-                        className='btn btn-error btn-xs ml-2'
-                    >
-                        Yes
-                    </button>
-                    <button
-                        onClick={() => toast.dismiss(t.id)}
-                        className='btn btn-primary btn-xs ml-2'
-                    >
-                        No
-                    </button>
-                </div>
-            </span>
-        ), { duration: 4000 });
-    };
+          <span className='bg-slate-200 p-5 rounded-lg '>
+            Are you sure you want to delete this Asset?
+      
+            <div className='flex justify-center gap-5 mt-2'>
+            <button
+              onClick={() => {
+                mutation.mutate(userId);
+                toast.dismiss(t.id);
+              }}
+              className='btn btn-error btn-xs ml-2'
+            >
+              Yes
+            </button>
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className='btn btn-primary btn-xs ml-2'
+            >
+              No
+            </button>
+            </div>
+      
+          </span>
+        ), {
+          duration: 4000,
+        });
+      };
+      
+
+
+
+
+
+
 
     return (
         <div>
@@ -156,7 +194,7 @@ const AssetList = () => {
                                             <div className='flex gap-2'>
                                                 <button
                                                     className='btn btn-info btn-xs'
-                                                    onClick={() => handleUpdate(asset)}
+                                                    onClick={() => handleUpdate(asset._id)}
                                                 >
                                                     Update
                                                 </button>
@@ -175,13 +213,6 @@ const AssetList = () => {
                     </div>
                 </div>
             </div>
-
-            <UpdateAssetModal
-                isOpen={isUpdateModalOpen}
-                setIsOpen={setIsUpdateModalOpen}
-                asset={selectedAsset}
-                handleUpdateAsset={handleUpdateAsset}
-            />
         </div>
     );
 };

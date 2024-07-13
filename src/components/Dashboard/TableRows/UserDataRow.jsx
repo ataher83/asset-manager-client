@@ -67,17 +67,9 @@ const UserDataRow = ({ user, refetch, index }) => {
 
 
 
-
-
-
-
-
-
 //   const handleDeleteUser = (userId) => {
 //     mutation.mutate(userId);
 // };
-
-
 
 
 // const handleDeleteUser = (userId) => {
@@ -85,9 +77,6 @@ const UserDataRow = ({ user, refetch, index }) => {
 //     mutation.mutate(userId);
 //   }
 // };
-
-
-
 
 
 

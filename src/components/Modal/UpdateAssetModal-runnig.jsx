@@ -3,17 +3,10 @@ import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 
 const UpdateAssetModal = ({ isOpen, setIsOpen, asset, handleUpdateAsset }) => {
-    const [assetDetails, setAssetDetails] = useState({
-        assetName: '',
-        assetType: '',
-        assetQuantity: 0,
-        assetAvailability: 'Available'
-    });
+    const [assetDetails, setAssetDetails] = useState(asset);
 
     useEffect(() => {
-        if (asset) {
-            setAssetDetails(asset);
-        }
+        setAssetDetails(asset);
     }, [asset]);
 
     const handleChange = (e) => {
@@ -48,7 +41,6 @@ const UpdateAssetModal = ({ isOpen, setIsOpen, asset, handleUpdateAsset }) => {
                             value={assetDetails.assetName}
                             onChange={handleChange}
                             className="input input-bordered w-full"
-                            required
                         />
                     </div>
                     <div className="mb-4">
@@ -59,7 +51,6 @@ const UpdateAssetModal = ({ isOpen, setIsOpen, asset, handleUpdateAsset }) => {
                             value={assetDetails.assetType}
                             onChange={handleChange}
                             className="input input-bordered w-full"
-                            required
                         />
                     </div>
                     <div className="mb-4">
@@ -70,7 +61,6 @@ const UpdateAssetModal = ({ isOpen, setIsOpen, asset, handleUpdateAsset }) => {
                             value={assetDetails.assetQuantity}
                             onChange={handleChange}
                             className="input input-bordered w-full"
-                            required
                         />
                     </div>
                     <div className="mb-4">
@@ -80,7 +70,6 @@ const UpdateAssetModal = ({ isOpen, setIsOpen, asset, handleUpdateAsset }) => {
                             value={assetDetails.assetAvailability}
                             onChange={handleChange}
                             className="select select-bordered w-full"
-                            required
                         >
                             <option value="Available">Available</option>
                             <option value="Out of stock">Out of Stock</option>

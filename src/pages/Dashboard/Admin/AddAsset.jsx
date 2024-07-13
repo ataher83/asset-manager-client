@@ -33,11 +33,11 @@ const AddAsset = () => {
     // Mutation to add asset
     const { mutateAsync } = useMutation({
       mutationFn: async assetData => {
-        const { data } = await axiosSecure.post(`/asset`, assetData)
+        const { data } = await axiosSecure.post(`/assets`, assetData)
         return data
       },
       onSuccess: () => {
-        console.log('Data Saved Successfully')
+        console.log('Asset Added Successfully')
         toast.success('Asset Added Successfully!')
         setLoading(false)
       },
