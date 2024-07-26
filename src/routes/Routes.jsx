@@ -24,6 +24,8 @@ import CustomRequestsList from '../pages/Dashboard/Admin/CustomRequestsList'
 import MyEmployeeList from '../pages/Dashboard/Admin/MyEmployeeList'
 import Payment from '../pages/Dashboard/Admin/Payment'
 import AddEmployee from '../pages/Dashboard/Admin/AddEmployee'
+import Purchase from '../pages/Dashboard/Admin/Purchase'
+import PaymentHistory from '../pages/Dashboard/Admin/PaymentHistory'
 
 export const router = createBrowserRouter([
   {
@@ -161,6 +163,23 @@ export const router = createBrowserRouter([
               <Payment />
             </AdminRoute>
           </PrivateRoute>
+        ),
+      },
+      {
+        path: 'purchase',
+        element: (
+          // <PrivateRoute>
+          //   <AdminRoute>
+          //     <Purchase />
+          //   </AdminRoute>
+          // </PrivateRoute>
+          <Purchase />
+        ),
+      },
+      {
+        path: 'paymentHistory',
+        element: (
+          <PaymentHistory />
         ),
       },
       {

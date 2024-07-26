@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 
-const UpdateAssetModal = ({ isOpen, setIsOpen, asset, handleUpdateAsset }) => {
+const UpdateAssetModal = ({ isOpen, setIsOpen, asset, handleUpdateAsset, handleUpdate }) => {
     const [assetDetails, setAssetDetails] = useState({
         assetName: '',
         assetType: '',
@@ -24,7 +24,8 @@ const UpdateAssetModal = ({ isOpen, setIsOpen, asset, handleUpdateAsset }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await handleUpdateAsset(assetDetails);
+            // await handleUpdateAsset(assetDetails);
+            await handleUpdate(assetDetails);
             setIsOpen(false);
             toast.success('Asset updated successfully!');
         } catch (error) {

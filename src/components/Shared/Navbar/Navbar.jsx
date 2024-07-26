@@ -93,6 +93,7 @@ const Navbar = () => {
   <li><NavLink to="/dashboard/My-employee-list">My Employee List</NavLink></li>
   <li><NavLink to="/dashboard/add-employee">Add Employee</NavLink></li>
   <li><NavLink to="/dashboard/payment">Payment</NavLink></li>
+  <li><NavLink to="/dashboard/paymentHistory">Payment History</NavLink></li>
   <li><NavLink to="/dashboard/profile">Profile</NavLink></li>
   <li><NavLink to="/dashboard/manage-users">Manage Users</NavLink></li>
   </>

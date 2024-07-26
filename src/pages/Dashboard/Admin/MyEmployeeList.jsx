@@ -63,7 +63,7 @@ const MyEmployeeList = () => {
 
 
 
-    const handleRemoveUser = (userId) => {
+    const handleRemoveFromTeam = (userId) => {
         mutation.mutate(userId);
     };
 
@@ -121,7 +121,7 @@ const MyEmployeeList = () => {
                                 <th>
                                     <button 
                                         className="btn btn-error btn-xs"
-                                        onClick={() => handleRemoveUser(user._id)}
+                                        onClick={() => handleRemoveFromTeam(user._id)}
                                     >
                                         Remove From Team
                                     </button>

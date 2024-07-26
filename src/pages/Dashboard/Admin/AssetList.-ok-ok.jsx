@@ -42,13 +42,8 @@ const AssetList = () => {
         },
     });
 
-    // const handleUpdateAsset = async (updatedAsset) => {
-    //     await updateMutation.mutateAsync(updatedAsset);
-    // };
     const handleUpdateAsset = async (updatedAsset) => {
         await updateMutation.mutateAsync(updatedAsset);
-        setSelectedAsset(updatedAsset);
-        setIsUpdateModalOpen(true);
     };
 
     const deleteMutation = useMutation({
