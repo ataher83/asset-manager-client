@@ -26,6 +26,8 @@ import Payment from '../pages/Dashboard/Admin/Payment'
 import AddEmployee from '../pages/Dashboard/Admin/AddEmployee'
 import Purchase from '../pages/Dashboard/Admin/Purchase'
 import PaymentHistory from '../pages/Dashboard/Admin/PaymentHistory'
+import PaymentAtSignup from '../pages/Dashboard/Admin/PaymentAtSignup'
+import PurchaseAtSignup from '../pages/Dashboard/Admin/PurchaseAtSignup'
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +47,12 @@ export const router = createBrowserRouter([
   { path: '/hRManagerSignUp', element: <HRManagerSignUp /> },
   { path: '/guestMenu', element: <GuestMenu /> },
   { path: '/hostModal', element: <HostModal /> },
+  { path: '/paymentAtSignup', element: <PaymentAtSignup /> },
+  { path: '/purchaseAtSignup', element: <PurchaseAtSignup /> },
+ 
+
+
+
   {
     path: '/dashboard',
     element: (
@@ -168,11 +176,6 @@ export const router = createBrowserRouter([
       {
         path: 'purchase',
         element: (
-          // <PrivateRoute>
-          //   <AdminRoute>
-          //     <Purchase />
-          //   </AdminRoute>
-          // </PrivateRoute>
           <Purchase />
         ),
       },

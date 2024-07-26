@@ -57,8 +57,8 @@ const HRManagerSignUp = () => {
         memberLimit,
       });
 
-      navigate('/');
-      // navigate('/dashboard/payment');
+      // navigate('/');
+      navigate('/paymentAtSignup');
       toast.success('Signup Successful as HR-Manager!');
     } catch (err) {
       console.log(err);
