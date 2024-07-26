@@ -12,7 +12,6 @@ const MyTeam = () => {
     const {
         data: usersInfo = [],
         isLoading,
-        // refetch,
     } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {

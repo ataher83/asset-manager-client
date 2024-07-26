@@ -6,11 +6,9 @@ import useAuth from '../../../hooks/useAuth'
 
 const PaymentHistory = () => {
     const { user } = useAuth()
-
     const axiosSecure = useAxiosSecure();
 
-
-    // Fetch payment Data here
+    // Fetch payment Data 
     const { 
         data: paymentData = [], 
         isLoading,
@@ -24,6 +22,18 @@ const PaymentHistory = () => {
     console.log(paymentData)
 
     if (isLoading) return <LoadingSpinner />;
+
+    // // Sort the payment data in descending order based on date
+    // const sortedPaymentData = [...paymentData].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Sort the payment data in descending order based on date
+    const sortedPaymentData = [...paymentData].sort((a, b) => new Date(b.paidDate) - new Date(a.paidDate));
+
+
+    // // Sort the payment data in descending order based on date
+    // const sortedPaymentData = paymentData.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+
+
 
     return (
         <div className='mt-12 mx-auto md:-ml-64'>
@@ -49,18 +59,21 @@ const PaymentHistory = () => {
                                 <tr>
                                     <th>SL</th>
                                     <th>Email</th>
+                                    <th>Card</th>
                                     <th>Payment Amount(USD)</th>
                                     <th>Date</th>
                                     <th>Transaction ID</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {paymentData.map((payment, index) => (
+                                {/* {paymentData.map((payment, index) => ( */}
+                                {sortedPaymentData.map((payment, index) => (
                                     <tr key={payment._id.$oid}>
                                         <td>{index + 1}</td>
-                                        <td>{payment.email}</td>
-                                        <td>{payment.price}</td>
-                                        <td>{payment.date}</td>
+                                        <td>{payment.payerEmail}</td>
+                                        <td>{payment.cardBrand}***{payment.cardLast4Digit}</td>
+                                        <td>{payment.paidAmount}</td>
+                                        <td>{payment.paidDate}</td>
                                         <td>{payment.transactionId}</td>
                                         
 

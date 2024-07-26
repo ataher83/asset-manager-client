@@ -90,11 +90,12 @@ const CheckoutForm = () => {
 
                 // now save payment in the database
                 const payment = {
-                    email: user.email,
-                    price: totalPrice,
+                    payerEmail: user.email,
+                    paidAmount: totalPrice,
                     transactionId: paymentIntent.id,
-                    date: new Date(), // utc data convert, use moment js to
-                    status: 'pending'
+                    paidDate: new Date(), // utc data convert, use moment js to
+                    cardBrand: paymentMethod.card.brand,
+                    cardLast4Digit: paymentMethod.card.last4
                 }
 
                 const res = await axiosSecure.post('/payments', payment);
