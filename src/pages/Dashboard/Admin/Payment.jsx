@@ -41,18 +41,8 @@ const Payment = () => {
                         </div>
                     </div>
                     <div className="flex justify-center mt-6">
-                        {/* <Link to="/dashboard/purchase"> */}
-                        {/* <Link to={{ pathname: "/dashboard/purchase", state: { price: price } }}> */}
-                        <Link to="/dashboard/purchase" state={{ price: price }}>
-                            <button 
-                                className="btn btn-info hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
-                                id="purchase-button"
-                                disabled={price === 0}
-                            >
-                                Purchase
-                            </button>
-                        </Link>
-                        {/* <Link to={{ pathname: "/dashboard/purchase", state: { price: price } }}>
+
+                        {/* <Link to="/dashboard/purchase" state={{ price: price }}>
                             <button 
                                 className="btn btn-info hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
                                 id="purchase-button"
@@ -61,6 +51,26 @@ const Payment = () => {
                                 Purchase
                             </button>
                         </Link> */}
+
+                        {price === 0 ? (
+                            <button 
+                                className="btn btn-info text-white font-bold py-2 px-4 rounded cursor-not-allowed opacity-50"
+                                id="purchase-button"
+                                disabled
+                            >
+                                Purchase
+                            </button>
+                        ) : (
+                            <Link to="/dashboard/purchase" state={{ price: price }}>
+                                <button 
+                                    className="btn btn-info hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    id="purchase-button"
+                                >
+                                    Purchase
+                                </button>
+                            </Link>
+                        )}
+
                     </div>
                 </div>
             </div>
