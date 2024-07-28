@@ -1,24 +1,17 @@
 import { useState } from "react";
-// import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
-// import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosCommon from '../../../hooks/useAxiosCommon';
-import toast from 'react-hot-toast'
-
-import useAuth from '../../../hooks/useAuth';
 
 const PaymentAtSignup = () => {
     const [packageName, setPackageName] = useState("");
     const [memberLimit, setMemberLimit] = useState(0);
     const [price, setPrice] = useState(0);
-    // const location = useLocation();
-    // const navigate = useNavigate();
+    const location = useLocation();
+    const navigate = useNavigate();
     const axiosCommon = useAxiosCommon();
-    // const queryClient = useQueryClient();
-
-    const { user } = useAuth();
-    const email = user?.email;
+    const queryClient = useQueryClient();
 
     const handlePackageSelect = (packageName, memberLimit, price) => {
         setPackageName(packageName);
@@ -28,6 +21,7 @@ const PaymentAtSignup = () => {
 
     // const handlePurchase = async () => {
     //     try {
+    //         const email = location.state.email; // Retrieve email from the state passed during navigation
     //         await axiosCommon.put(`/user/${email}`, {
     //             packageName,
     //             memberLimit
@@ -38,31 +32,33 @@ const PaymentAtSignup = () => {
     //     }
     // };
 
-
-    const handlePurchase = async () => {
-        try {
-          const response = await axiosCommon.patch(`/user/${email}`, {
-            packageName,
-            memberLimit,
-          });
-          if (response.data.success) {
-            toast.success('Package and Member limit updated successfully.');
-          } else {
-            toast.error('Failed to update Package and Member limit.');
-          }
-        } catch (error) {
-          console.error('Error updating user details:', error);
-          toast.error('An error occurred while updating user details.');
+    const mutation = useMutation(
+        async ({ email, packageName, memberLimit }) => {
+            await axiosCommon.patch(`/user/${email}`, {
+                packageName,
+                memberLimit
+            });
+        },
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries('user');
+                console.log("Package and member limit updated successfully");
+                navigate('/purchaseAtSignup', { state: { price } });
+            },
+            onError: (err) => {
+                console.error("Error updating package and member limit", err);
+            }
         }
-      };
+    );
 
- 
-    
+    const handlePurchase = () => {
+        const email = location.state.email; // Retrieve email from the state passed during navigation
+        // const email = "user_email@example.com"; // Replace with actual user email
+        mutation.mutate({ email, packageName, memberLimit });
+    };
 
-console.log('email:', email)
-console.log('packageName:', packageName)
-console.log('memberLimit:', memberLimit)
-console.log('price :', price)
+
+
 
 
 

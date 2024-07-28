@@ -1,24 +1,10 @@
 import { useState } from "react";
-// import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
-// import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useAxiosCommon from '../../../hooks/useAxiosCommon';
-import toast from 'react-hot-toast'
-
-import useAuth from '../../../hooks/useAuth';
 
 const PaymentAtSignup = () => {
     const [packageName, setPackageName] = useState("");
     const [memberLimit, setMemberLimit] = useState(0);
     const [price, setPrice] = useState(0);
-    // const location = useLocation();
-    // const navigate = useNavigate();
-    const axiosCommon = useAxiosCommon();
-    // const queryClient = useQueryClient();
-
-    const { user } = useAuth();
-    const email = user?.email;
 
     const handlePackageSelect = (packageName, memberLimit, price) => {
         setPackageName(packageName);
@@ -26,45 +12,9 @@ const PaymentAtSignup = () => {
         setPrice(price);
     };
 
-    // const handlePurchase = async () => {
-    //     try {
-    //         await axiosCommon.put(`/user/${email}`, {
-    //             packageName,
-    //             memberLimit
-    //         });
-    //         console.log("Package and member limit updated successfully");
-    //     } catch (err) {
-    //         console.error("Error updating package and member limit:", err);
-    //     }
-    // };
-
-
-    const handlePurchase = async () => {
-        try {
-          const response = await axiosCommon.patch(`/user/${email}`, {
-            packageName,
-            memberLimit,
-          });
-          if (response.data.success) {
-            toast.success('Package and Member limit updated successfully.');
-          } else {
-            toast.error('Failed to update Package and Member limit.');
-          }
-        } catch (error) {
-          console.error('Error updating user details:', error);
-          toast.error('An error occurred while updating user details.');
-        }
-      };
-
- 
-    
-
-console.log('email:', email)
-console.log('packageName:', packageName)
-console.log('memberLimit:', memberLimit)
-console.log('price :', price)
-
-
+    console.log("packageName=", packageName)
+    console.log("memberLimit=", memberLimit)
+    console.log("Price=", price)
 
     return (
         <div className="mt-12 mx-auto p-6 max-w-2xl">
@@ -72,6 +22,7 @@ console.log('price :', price)
                 <div className="p-6 border-b border-gray-200">
                     <h2 className="text-center font-semibold text-2xl mb-4 text-blue-700">Select a Package</h2>
                     <div className="flex flex-col gap-4 text-lg text-white">
+                        
                         <div 
                             className={`p-4 border rounded cursor-pointer ${packageName === "5 members for $5" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
                             id="5 members for $5"
@@ -79,6 +30,7 @@ console.log('price :', price)
                         >
                             <p className="text-center">5 members for $5</p>
                         </div>
+
                         <div 
                             className={`p-4 border rounded cursor-pointer ${packageName === "10 members for $8" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
                             id="10 members for $8"
@@ -95,6 +47,7 @@ console.log('price :', price)
                         </div>
                     </div>
                     <div className="flex justify-center mt-6">
+
                         {price === 0 ? (
                             <button 
                                 className="btn btn-info text-white font-bold py-2 px-4 rounded cursor-not-allowed opacity-50"
@@ -108,12 +61,12 @@ console.log('price :', price)
                                 <button 
                                     className="btn btn-info hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                                     id="purchase-button"
-                                    onClick={handlePurchase}
                                 >
                                     Purchase
                                 </button>
                             </Link>
                         )}
+
                     </div>
                 </div>
             </div>

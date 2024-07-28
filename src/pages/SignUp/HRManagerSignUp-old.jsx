@@ -30,8 +30,8 @@ const HRManagerSignUp = () => {
     const dateOfBirth = form.dateOfBirth.value;
     const companyName = form.companyName.value;
     const companyLogo = form.companyLogo.files[0];
-    // const packageName = form.packageName.value;
-    // const memberLimit = form.memberLimit.value;
+    const packageName = form.packageName.value;
+    const memberLimit = form.memberLimit.value;
     const image = form.image.files[0];
 
     try {
@@ -53,8 +53,8 @@ const HRManagerSignUp = () => {
         timestamp: Date.now(),
         companyName,
         companyLogo: companyLogoUrl,
-        // packageName,
-        // memberLimit,
+        packageName,
+        memberLimit,
       });
 
       // navigate('/');
@@ -167,8 +167,7 @@ const HRManagerSignUp = () => {
               />
             </div>
 
-            {/* Package Name */}
-            {/* <div>
+            <div>
               <label htmlFor='packageName' className='block mb-2 text-sm'>
                 Package Name
               </label>
@@ -182,10 +181,8 @@ const HRManagerSignUp = () => {
                 <option value='10 Members for $8'>10 Members for $8</option>
                 <option value='20 Members for $15'>20 Members for $15</option>
               </select>
-            </div> */}
-
-            {/* Member Limit */}
-            {/* <div>
+            </div>
+            <div>
               <label htmlFor='memberLimit' className='block mb-2 text-sm'>
                 Member Limit
               </label>
@@ -195,9 +192,7 @@ const HRManagerSignUp = () => {
                 id='memberLimit'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
               />
-            </div> */}
-
-
+            </div>
             <div>
               <div className='flex justify-between'>
                 <label htmlFor='password' className='text-sm mb-2'>

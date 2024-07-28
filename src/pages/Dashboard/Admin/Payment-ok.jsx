@@ -37,6 +37,7 @@ const Payment = () => {
     // Filter users by current user's company name
     const usersInSameCompany = usersInfo.filter(userInfo => userInfo.companyName === currentCompany);
 
+
     const handlePackageSelect = (packageName, packagePrice) => {
         setSelectedPackage(packageName);
         setPrice(packagePrice);
@@ -46,7 +47,7 @@ const Payment = () => {
     console.log("currentCompany:", currentCompany)
     console.log("currentPackage:", currentPackage)
     console.log("memberLimit:", memberLimit)
-    
+
 
     if (isLoading) return <LoadingSpinner />;
 
@@ -64,39 +65,53 @@ const Payment = () => {
                         <p>User Limit: <span className="font-semibold">{memberLimit}</span></p>
                     </div>
 
-                    {/* Change Package */}
+
+
+
+
+                {/* Change Package */}
                     <h2 className="text-center font-semibold text-2xl mb-4 text-blue-700 mt-12">Change Package</h2>
                     <div className="flex flex-col gap-4 text-lg text-white">
                         
-                        <div 
+                        {/* <div 
                             className={`p-4 border rounded cursor-pointer ${selectedPackage === "package-5" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
-                            ${currentPackage === "5 Members for $5" ? "cursor-not-allowed opacity-50" : ""}`}
+                            `} 
                             id="package-5"
-                            onClick={() => currentPackage !== "5 Members for $5" && handlePackageSelect("package-5", 5)}
+                            onClick={() => handlePackageSelect("package-5", 5)}
                         >
-                            <p className="text-center">5 Members for $5</p>
+                            <p className="text-center">5 members for $5</p>
+                        </div> */}
+
+                        <div
+                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "5 members for $5" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
+                            ${currentPackage === "5 members for $5" ? "cursor-not-allowed opacity-50" : ""}
+                            `}
+                            id="package-5"
+                            onClick={() => currentPackage !== "5 members for $5" && handlePackageSelect("5 members for $5", 5, 5)}
+                        >
+                            <p className="text-center">5 members for $5</p>
                         </div>
                        
-
                         <div 
-                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "package-10" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
-                            ${currentPackage === "10 Members for $8" ? "cursor-not-allowed opacity-50" : ""}`}
+                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "package-10" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
                             id="package-10"
-                            onClick={() => currentPackage !== "10 Members for $8" && handlePackageSelect("package-10", 8)}
+                            onClick={() => handlePackageSelect("package-10", 8)}
                         >
-                            <p className="text-center">10 Members for $8</p>
+                            <p className="text-center">10 members for $8</p>
                         </div>
                         
-
                         <div 
-                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "package-20" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
-                            ${currentPackage === "20 Members for $15" ? "cursor-not-allowed opacity-50" : ""}`}
+                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "package-20" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
                             id="package-20"
-                            onClick={() => currentPackage !== "20 Members for $15" && handlePackageSelect("package-20", 15)}
+                            onClick={() => handlePackageSelect("package-20", 15)}
                         >
-                            <p className="text-center">20 Members for $15</p>
+                            <p className="text-center">20 members for $15</p>
                         </div>
+
                     </div>
+
+
+
 
                     <div className="flex justify-center mt-6">
                         {price === 0 ? (
@@ -117,6 +132,7 @@ const Payment = () => {
                                 </button>
                             </Link>
                         )}
+
                     </div>
                 </div>
             </div>

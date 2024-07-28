@@ -44,10 +44,10 @@ const PaymentHistory = () => {
 
             <div className=''>
                 <div className='relative flex flex-col gap-5 bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
-                    <p className='text-center font-semibold text-xl'>Payment History</p>
+                    <p className='text-center font-semibold text-xl'>My Payment History</p>
                     <p className='text-center text-base'>
                         ({paymentData.length > 0 ? (
-                            <span>{paymentData.length === 1 ? `${paymentData.length} Request Found` : `${paymentData.length} Requests Found`}</span>
+                            <span>{paymentData.length === 1 ? `${paymentData.length} Payment Found` : `${paymentData.length} Payments Found`}</span>
                         ) : (
                             <span>No Payment Found</span>
                         )})
