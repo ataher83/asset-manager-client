@@ -1,8 +1,5 @@
 import { useState } from "react";
-// import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
-// import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosCommon from '../../../hooks/useAxiosCommon';
 import toast from 'react-hot-toast'
 
@@ -12,10 +9,8 @@ const PaymentAtSignup = () => {
     const [packageName, setPackageName] = useState("");
     const [memberLimit, setMemberLimit] = useState(0);
     const [price, setPrice] = useState(0);
-    // const location = useLocation();
-    // const navigate = useNavigate();
+
     const axiosCommon = useAxiosCommon();
-    // const queryClient = useQueryClient();
 
     const { user } = useAuth();
     const email = user?.email;
@@ -26,17 +21,6 @@ const PaymentAtSignup = () => {
         setPrice(price);
     };
 
-    // const handlePurchase = async () => {
-    //     try {
-    //         await axiosCommon.put(`/user/${email}`, {
-    //             packageName,
-    //             memberLimit
-    //         });
-    //         console.log("Package and member limit updated successfully");
-    //     } catch (err) {
-    //         console.error("Error updating package and member limit:", err);
-    //     }
-    // };
 
 
     const handlePurchase = async () => {
@@ -73,25 +57,25 @@ console.log('price :', price)
                     <h2 className="text-center font-semibold text-2xl mb-4 text-blue-700">Select a Package</h2>
                     <div className="flex flex-col gap-4 text-lg text-white">
                         <div 
-                            className={`p-4 border rounded cursor-pointer ${packageName === "5 members for $5" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
+                            className={`p-4 border rounded cursor-pointer ${packageName === "5 Members for $5" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
                             id="5 members for $5"
-                            onClick={() => handlePackageSelect("5 members for $5", 5, 5)}
+                            onClick={() => handlePackageSelect("5 Members for $5", 5, 5)}
                         >
-                            <p className="text-center">5 members for $5</p>
+                            <p className="text-center">5 Members for $5</p>
                         </div>
                         <div 
-                            className={`p-4 border rounded cursor-pointer ${packageName === "10 members for $8" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
+                            className={`p-4 border rounded cursor-pointer ${packageName === "10 Members for $8" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
                             id="10 members for $8"
-                            onClick={() => handlePackageSelect("10 members for $8", 10, 8)}
+                            onClick={() => handlePackageSelect("10 Members for $8", 10, 8)}
                         >
-                            <p className="text-center">10 members for $8</p>
+                            <p className="text-center">10 Members for $8</p>
                         </div>
                         <div 
-                            className={`p-4 border rounded cursor-pointer ${packageName === "20 members for $15" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
+                            className={`p-4 border rounded cursor-pointer ${packageName === "20 Members for $15" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500`} 
                             id="20 members for $15"
-                            onClick={() => handlePackageSelect("20 members for $15", 20, 15)}
+                            onClick={() => handlePackageSelect("20 Members for $15", 20, 15)}
                         >
-                            <p className="text-center">20 members for $15</p>
+                            <p className="text-center">20 Members for $15</p>
                         </div>
                     </div>
                     <div className="flex justify-center mt-6">

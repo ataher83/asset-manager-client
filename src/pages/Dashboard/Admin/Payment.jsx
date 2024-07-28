@@ -43,10 +43,12 @@ const Payment = () => {
     };
 
     console.log("Price:",price)
+    console.log("selectedPackage:", selectedPackage)
+
     console.log("currentCompany:", currentCompany)
     console.log("currentPackage:", currentPackage)
-    console.log("memberLimit:", memberLimit)
-    
+    console.log("Current memberLimit:", memberLimit)
+
 
     if (isLoading) return <LoadingSpinner />;
 
@@ -69,30 +71,30 @@ const Payment = () => {
                     <div className="flex flex-col gap-4 text-lg text-white">
                         
                         <div 
-                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "package-5" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
+                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "5 Members for $5" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
                             ${currentPackage === "5 Members for $5" ? "cursor-not-allowed opacity-50" : ""}`}
                             id="package-5"
-                            onClick={() => currentPackage !== "5 Members for $5" && handlePackageSelect("package-5", 5)}
+                            onClick={() => currentPackage !== "5 Members for $5" && handlePackageSelect("5 Members for $5", 5)}
                         >
                             <p className="text-center">5 Members for $5</p>
                         </div>
                        
 
                         <div 
-                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "package-10" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
+                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "10 Members for $8" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
                             ${currentPackage === "10 Members for $8" ? "cursor-not-allowed opacity-50" : ""}`}
                             id="package-10"
-                            onClick={() => currentPackage !== "10 Members for $8" && handlePackageSelect("package-10", 8)}
+                            onClick={() => currentPackage !== "10 Members for $8" && handlePackageSelect("10 Members for $8", 8)}
                         >
                             <p className="text-center">10 Members for $8</p>
                         </div>
                         
 
                         <div 
-                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "package-20" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
+                            className={`p-4 border rounded cursor-pointer ${selectedPackage === "20 Members for $15" ? "bg-blue-700" : "bg-blue-500"} border-gray-300 hover:border-blue-500
                             ${currentPackage === "20 Members for $15" ? "cursor-not-allowed opacity-50" : ""}`}
                             id="package-20"
-                            onClick={() => currentPackage !== "20 Members for $15" && handlePackageSelect("package-20", 15)}
+                            onClick={() => currentPackage !== "20 Members for $15" && handlePackageSelect("20 Members for $15", 15)}
                         >
                             <p className="text-center">20 Members for $15</p>
                         </div>
@@ -102,18 +104,19 @@ const Payment = () => {
                         {price === 0 ? (
                             <button 
                                 className="btn btn-info text-white font-bold py-2 px-4 rounded cursor-not-allowed opacity-50"
-                                id="purchase-button"
+                                id="Change-button"
                                 disabled
                             >
-                                Purchase
+                                Change
                             </button>
                         ) : (
-                            <Link to="/dashboard/purchase" state={{ price: price }}>
+                            // <Link to="/dashboard/purchase" state={{ price: price, selectedPackage: selectedPackage }}>
+                            <Link to="/dashboard/purchase" state={{ price, selectedPackage }}>
                                 <button 
                                     className="btn btn-info hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    id="purchase-button"
+                                    id="Change-button"
                                 >
-                                    Purchase
+                                    Change
                                 </button>
                             </Link>
                         )}

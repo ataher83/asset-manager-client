@@ -5,10 +5,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import toast from 'react-hot-toast';
 
-import useAxiosCommon from '../../../hooks/useAxiosCommon';
 
-
-const CheckoutForm = () => {
+const CheckoutFormAtSignup = () => {
     const [error, setError] = useState(''); 
     const [clientSecret, setClientSecret] = useState('');
     const [transactionId, setTransactionId] = useState('');
@@ -19,17 +17,10 @@ const CheckoutForm = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const axiosCommon = useAxiosCommon();
-
-    const email = user?.email;
-
     // const totalPrice = location.state.price;
     const { price: totalPrice } = location.state || { price: 0 };
 
-    const { selectedPackage } = location.state;
-
     console.log('Price in chkout form:', totalPrice)
-    console.log('selectedPackage:', selectedPackage)
 
 
 
@@ -115,33 +106,6 @@ const CheckoutForm = () => {
 
     }
 
-
-
-    const packageName = `${selectedPackage === "5 Members for $5" ? "5 Members for $5" : `${selectedPackage === "10 Members for $8" ? "10 Members for $8" : "20 Members for $15"}`}`
-    const memberLimit = `${selectedPackage === "5 Members for $5" ? 5 : `${selectedPackage === "10 Members for $8" ? 10 : 20 }`}`
-
-
-    console.log("packageName:", packageName)
-    console.log("memberLimit:", memberLimit)
-
-
-    const handlePurchase = async () => {
-        try {
-          const response = await axiosCommon.patch(`/user/${email}`, {
-            packageName,
-            memberLimit,
-          });
-          if (response.data.success) {
-            toast.success('Package and Member limit updated successfully.');
-          } else {
-            toast.error('Failed to update Package and Member limit.');
-          }
-        } catch (error) {
-          console.error('Error updating user details:', error);
-          toast.error('An error occurred while updating user details.');
-        }
-      };
-
     
 
     return (
@@ -175,9 +139,7 @@ const CheckoutForm = () => {
                 }}
             />
             {/* <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe}> */}
-            <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret}
-            onClick={handlePurchase}
-            >
+            <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret}>
                 Pay
             </button>
             <p className="text-red-600">{error}</p>
@@ -186,4 +148,4 @@ const CheckoutForm = () => {
     );
 };
 
-export default CheckoutForm;
+export default CheckoutFormAtSignup;
