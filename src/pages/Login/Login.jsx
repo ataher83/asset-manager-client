@@ -9,7 +9,10 @@ import Navbar from '../../components/Shared/Navbar/Navbar'
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const from = location?.state || '/'
+  // const from = location?.state || '/'
+  const from = location?.state || '/hRManagerPkgChkAtLogin';  //টাকা পে না করেও স্টেট থেকে ডুকে যাবে, ঠিক কর 
+  // const from = location?.state && '/hRManagerPkgChkAtLogin';
+
   const { signInWithGoogle, signIn, loading, setLoading, resetPassword } =
     useAuth()
   const [email, setEmail] = useState('')
@@ -25,7 +28,7 @@ const Login = () => {
       // 1. sign in user
       await signIn(email, password)
       navigate(from)
-      toast.success('Signup Successful')
+      toast.success('Login Successful')
     } catch (err) {
       console.log(err)
       toast.error(err.message)

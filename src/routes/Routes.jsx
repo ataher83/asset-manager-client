@@ -28,6 +28,8 @@ import Purchase from '../pages/Dashboard/Admin/Purchase'
 import PaymentHistory from '../pages/Dashboard/Admin/PaymentHistory'
 import PaymentAtSignup from '../pages/Dashboard/Admin/PaymentAtSignup'
 import PurchaseAtSignup from '../pages/Dashboard/Admin/PurchaseAtSignup'
+import HRManagerPkgChkAtLogin from '../pages/Dashboard/Admin/HRManagerPkgChkAtLogin'
+import HRManagerPaymentChkAtLogin from '../pages/Dashboard/Admin/HRManagerPaymentChkAtLogin'
 
 export const router = createBrowserRouter([
   {
@@ -47,8 +49,11 @@ export const router = createBrowserRouter([
   { path: '/hRManagerSignUp', element: <HRManagerSignUp /> },
   { path: '/guestMenu', element: <GuestMenu /> },
   { path: '/hostModal', element: <HostModal /> },
-  { path: '/paymentAtSignup', element: <PaymentAtSignup /> },
-  { path: '/purchaseAtSignup', element: <PurchaseAtSignup /> },
+  // { path: '/paymentAtSignup', element: <PaymentAtSignup /> },
+  { path: '/paymentAtSignup', element: <PrivateRoute> <AdminRoute> <PaymentAtSignup /> </AdminRoute> </PrivateRoute> },
+  { path: '/purchaseAtSignup', element: <PrivateRoute> <AdminRoute> <PurchaseAtSignup /> </AdminRoute> </PrivateRoute> },
+  { path: '/hRManagerPkgChkAtLogin', element: <PrivateRoute> <AdminRoute> <HRManagerPkgChkAtLogin /> </AdminRoute> </PrivateRoute> },
+  { path: '/hRManagerPaymentChkAtLogin', element: <PrivateRoute> <AdminRoute> <HRManagerPaymentChkAtLogin /> </AdminRoute> </PrivateRoute> },
  
 
 
