@@ -8,10 +8,10 @@ import { Helmet } from 'react-helmet-async';
 import useAxiosCommon from '../../hooks/useAxiosCommon';
 
 import { useQuery } from '@tanstack/react-query'
-import useAxiosSecure from '../../hooks/useAxiosSecure'
+// import useAxiosSecure from '../../hooks/useAxiosSecure'
 import LoadingSpinner from '../../components/Shared/LoadingSpinner'
 
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 
 
@@ -43,6 +43,17 @@ const fetchUsers = async (axiosInstance) => {
     return Array.from(companySet);
   };
 
+  // Extract Unique Company Logos from user data  // বুজতে হবে 
+  const extractUniqueCompanyLogos = (users) => {
+    const companySet = new Set();
+    users.forEach((user) => {
+      if (user.companyLogo) {
+        companySet.add(user.companyLogo);
+      }
+    });
+    return Array.from(companySet);
+  };
+
 
 
 
@@ -66,7 +77,7 @@ const EmployeeSignUp = () => {
 
     const axiosCommon = useAxiosCommon()
 
-    const axiosSecure = useAxiosSecure()
+    // const axiosSecure = useAxiosSecure()
 
   const { 
     createUser, 
@@ -91,6 +102,28 @@ const EmployeeSignUp = () => {
   });
 
   const companyNames = users ? extractUniqueCompanyNames(users) : [];
+  const companyLogos = users ? extractUniqueCompanyLogos(users) : [];
+
+  console.log("users:", users)
+  console.log("companyNames:", companyNames)
+  console.log("companyLogos:", companyLogos)
+
+
+
+
+
+
+  const [selectedCompany, setSelectedCompany] = useState(companyNames[0]);
+  const [logo, setLogo] = useState(companyLogos[0]);
+
+  useEffect(() => {
+    const selectedIndex = companyNames.indexOf(selectedCompany);
+    setLogo(companyLogos[selectedIndex]);
+  }, [selectedCompany, companyNames, companyLogos]);
+
+  const handleCompanyChange = (event) => {
+    setSelectedCompany(event.target.value);
+  };
 
 
 
@@ -222,7 +255,8 @@ const EmployeeSignUp = () => {
     const password = form.password.value;
     const dateOfBirth = form.dateOfBirth.value;
     const companyName = form.companyName.value;
-    const companyLogo = form.companyLogo.files[0];
+    // const companyLogo = form.companyLogo.files[0];
+    const companyLogo = form.companyLogo.value;
     const image = form.image.files[0];
 
     try {
@@ -267,6 +301,30 @@ const EmployeeSignUp = () => {
       toast.error(err.message);
     }
   };
+
+
+
+
+
+
+
+
+
+
+
+//   const CompanySelector = ({ companyNames, companyLogos, isLoading, isError }) => {
+    // const [selectedCompany, setSelectedCompany] = useState(companyNames[0]);
+    // const [logo, setLogo] = useState(companyLogos[0]);
+  
+    // useEffect(() => {
+    //   const selectedIndex = companyNames.indexOf(selectedCompany);
+    //   setLogo(companyLogos[selectedIndex]);
+    // }, [selectedCompany, companyNames, companyLogos]);
+  
+    // const handleCompanyChange = (event) => {
+    //   setSelectedCompany(event.target.value);
+    // };
+
 
 
 //   if (isLoading) return <LoadingSpinner />
@@ -393,6 +451,46 @@ const EmployeeSignUp = () => {
 
     {/* cgp letest ok */}
       {/* Company Name */}
+      {/* <div>
+        <label htmlFor='companyName' className='block mb-2 text-sm'>
+          Select Your Company 
+        </label>
+        <select
+          name='companyName'
+          id='companyName'
+          className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
+          disabled={isLoading}
+        >
+          {companyNames.map((company) => (
+            // <option key={company} value={company}>
+            <option key={company} value={company}>
+              {company}
+            </option>
+          ))}
+        </select>
+        {isError && <div>Error loading company names</div>}
+      </div> */}
+            
+            {/* Company Logo */}
+            {/* <div>
+              <label htmlFor='companyLogo' className='block mb-2 text-sm'>
+                Company Logo
+              </label>
+
+              <img 
+                className='w-full p-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
+                src={companyLogos[0]}
+                // src="https://i.ibb.co/jLDTXQC/employee-1.jpg" 
+                alt="" 
+              />
+
+              
+            </div> */}
+
+
+
+
+      {/* Company Name */}
       <div>
         <label htmlFor='companyName' className='block mb-2 text-sm'>
           Select Your Company 
@@ -402,6 +500,8 @@ const EmployeeSignUp = () => {
           id='companyName'
           className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
           disabled={isLoading}
+          value={selectedCompany}
+          onChange={handleCompanyChange}
         >
           {companyNames.map((company) => (
             <option key={company} value={company}>
@@ -413,11 +513,82 @@ const EmployeeSignUp = () => {
       </div>
 
 
-
-
-            
             {/* Company Logo */}
-            <div>
+            {/* <div>
+              <label htmlFor='companyLogo' className='block mb-2 text-sm'>
+                Company Logo
+              </label>
+              <input
+                type='file'
+                id='companyLogo'
+                name='companyLogo'
+                accept='image/*'
+                className='w-full p-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
+              />
+              <img
+                className='mt-2'
+                src={logo}
+                alt={selectedCompany}
+                style={{ maxHeight: '100px', maxWidth: '100px' }}
+              />
+            </div> */}
+
+            {/* Company Logo */}
+            <div className='hidden'>
+              <label htmlFor='companyLogo' className='block mb-2 text-sm'>
+                Company Logo
+              </label>
+
+              <input
+                type='text'
+                id='companyLogo'
+                name='companyLogo'
+                placeholder='companyLogo '
+                // defaultValue="ABC"
+                // defaultValue={logo}
+                value={logo}
+                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
+              />
+
+              {/* <img
+                className='mt-2'
+                src={logo}
+                alt={selectedCompany}
+                style={{ maxHeight: '100px', maxWidth: '100px' }}
+              /> */}
+
+            </div>
+
+
+
+
+
+
+      {/* Show Company Logo */}
+      <div className='flex flex-col items-center '>
+        {/* <label htmlFor='companyLogo' className='block mb-2 text-sm'>
+          Company Logo
+        </label> */}
+        <img 
+          name='companyLogo'
+          id='companyLogo'
+          className='p-1 border-2 rounded-md '
+          src={logo}
+          alt={selectedCompany} 
+          style={{ maxHeight: '100px', maxWidth: '100px' }}
+        />
+      </div>
+
+
+
+
+
+
+
+
+
+            {/* Company Logo */}
+            {/* <div>
               <label htmlFor='companyLogo' className='block mb-2 text-sm'>
                 Company Logo
               </label>
@@ -428,7 +599,11 @@ const EmployeeSignUp = () => {
                 accept='image/*'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
               />
-            </div>
+            </div> */}
+
+
+
+
 
 
             <div>
