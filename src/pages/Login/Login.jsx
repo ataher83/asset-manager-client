@@ -4,14 +4,12 @@ import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import { useState } from 'react'
-import Navbar from '../../components/Shared/Navbar/Navbar'
+
 
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  // const from = location?.state || '/'
-  const from = location?.state || '/hRManagerPkgChkAtLogin';  //টাকা পে না করেও স্টেট থেকে ডুকে যাবে, ঠিক কর 
-  // const from = location?.state && '/hRManagerPkgChkAtLogin';
+  const from = location?.state || '/'
 
   const { signInWithGoogle, signIn, loading, setLoading, resetPassword } =
     useAuth()

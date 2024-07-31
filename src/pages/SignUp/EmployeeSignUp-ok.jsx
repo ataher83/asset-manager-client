@@ -24,15 +24,15 @@ import axios from 'axios';
 
 
 
-// cgp latest ok
+// cgp latest
 
-// Function to fetch user data  // বুজতে হবে 
+// Function to fetch user data
 const fetchUsers = async (axiosInstance) => {
     const { data } = await axiosInstance.get('/users');
     return data;
   };
   
-  // Extract unique company names from user data  // বুজতে হবে 
+  // Extract unique company names from user data
   const extractUniqueCompanyNames = (users) => {
     const companySet = new Set();
     users.forEach((user) => {
@@ -47,12 +47,7 @@ const fetchUsers = async (axiosInstance) => {
 
 
 
-// // cgp 1
-// const fetchUsers = async () => {
-//     // const { data } = await axiosCommon.get('/users');
-//     const { data } = await useAxiosCommon.get('/users');
-//     return data;
-//   };
+
 
 
 
@@ -83,8 +78,8 @@ const EmployeeSignUp = () => {
 
 
 
-// cgp letest ok
-  // Fetch companies and avoid duplicate company names  // বুজতে হবে 
+// cgp letest
+  // Fetch companies and avoid duplicate company names
   const { data: users, isLoading, isError } = useQuery({
     queryKey: ['users'],
     queryFn: () => fetchUsers(axiosCommon),
@@ -102,7 +97,7 @@ const EmployeeSignUp = () => {
    // Fetch users data for company name collect
 
 //    const fetchCompanies = async () => {
-//      const { data } = await axiosCommon.get('/users');
+//      const { data } = await axiosSecure.get('/users');
 //      return data;
 //    };
    
@@ -119,13 +114,13 @@ const EmployeeSignUp = () => {
 
 
 
-// // cgp 1
+
 // const fetchUsers = async () => {
-//     const { data } = await axiosCommon.get('/users');
+//     const { data } = await axiosSecure.get('/users');
 //     return data;
 //   };
   
-// //   const EmployeeSignUp = () => {
+//   const EmployeeSignUp = () => {
 //     const { data: users } = useQuery(['users'], fetchUsers);
     
 //     // Extract unique company names
@@ -368,8 +363,6 @@ const EmployeeSignUp = () => {
             </div> */}
 
 
-
-    {/* cgp 1 */}
     {/* Company Name */}
     {/* <div>
       <label htmlFor='companyName' className='block mb-2 text-sm'>
@@ -391,11 +384,11 @@ const EmployeeSignUp = () => {
 
 
 
-    {/* cgp letest ok */}
+
       {/* Company Name */}
       <div>
         <label htmlFor='companyName' className='block mb-2 text-sm'>
-          Select Your Company 
+          Company Name
         </label>
         <select
           name='companyName'

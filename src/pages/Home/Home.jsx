@@ -9,6 +9,7 @@ const Home = () => {
       <Helmet>
         <title>The Asset Manager | Home</title>
       </Helmet>
+      
       <Banner></Banner>
       <About></About>
       <Packages></Packages>

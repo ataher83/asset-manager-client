@@ -6,13 +6,10 @@ import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import { Pie } from 'react-chartjs-2'
 import 'chart.js/auto' // This is needed for Chart.js to work
 import { Navigate } from 'react-router-dom'
-
 import useAuth from '../../../hooks/useAuth';
 
 const HRManagerStatistics = () => {
-
   const axiosSecure = useAxiosSecure()
-
   const { user } = useAuth();
 
   // Fetch Asset requests Data 
@@ -32,7 +29,8 @@ const HRManagerStatistics = () => {
   // Fetch all assets 
   const { 
     data: assets = [], 
-    isLoading: isAssetsLoading,
+    // isLoading: isAssetsLoading,
+    isAssetsLoading,
   } = useQuery({
     queryKey: ['assets'],
     queryFn: async () => {
@@ -44,20 +42,38 @@ const HRManagerStatistics = () => {
 
 
 
-
-
     // Fetch payment Data 
     const { 
       data: paymentData = [], 
       isLoading: isPaymentDataLoading,
+      // isPaymentDataLoading,
   } = useQuery({
-    queryKey: ['payment', user?.email],
+    queryKey: ['payments'],
+    // queryKey: ['payment', user?.email],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/payment/${user?.email}`)
+      const { data } = await axiosSecure.get('/payments')
+      // const { data } = await axiosSecure.get(`/payment/${user?.email}`)
       return data
     },
   })
   // console.log(paymentData)
+  // console.log("payerEmail:", paymentData[0]?.payerEmail);
+  // const paymentEmail = paymentData[0]?.payerEmail;
+  // console.log("paymentEmail:", paymentEmail)
+
+
+
+    // Filter current current PaymentInfo  by email
+    const currentPaymentInfo = paymentData.find(paymentInfo => paymentInfo.payerEmail === user?.email);
+
+    const currentPaymentEmail = currentPaymentInfo?.payerEmail;
+    // const CurrentPaidAmount = currentPaymentInfo?.paidAmount;
+    const currentCard = currentPaymentInfo?.cardBrand;
+    // const CurrentCardLast4Digit = currentPaymentInfo?.cardLast4Digit;
+
+    console.log("CurrentPaymentEmail:", currentPaymentEmail)
+    console.log("currentCard:", currentCard)
+
 
 
 
@@ -76,7 +92,7 @@ const HRManagerStatistics = () => {
       },
   });
 
-  // Filter current user info
+  // Filter current user info by email
   const currentUserInfo = usersInfo.find(userInfo => userInfo.email === user?.email);
   // const currentCompany = currentUserInfo?.companyName;
   const currentPackage = currentUserInfo?.packageName;
@@ -94,7 +110,9 @@ const HRManagerStatistics = () => {
 
 
 
-  if (isRequestsLoading || isAssetsLoading || isPaymentDataLoading || isUsersInfoLoading) return <LoadingSpinner />
+  // if (isRequestsLoading || isAssetsLoading || isPaymentDataLoading || isUsersInfoLoading) return <LoadingSpinner />
+
+
 
   // Filter by 'Pending' Asset Type from asset requests
   const filteredRequestsStatusData = requests.filter(request => request.assetRequestStatus === 'Pending');
@@ -160,49 +178,41 @@ const HRManagerStatistics = () => {
     // console.log(paymentData)
 
 
-    // Filter current current PaymentInfo  by email
-    const currentPaymentInfo = paymentData.find(paymentInfo => paymentInfo?.payerEmail === user?.email);
+    // // Filter current current PaymentInfo  by email
+    // const currentPaymentInfo = paymentData.find(paymentInfo => paymentInfo?.payerEmail === user?.email);
 
-    const CurrentPaymentEmail = currentPaymentInfo?.payerEmail;
-    // const CurrentPaidAmount = currentPaymentInfo?.paidAmount;
-    // const CurrentCardLast4Digit = currentPaymentInfo?.cardLast4Digit;
+    // const CurrentPaymentEmail = currentPaymentInfo?.payerEmail;
+    // // const CurrentPaidAmount = currentPaymentInfo?.paidAmount;
+    // // const CurrentCardLast4Digit = currentPaymentInfo?.cardLast4Digit;
 
-    console.log("CurrentPaymentEmail:", CurrentPaymentEmail)
-    // console.log("CurrentPaidAmount:", CurrentPaidAmount)
-    // console.log("CurrentCardLast4Digit:", CurrentCardLast4Digit)
-
-
+    // console.log("CurrentPaymentEmail:", CurrentPaymentEmail)
+    // // console.log("CurrentPaidAmount:", CurrentPaidAmount)
+    // // console.log("CurrentCardLast4Digit:", CurrentCardLast4Digit)
 
 
+
+  if (isRequestsLoading || isAssetsLoading || isPaymentDataLoading || isUsersInfoLoading) return <LoadingSpinner />
 
 
   return (
     <div>
 
+        {/* {
+          !currentPackage ? (
+            <Navigate to="/paymentAtSignup" />
+          ) : !paymentEmail ? (
+            <Navigate to="/purchaseAtSignup" />
+          ) : null
+        } */}
+
         {
           !currentPackage ? (
             <Navigate to="/paymentAtSignup" />
-          ) : !CurrentPaymentEmail ? (
+          ) : !currentCard ? (
+          // ) : !currentPaymentEmail ? (
             <Navigate to="/purchaseAtSignup" />
           ) : null
         }
-
-
-
-      {/* {
-          !currentPackage? 
-          <Navigate to="/paymentAtSignup"></Navigate> &&
-          {
-            !CurrentPaymentEmail? 
-            <Navigate to="/purchaseAtSignup"></Navigate>
-            :
-            null
-        }
-          :
-          null
-      } */}
-
-
 
 
 

@@ -7,66 +7,9 @@ import { imageUpload } from '../../api/utils';
 import { Helmet } from 'react-helmet-async';
 import useAxiosCommon from '../../hooks/useAxiosCommon';
 
-import { useQuery } from '@tanstack/react-query'
-import useAxiosSecure from '../../hooks/useAxiosSecure'
-import LoadingSpinner from '../../components/Shared/LoadingSpinner'
-
-import axios from 'axios';
-
-
-
-
-
-
-
-
-
-
-
-
-// cgp latest ok
-
-// Function to fetch user data  // বুজতে হবে 
-const fetchUsers = async (axiosInstance) => {
-    const { data } = await axiosInstance.get('/users');
-    return data;
-  };
-  
-  // Extract unique company names from user data  // বুজতে হবে 
-  const extractUniqueCompanyNames = (users) => {
-    const companySet = new Set();
-    users.forEach((user) => {
-      if (user.companyName) {
-        companySet.add(user.companyName);
-      }
-    });
-    return Array.from(companySet);
-  };
-
-
-
-
-
-// // cgp 1
-// const fetchUsers = async () => {
-//     // const { data } = await axiosCommon.get('/users');
-//     const { data } = await useAxiosCommon.get('/users');
-//     return data;
-//   };
-
-
-
-
-
-
-
-
-
 const EmployeeSignUp = () => {
 
     const axiosCommon = useAxiosCommon()
-
-    const axiosSecure = useAxiosSecure()
 
   const { 
     createUser, 
@@ -76,143 +19,6 @@ const EmployeeSignUp = () => {
     setLoading 
   } = useAuth();
   const navigate = useNavigate();
-
-
-
-
-
-
-
-// cgp letest ok
-  // Fetch companies and avoid duplicate company names  // বুজতে হবে 
-  const { data: users, isLoading, isError } = useQuery({
-    queryKey: ['users'],
-    queryFn: () => fetchUsers(axiosCommon),
-  });
-
-  const companyNames = users ? extractUniqueCompanyNames(users) : [];
-
-
-
-
-
-
-
-
-   // Fetch users data for company name collect
-
-//    const fetchCompanies = async () => {
-//      const { data } = await axiosCommon.get('/users');
-//      return data;
-//    };
-   
-//    const { data: companies } = useQuery(['companies'], 
-//     fetchCompanies);
-
-
-
-
-
-
-
-
-
-
-
-// // cgp 1
-// const fetchUsers = async () => {
-//     const { data } = await axiosCommon.get('/users');
-//     return data;
-//   };
-  
-// //   const EmployeeSignUp = () => {
-//     const { data: users } = useQuery(['users'], fetchUsers);
-    
-//     // Extract unique company names
-//     const companyNames = users
-//       ? [...new Set(users.map(user => user.companyName).filter(Boolean))]
-//       : [];
-
-
-
-
-
-// // Function to fetch user data by CGP
-// const fetchUsers = async () => {
-//     const { data } = await useAxiosCommon.get('/users');
-//     return data;
-//   };
-  
-//   // Extract unique company names from user data
-//   const extractUniqueCompanyNames = (users) => {
-//       const companySet = new Set();
-//       users.forEach(user => {
-//           if (user.companyName) {
-//               companySet.add(user.companyName);
-//             }
-//         });
-//         return Array.from(companySet);
-//     };
-    
-    
-//     //   const { data: users, isLoading } = useQuery(['users'], fetchUsers);
-    
-//     //   const companyNames = users ? extractUniqueCompanyNames(users) : [];
-    
-//     // const EmployeeSignUp = () => {
-//         const { data: users, isLoading, isError } = useQuery({
-//             queryKey: ['users'],
-//             queryFn: fetchUsers,
-//         });
-        
-//         console.log("users:", users)
-
-//     const companyNames = users ? extractUniqueCompanyNames(users) : [];
-  
-  
-  
-
-
-
-
-
-
-
-   
-
-
-//    const {
-//     data: usersInfo = [],
-//     isLoading,
-//     // isLoading: isUsersInfoLoading,
-// } = useQuery({
-//     queryKey: ['users'],
-//     queryFn: async () => {
-//         const { data } = await axiosCommon.get('/users');
-//         return data;
-//     },
-// });
-// console.log("usersInfo:", usersInfo)
-
-
-
-// Filter current user info by email
-// const currentUserInfo = usersInfo.find(userInfo => userInfo.email === user?.email);
-// const currentCompany = currentUserInfo?.companyName;
-// const currentPackage = currentUserInfo?.packageName;
-// const memberLimit = currentUserInfo?.memberLimit;
-
-
-// console.log("currentPackage:", currentPackage)
-
-
-
-
-
-
-
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -267,11 +73,6 @@ const EmployeeSignUp = () => {
       toast.error(err.message);
     }
   };
-
-
-//   if (isLoading) return <LoadingSpinner />
-//   if (isRequestsLoading || isAssetsLoading || isPaymentDataLoading || isUsersInfoLoading) return <LoadingSpinner />
-
 
   return (
     <div className='flex justify-center items-center min-h-screen bg-blue-100'>
@@ -336,7 +137,7 @@ const EmployeeSignUp = () => {
 
 
             {/* Company Name */}
-            {/* <div>
+            <div>
               <label htmlFor='companyName' className='block mb-2 text-sm'>
                 Company Name
               </label>
@@ -347,75 +148,7 @@ const EmployeeSignUp = () => {
                 placeholder='Enter Your Company Name'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
               />
-            </div> */}
-
-            {/* Company Name */}
-            {/* <div>
-            <label htmlFor='companyName' className='block mb-2 text-sm'>
-                Company Name
-            </label>
-            <select
-                name='companyName'
-                id='companyName'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
-            >
-                {companies?.map((company) => (
-                <option key={company.id} value={company.name}>
-                    {company.name}
-                </option>
-                ))}
-            </select>
-            </div> */}
-
-
-
-    {/* cgp 1 */}
-    {/* Company Name */}
-    {/* <div>
-      <label htmlFor='companyName' className='block mb-2 text-sm'>
-        Company Name
-      </label>
-      <select
-        name='companyName'
-        id='companyName'
-        className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
-        disabled={isLoading}
-      >
-        {companyNames.map((company) => (
-          <option key={company} value={company}>
-            {company}
-          </option>
-        ))}
-      </select>
-    </div> */}
-
-
-
-    {/* cgp letest ok */}
-      {/* Company Name */}
-      <div>
-        <label htmlFor='companyName' className='block mb-2 text-sm'>
-          Select Your Company 
-        </label>
-        <select
-          name='companyName'
-          id='companyName'
-          className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-blue-700 bg-gray-200 text-gray-900'
-          disabled={isLoading}
-        >
-          {companyNames.map((company) => (
-            <option key={company} value={company}>
-              {company}
-            </option>
-          ))}
-        </select>
-        {isError && <div>Error loading company names</div>}
-      </div>
-
-
-
-
-            
+            </div>
             {/* Company Logo */}
             <div>
               <label htmlFor='companyLogo' className='block mb-2 text-sm'>

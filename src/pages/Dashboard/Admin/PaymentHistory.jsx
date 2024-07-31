@@ -21,7 +21,7 @@ const PaymentHistory = () => {
     })
     console.log(paymentData)
 
-    if (isLoading) return <LoadingSpinner />;
+    // if (isLoading) return <LoadingSpinner />;
 
     // // Sort the payment data in descending order based on date
     // const sortedPaymentData = [...paymentData].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -33,7 +33,8 @@ const PaymentHistory = () => {
     // // Sort the payment data in descending order based on date
     // const sortedPaymentData = paymentData.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
-
+    
+    if (isLoading) return <LoadingSpinner />;
 
     return (
         <div className='mt-12 mx-auto md:-ml-64'>
