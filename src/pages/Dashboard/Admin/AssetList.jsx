@@ -34,7 +34,8 @@ const AssetList = () => {
 
     const updateMutation = useMutation({
         mutationFn: async (updatedAsset) => {
-            await axiosSecure.put(`/assets/${updatedAsset._id}`, updatedAsset);
+            // await axiosSecure.put(`/assets/${updatedAsset._id}`, updatedAsset);
+            await axiosSecure.patch(`/assets/${updatedAsset._id}`, updatedAsset);
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['assets']);
