@@ -82,12 +82,12 @@ The Asset Manager is a web application designed to help businesses manage their 
     - Social login options for quick access.
 
 
-## Usage
+<!-- ## Usage in Localhost:
 
 1. Open your browser and go to `http://localhost:5000` to view the application.
 2. Sign up as either an Employee or HR Manager.
 3. HR Managers can manage assets, view requests, and handle employees.
-4. Employees can view their assets, request new ones, and see their team.
+4. Employees can view their assets, request new ones, and see their team. -->
 
 
 ## Contact
