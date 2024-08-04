@@ -5,7 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
 import useAuth from '../../../hooks/useAuth'
-import AssetRequestForm from '../../../components/Form/AssetRequestForm'
+// import AssetRequestForm from '../../../components/Form/AssetRequestForm'
 
 const AssetRequest = () => {
   const { user } = useAuth()
@@ -16,8 +16,23 @@ const AssetRequest = () => {
   const [selectedAsset, setSelectedAsset] = useState(null)
   const [loading, setLoading] = useState(false)
 
-  
-  const { data: assets = [], isLoading, refetch } = useQuery({
+
+    // Fetch users data
+    const {
+      data: usersInfo = [],
+      isUserLoading,
+  } = useQuery({
+      queryKey: ['users'],
+      queryFn: async () => {
+          const { data } = await axiosSecure.get('/users');
+          return data;
+      },
+  });
+  console.log("usersInfo:", usersInfo)
+
+
+  // Fetch assets data
+  const { data: assets = [], isAssetLoading, refetch } = useQuery({
     queryKey: ['assetsForAssetRequest', searchTerm, availabilityFilter, typeFilter],
     queryFn: async () => {
       const { data } = await axiosSecure.get('/assetsForAssetRequest', {
@@ -30,6 +45,8 @@ const AssetRequest = () => {
       return data
     },
   })
+  console.log("assets:", assets)
+
 
   const { mutateAsync } = useMutation({
     mutationFn: async requestData => {
@@ -93,7 +110,38 @@ const AssetRequest = () => {
     }
   }
 
-  if (isLoading) return <LoadingSpinner />
+
+
+
+
+    // // Filter current user info
+    // const currentUserInfo = usersInfo.find(userInfo => userInfo.email === user?.email);
+    // const currentCompany = currentUserInfo?.companyName;
+
+
+    // // Filter users by current user's company name
+    // const usersInSameCompany = usersInfo.filter(userInfo => userInfo.companyName === currentCompany);
+
+
+    // Filter current user info
+    const currentUserInfo = usersInfo.find(userInfo => userInfo.email === user?.email);
+    console.log("currentUserInfo:", currentUserInfo)
+
+    const currentCompany = currentUserInfo?.companyName;
+
+    // Filter assets by current user's company name
+    const currentCompanyAssets = assets.filter(asset => asset.companyName === currentCompany);
+    console.log("currentCompanyAssets:", currentCompanyAssets)
+
+
+
+
+
+
+
+
+  // if (isLoading) return <LoadingSpinner />
+  if ( isUserLoading || isAssetLoading ) return <LoadingSpinner />
 
   return (
     <div className='mt-24 md:mt-6'>
@@ -129,6 +177,14 @@ const AssetRequest = () => {
         </select>
       </div>
 
+      <p className='text-center text-base my-10'>
+          {currentCompanyAssets.length > 0 ? (
+              <span>{currentCompanyAssets.length === 1 ? `${currentCompanyAssets.length} Asset Found` : `${currentCompanyAssets.length} Assets Found`}</span>
+          ) : (
+              <span>No Asset Found</span>
+          )}
+      </p>
+
       <div className='overflow-x-auto'>
         <table className='table'>
           <thead>
@@ -137,16 +193,19 @@ const AssetRequest = () => {
               <th>Asset Name</th>
               <th>Asset Type</th>
               <th>Availability</th>
+              <th>Company Name</th>
               <th>Request</th>
             </tr>
           </thead>
           <tbody>
-            {assets.map((asset, index) => (
+            {/* {assets.map((asset, index) => ( */}
+            {currentCompanyAssets.map((asset, index) => (
               <tr key={asset._id.$oid}>
                 <td>{index + 1}</td>
                 <td>{asset.assetName}</td>
                 <td>{asset.assetType}</td>
                 <td>{asset.assetAvailability}</td>
+                <td>{asset.companyName}</td>
                 <td>
                   <button
                     className="btn btn-primary btn-xs"

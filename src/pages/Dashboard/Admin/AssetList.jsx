@@ -155,6 +155,7 @@ const AssetList = () => {
                             <option value='desc'>Quantity Descending</option>
                         </select>
                     </div>
+                    
                     <p className='text-center text-base'>
                         {currentCompanyAssets.length > 0 ? (
                             <span>{currentCompanyAssets.length === 1 ? `${currentCompanyAssets.length} Asset Found` : `${currentCompanyAssets.length} Assets Found`}</span>
