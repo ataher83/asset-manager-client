@@ -6,7 +6,11 @@ import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import UpdateAssetModal from '../../../components/Modal/UpdateAssetModal';
 import toast from 'react-hot-toast';
 
+import useAuth from '../../../hooks/useAuth';
+
 const AssetList = () => {
+    const { user } = useAuth();
+
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
 
@@ -31,10 +35,10 @@ const AssetList = () => {
             return data;
         },
     });
+    console.log('assets:', assets)
 
     const updateMutation = useMutation({
         mutationFn: async (updatedAsset) => {
-            // await axiosSecure.put(`/assets/${updatedAsset._id}`, updatedAsset);
             await axiosSecure.patch(`/assets/${updatedAsset._id}`, updatedAsset);
         },
         onSuccess: () => {
@@ -62,27 +66,26 @@ const AssetList = () => {
         },
     });
 
-    if (isLoading) return <LoadingSpinner />;
-
+    
     const handleSearchChange = (e) => setSearchTerm(e.target.value);
     const handleStockFilterChange = (e) => { setStockFilter(e.target.value); refetch(); };
     const handleTypeFilterChange = (e) => { setTypeFilter(e.target.value); refetch(); };
     const handleSortOrderChange = (e) => { setSortOrder(e.target.value); refetch(); };
-
+    
     // const handleUpdate = (asset) => {
-    //     setSelectedAsset(asset);
-    //     setIsUpdateModalOpen(true);
-    // };
-
-    const handleUpdate = async (asset) => {
-        // await updateMutation.mutateAsync(asset);
+        //     setSelectedAsset(asset);
+        //     setIsUpdateModalOpen(true);
+        // };
+        
+        const handleUpdate = async (asset) => {
+            // await updateMutation.mutateAsync(asset);
             setSelectedAsset(asset);
             setIsUpdateModalOpen(true);
-    };
-
-    const handleDelete = (assetId) => {
-        toast((t) => (
-            <span className='bg-slate-200 p-5 rounded-lg'>
+        };
+        
+        const handleDelete = (assetId) => {
+            toast((t) => (
+                <span className='bg-slate-200 p-5 rounded-lg'>
                 Are you sure you want to delete this Asset?
                 <div className='flex justify-center gap-5 mt-2'>
                     <button
@@ -101,6 +104,24 @@ const AssetList = () => {
             </span>
         ), { duration: 4000 });
     };
+    
+
+    // Filter current user info
+    // const currentUserInfo = assets.find(userInfo => userInfo.email === user?.email);
+    // const currentCompany = currentUserInfo?.companyName;
+
+    // Filter users by current user's company name
+    // const currentCompanyAssets = assets.filter(asset => asset.companyName === currentCompany);
+
+    // Filter Current Company Assets  by email
+    const currentCompanyAssets = assets.filter(asset => asset.companyEmail === user?.email);
+    console.log('currentCompanyAssets:', currentCompanyAssets)
+
+
+
+
+
+    if (isLoading) return <LoadingSpinner />;
 
     return (
         <div>
@@ -135,8 +156,8 @@ const AssetList = () => {
                         </select>
                     </div>
                     <p className='text-center text-base'>
-                        {assets.length > 0 ? (
-                            <span>{assets.length === 1 ? `${assets.length} Asset Found` : `${assets.length} Assets Found`}</span>
+                        {currentCompanyAssets.length > 0 ? (
+                            <span>{currentCompanyAssets.length === 1 ? `${currentCompanyAssets.length} Asset Found` : `${currentCompanyAssets.length} Assets Found`}</span>
                         ) : (
                             <span>No Asset Found</span>
                         )}
@@ -156,7 +177,8 @@ const AssetList = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {assets.map((asset, index) => (
+                                {/* {assets.map((asset, index) => ( */}
+                                {currentCompanyAssets.map((asset, index) => (
                                     <tr key={asset._id}>
                                         <td>{index + 1}</td>
                                         <td>{asset.assetName}</td>

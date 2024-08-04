@@ -126,6 +126,24 @@ const AddAssetForm = ({
                   />
                 </div>
 
+                {/* Company HRManager Email */}
+                <div className=' text-sm'>
+                  <label htmlFor='companyName' className='block text-gray-600'>
+                  Company Email
+                  </label>
+                  <input
+                    className='w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md '
+                    name='companyEmail'
+                    id='companyEmail'
+                    type='email'
+                    placeholder='Company Email'
+                    defaultValue={user.email}
+                    disabled
+                    required
+                    
+                  />
+                </div>
+
             </div>
     
             <button

@@ -53,13 +53,15 @@ const AddAsset = () => {
       const assetQuantity = form.assetQuantity.value
       const assetAddedDate = form.assetAddedDate.value
       const companyName = form.companyName.value
+      const companyEmail = form.companyEmail.value
       try {
         const assetData = {
             assetName,
             assetType,
             assetQuantity,
             assetAddedDate,
-            companyName
+            companyName,
+            companyEmail
         }
         console.table(assetData)
   
