@@ -31,6 +31,14 @@ const AssetRequest = () => {
   console.log("usersInfo:", usersInfo)
 
 
+    // Filter current user info
+    const currentUserInfo = usersInfo.find(userInfo => userInfo.email === user?.email);
+    console.log("currentUserInfo:", currentUserInfo)
+    const currentCompany = currentUserInfo?.companyName;
+
+
+
+
   // Fetch assets data
   const { data: assets = [], isAssetLoading, refetch } = useQuery({
     queryKey: ['assetsForAssetRequest', searchTerm, availabilityFilter, typeFilter],
@@ -46,6 +54,9 @@ const AssetRequest = () => {
     },
   })
   console.log("assets:", assets)
+
+
+
 
 
   const { mutateAsync } = useMutation({
@@ -97,6 +108,7 @@ const AssetRequest = () => {
       assetRequestStatus: 'Pending',
       assetRequesterName: user.displayName,
       assetRequesterEmail: user.email,
+      assetRequesterCompany: currentCompany,
     //   assetRequestDate: new Date().toISOString(),
       assetRequestDate: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + ', ' + new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' }),
       assetRequestApprovalDate: null,
@@ -123,11 +135,11 @@ const AssetRequest = () => {
     // const usersInSameCompany = usersInfo.filter(userInfo => userInfo.companyName === currentCompany);
 
 
-    // Filter current user info
-    const currentUserInfo = usersInfo.find(userInfo => userInfo.email === user?.email);
-    console.log("currentUserInfo:", currentUserInfo)
+    // // Filter current user info
+    // const currentUserInfo = usersInfo.find(userInfo => userInfo.email === user?.email);
+    // console.log("currentUserInfo:", currentUserInfo)
 
-    const currentCompany = currentUserInfo?.companyName;
+    // const currentCompany = currentUserInfo?.companyName;
 
     // Filter assets by current user's company name
     const currentCompanyAssets = assets.filter(asset => asset.companyName === currentCompany);

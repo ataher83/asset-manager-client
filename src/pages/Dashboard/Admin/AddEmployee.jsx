@@ -52,6 +52,17 @@ const AddEmployee = () => {
     // Filter unassigned users by current user's company name 
     const usersNotInSameCompany = usersInfo.filter(userInfo => userInfo.companyName !== currentCompany);
 
+    // Filter users without HR Managers 
+    const usersWithoutHRManager = usersInfo.filter(userInfo => userInfo.role !== 'HRManager');
+    console.log("usersWithoutHRManager:", usersWithoutHRManager)
+
+    // Filter users without HR Managers 
+    const usersWithoutHRManagerAndEmployee = usersWithoutHRManager.filter(userInfo => userInfo.role !== 'Employee');
+    console.log("usersWithoutHRManagerAndEmployee:", usersWithoutHRManagerAndEmployee)
+
+    // unassigned users  
+    const unassignedUsers = usersWithoutHRManagerAndEmployee; 
+
     const handleAddToTeam = (userId) => {
         if (usersInSameCompany.length < currentMemberLimit) {
             mutation.mutate(userId);
@@ -115,7 +126,7 @@ const AddEmployee = () => {
                 {/* Unassigned Users Section */}
                 <div className="p-6">
                     <h2 className="text-center font-semibold text-xl mb-4">Unassigned Users</h2>
-                    <h2 className="text-center text-lg mb-4">(Total unassigned users: {usersNotInSameCompany.length})</h2>
+                    <h2 className="text-center text-lg mb-4">(Total unassigned users: {unassignedUsers.length})</h2>
                     <div className="flex justify-center mb-4">
                         <button 
                             className="btn btn-success bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" 
@@ -136,8 +147,12 @@ const AddEmployee = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {usersNotInSameCompany.map((user, index) => (
-                                    <tr key={index} className="bg-white border-b">
+                                {unassignedUsers.map((user, index) => (
+                                // {usersNotInSameCompany.map((user, index) => (
+                                    // <tr key={index} className={`bg-white border-b ${user.role === 'HRManager' ? 'hidden' : user.role === 'Employee' ? 'hidden' : null}`}
+                                    // >
+                                    
+                                    <tr key={index} className="bg-white border-b ">
                                         <td className="px-4 py-2">
                                             <input 
                                                 type="checkbox" 
