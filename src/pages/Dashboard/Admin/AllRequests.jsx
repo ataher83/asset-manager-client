@@ -79,11 +79,6 @@ const AllRequests = () => {
     const currentCompanyRequests = requests.filter(request => request.assetRequesterCompany === currentCompany);
     console.log('currentCompanyRequests:', currentCompanyRequests)
     
-
-
-
-
-
     // if (isLoading) return <LoadingSpinner />;
     if ( isUserLoading || isRquestLoading) return <LoadingSpinner />;
 

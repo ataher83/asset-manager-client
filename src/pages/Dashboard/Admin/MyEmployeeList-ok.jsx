@@ -22,17 +22,37 @@ const MyEmployeeList = () => {
         },
     });
 
-    // Mutation to remove user
+
+
+
+    // Mutation to delete user
+    // const mutation = useMutation({
+    //     mutationFn: async (userId) => {
+    //         await axiosSecure.delete(`/users/${userId}`);
+    //     },
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries(['users']);
+    //         console.log('Removed from Team Successfully!')
+    //         toast.success('Removed from Team Successfully!')
+    //     },
+    // });
+
+    // Mutation to Remove user from team
     const mutation = useMutation({
         mutationFn: async (userId) => {
-            await axiosSecure.delete(`/users/${userId}`);
+            await axiosSecure.patch(`/users/${userId}`, { 
+                companyName: null, 
+                companyLogo: null,
+                role: "guest"
+            });
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['users']);
-            console.log('Removed from Team Successfully!')
-            toast.success('Removed from Team Successfully!')
+            toast.success('Member Removed from Team Successfully!')
         },
     });
+
+
 
     // Filter current user info
     const currentUserInfo = usersInfo.find(userInfo => userInfo.email === user?.email);
@@ -41,9 +61,14 @@ const MyEmployeeList = () => {
     // Filter users by current user's company name
     const usersInSameCompany = usersInfo.filter(userInfo => userInfo.companyName === currentCompany);
 
-    const handleRemoveUser = (userId) => {
+
+
+    const handleRemoveFromTeam = (userId) => {
         mutation.mutate(userId);
     };
+
+
+
 
     if (isLoading) return <LoadingSpinner />;
 
@@ -85,23 +110,18 @@ const MyEmployeeList = () => {
                                                 <img src={user.image} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
-                                        {/* <div>
-                                            <div className="font-bold">{user.name}</div> 
-                                            <div className="text-sm opacity-50">{user.email}</div>
-                                        </div> */}
 
                                     </div>
                                 </td>
                                 <td>
                                     {user.name}
                                     <br/>
-                                    {/* <span className="badge badge-ghost badge-sm">{user.role}</span> */}
                                 </td>
                                 <td>{user.role}</td>
                                 <th>
                                     <button 
                                         className="btn btn-error btn-xs"
-                                        onClick={() => handleRemoveUser(user._id)}
+                                        onClick={() => handleRemoveFromTeam(user._id)}
                                     >
                                         Remove From Team
                                     </button>

@@ -70,58 +70,6 @@ const MyEmployeeList = () => {
 
 
 
-
-
-
-
-
-    // Mutation to delete requests of Revoved Employee, filtered by email
-    const mutation = useMutation({
-      mutationFn: async (email) => {
-          await axiosSecure.delete(`/requests/${email}`);
-      },
-      onSuccess: () => {
-          queryClient.invalidateQueries(['users']);
-          console.log('All Requests of Removed Employee Deleted Successfully!')
-          toast.success('All Requests of Removed Employee Deleted Successfully!')
-      },
-  });
-
-
-
-//   const handleDeleteUser = (userId) => {
-//     mutation.mutate(userId);
-// };
-
-
-// const handleDeleteUser = (userId) => {
-//   if (window.confirm('Are you sure you want to delete this user?')) {
-//     mutation.mutate(userId);
-//   }
-// };
-
-
-
-const handleDeleteRequestsOfRemovedEmployee = (email) => {
-    mutation.mutate(email);
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if (isLoading) return <LoadingSpinner />;
 
     return (
@@ -174,7 +122,6 @@ const handleDeleteRequestsOfRemovedEmployee = (email) => {
                                     <button 
                                         className="btn btn-error btn-xs"
                                         onClick={() => handleRemoveFromTeam(user._id)}
-                                        onClick={() => handleDeleteRequestsOfRemovedEmployee}
                                     >
                                         Remove From Team
                                     </button>

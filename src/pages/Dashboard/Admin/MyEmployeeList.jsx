@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
 import useAuth from '../../../hooks/useAuth';
 
 const MyEmployeeList = () => {
@@ -22,37 +22,28 @@ const MyEmployeeList = () => {
         },
     });
 
-
-
-
-    // Mutation to delete user
-    // const mutation = useMutation({
-    //     mutationFn: async (userId) => {
-    //         await axiosSecure.delete(`/users/${userId}`);
-    //     },
-    //     onSuccess: () => {
-    //         queryClient.invalidateQueries(['users']);
-    //         console.log('Removed from Team Successfully!')
-    //         toast.success('Removed from Team Successfully!')
-    //     },
-    // });
-
-    // Mutation to Remove user from team
-    const mutation = useMutation({
+    // Mutation to remove user
+    const removeUserMutation = useMutation({
         mutationFn: async (userId) => {
-            await axiosSecure.patch(`/users/${userId}`, { 
-                companyName: null, 
-                companyLogo: null,
-                role: "guest"
-            });
+            await axiosSecure.delete(`/users/${userId}`);
         },
         onSuccess: () => {
             queryClient.invalidateQueries(['users']);
-            toast.success('Member Removed from Team Successfully!')
+            console.log('Removed from Team Successfully!');
+            toast.success('Removed from Team Successfully!');
         },
     });
 
-
+    // Mutation to delete requests based on email
+    const deleteRequestsMutation = useMutation({
+        mutationFn: async (email) => {
+            await axiosSecure.delete(`/requests/${email}`);
+        },
+        onSuccess: () => {
+            console.log('Requests deleted successfully!');
+            toast.success('Requests deleted successfully!');
+        },
+    });
 
     // Filter current user info
     const currentUserInfo = usersInfo.find(userInfo => userInfo.email === user?.email);
@@ -61,14 +52,10 @@ const MyEmployeeList = () => {
     // Filter users by current user's company name
     const usersInSameCompany = usersInfo.filter(userInfo => userInfo.companyName === currentCompany);
 
-
-
-    const handleRemoveFromTeam = (userId) => {
-        mutation.mutate(userId);
+    const handleRemoveUser = (user) => {
+        removeUserMutation.mutate(user._id);
+        deleteRequestsMutation.mutate(user.email);
     };
-
-
-
 
     if (isLoading) return <LoadingSpinner />;
 
@@ -79,13 +66,11 @@ const MyEmployeeList = () => {
             </Helmet>
             <p className='text-center text-xl font-semibold py-5'>Employee List of my {currentCompany}</p>
             <p className='text-center text-base font-semibold mb-5'>
-                ({usersInSameCompany.length > 0 ? 
-                    (
+                {usersInSameCompany.length > 0 ? (
                     <span>{usersInSameCompany.length === 1 ? `Total Employee: ${usersInSameCompany.length}` : `Total Employees: ${usersInSameCompany.length}`}</span>
-                    ) : (
+                ) : (
                     <span>No Employee is here now.</span>
-                    )
-                })
+                )}
             </p>
 
             <div className="overflow-x-auto">
@@ -110,18 +95,18 @@ const MyEmployeeList = () => {
                                                 <img src={user.image} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
-
                                     </div>
                                 </td>
                                 <td>
                                     {user.name}
-                                    <br/>
+                                    <br />
+                                    {/* <span className="badge badge-ghost badge-sm">{user.role}</span> */}
                                 </td>
                                 <td>{user.role}</td>
                                 <th>
-                                    <button 
+                                    <button
                                         className="btn btn-error btn-xs"
-                                        onClick={() => handleRemoveFromTeam(user._id)}
+                                        onClick={() => handleRemoveUser(user)}
                                     >
                                         Remove From Team
                                     </button>
