@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import LoadingSpinner from '../../../components/Shared/LoadingSpinner';
 import useAuth from '../../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const AllRequests = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const queryClient = useQueryClient();
     const [searchByEmail, setSearchByEmail] = useState('')
 
 
@@ -27,20 +29,6 @@ const AllRequests = () => {
 
 
     // Fetch all requests here
-    // const { 
-    //     data: requests = [], 
-    //     isLoading,
-    //     refetch 
-    // } = useQuery({
-    //     queryKey: ['requests'],
-    //     queryFn: async () => {
-    //         const { data } = await axiosSecure.get('/requests');
-    //         return data;
-    //     },
-    // });
-
-    // console.log(requests)
-
     const { 
         data: requests = [], 
         isRquestLoading, 
@@ -63,6 +51,56 @@ const AllRequests = () => {
         setSearchByEmail(e.target.value)
         refetch()
     }
+
+
+
+
+
+
+    // const deleteMutation = useMutation({
+    //     mutationFn: async (assetId) => {
+    //         await axiosSecure.delete(`/assets/${assetId}`);
+    //     },
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries(['assets']);
+    //         toast.success('Asset Deleted Successfully!');
+    //     },
+    // });
+    const rejectMutation = useMutation({
+        mutationFn: async (requestId) => {
+            await axiosSecure.delete(`/request/${requestId}`);
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['request']);
+            toast.success('Request Rejected Successfully!');
+        },
+    });
+
+
+    const handleReject = (requestId) => {
+        toast((t) => (
+            <span className='bg-slate-200 p-5 rounded-lg'>
+            Are you sure you want to Reject this Asset?
+            <div className='flex justify-center gap-5 mt-2'>
+                <button
+                    onClick={() => { rejectMutation.mutate(requestId); toast.dismiss(t.id); }}
+                    className='btn btn-error btn-xs ml-2'
+                >
+                    Yes
+                </button>
+                <button
+                    onClick={() => toast.dismiss(t.id)}
+                    className='btn btn-primary btn-xs ml-2'
+                >
+                    No
+                </button>
+            </div>
+            </span>
+         ), { duration: 10000 });
+    };
+
+
+
 
 
 
@@ -131,21 +169,32 @@ const AllRequests = () => {
                             </thead>
                             <tbody>
                                 {/* {requests.map((asset, index) => ( */}
-                                {currentCompanyRequests.map((asset, index) => (
-                                    <tr key={asset._id.$oid}>
+                                {currentCompanyRequests.map((request, index) => (
+                                    <tr key={request._id.$oid}>
                                         <td>{index + 1}</td>
-                                        <td>{asset.assetName}</td>
-                                        <td>{asset.assetType}</td>
-                                        <td>{asset.assetRequesterEmail}</td>
-                                        <td>{asset.assetRequesterName}</td>
-                                        <td>{asset.assetRequesterCompany}</td>
-                                        <td>{asset.assetRequestDate}</td>
-                                        <td>{asset.additionalNote}</td>
-                                        <td>{asset.assetRequestStatus}</td>
+                                        <td>{request.assetName}</td>
+                                        <td>{request.assetType}</td>
+                                        <td>{request.assetRequesterEmail}</td>
+                                        <td>{request.assetRequesterName}</td>
+                                        <td>{request.assetRequesterCompany}</td>
+                                        <td>{request.assetRequestDate}</td>
+                                        <td>{request.additionalNote}</td>
+                                        <td>{request.assetRequestStatus}</td>
                                         <td>
                                             <div className='flex gap-2' >
-                                                <button className="btn btn-primary btn-xs" disabled={asset.assetRequestStatus === 'Approved'} >Approve</button>
-                                                <button className="btn btn-error btn-xs " disabled={asset.assetRequestStatus === 'Approved'}>Reject</button>
+                                                <button 
+                                                className="btn btn-primary btn-xs" 
+                                                disabled={request.assetRequestStatus === 'Approved'} 
+                                                >
+                                                    Approve
+                                                </button>
+                                                <button 
+                                                className="btn btn-error btn-xs " 
+                                                disabled={request.assetRequestStatus === 'Approved'}
+                                                onClick={() => handleReject(request._id)}
+                                                >
+                                                    Reject
+                                                </button>
                                             </div>
                                         </td>
 
